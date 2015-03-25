@@ -1,6 +1,0 @@
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\bin\Debug\EnumeratorDemo.exe.config
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\obj\Debug\EnumeratorDemo.csprojResolveAssemblyReference.cache
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\bin\Debug\EnumeratorDemo.exe
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\bin\Debug\EnumeratorDemo.pdb
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\obj\Debug\EnumeratorDemo.exe
-D:\Work\DotNet\Github\csharp-book-support\Examples\Ch05\EnumeratorDemo\obj\Debug\EnumeratorDemo.pdb
