@@ -70,7 +70,7 @@ namespace Demo01_FileList
             }                        
         }
 
-        static void Nonsense()
+        static void Doable_But_Nonsense()
         {
             DirectoryInfo dir = new DirectoryInfo(@"c:\temp");
 
