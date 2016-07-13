@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo04_FindSingleItem", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo05_BooleanOperations", "Demo05_BooleanOperations\Demo05_BooleanOperations.csproj", "{458434B0-9BD4-4657-89D9-C2C98573C994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo06_Transformation", "Demo06_Transformation\Demo06_Transformation.csproj", "{5C17639D-9F21-4351-9BB2-2319503B9540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo07_Counting", "Demo07_Counting\Demo07_Counting.csproj", "{154434AD-1361-486D-B444-32108DE229B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{458434B0-9BD4-4657-89D9-C2C98573C994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{458434B0-9BD4-4657-89D9-C2C98573C994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{458434B0-9BD4-4657-89D9-C2C98573C994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C17639D-9F21-4351-9BB2-2319503B9540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C17639D-9F21-4351-9BB2-2319503B9540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C17639D-9F21-4351-9BB2-2319503B9540}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C17639D-9F21-4351-9BB2-2319503B9540}.Release|Any CPU.Build.0 = Release|Any CPU
+		{154434AD-1361-486D-B444-32108DE229B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{154434AD-1361-486D-B444-32108DE229B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{154434AD-1361-486D-B444-32108DE229B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{154434AD-1361-486D-B444-32108DE229B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
