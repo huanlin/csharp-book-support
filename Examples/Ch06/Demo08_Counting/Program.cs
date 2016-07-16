@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using CommonClasses;
 
-namespace Demo07_Counting
+namespace Demo08_Counting
 {
     class Program
     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5C17639D-9F21-4351-9BB2-2319503B9540}</ProjectGuid>
+    <ProjectGuid>{458434B0-9BD4-4657-89D9-C2C98573C994}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo06_Transformation</RootNamespace>
-    <AssemblyName>Demo06_Transformation</AssemblyName>
+    <RootNamespace>Demo06_BooleanOperations</RootNamespace>
+    <AssemblyName>Demo06_BooleanOperations</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

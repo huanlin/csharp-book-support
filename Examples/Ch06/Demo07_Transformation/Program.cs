@@ -2,7 +2,7 @@
 using System.Linq;
 using CommonClasses;
 
-namespace Demo06_Transformation
+namespace Demo07_Transformation
 {
     class Program
     {

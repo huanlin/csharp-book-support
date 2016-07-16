@@ -2,7 +2,7 @@
 using System.Linq;
 using CommonClasses;
 
-namespace Demo05_BooleanOperations
+namespace Demo06_BooleanOperations
 {
     class Program
     {
