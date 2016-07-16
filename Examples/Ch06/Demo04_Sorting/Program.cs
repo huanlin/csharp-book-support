@@ -18,7 +18,7 @@ namespace Demo04_Sorting
 
             foreach ( var emp in query)
             {
-                Console.WriteLine($"{emp.Name} : {emp.Salary}");
+                Console.WriteLine($"{emp.Name, -6} : {emp.Salary, 0:C0}");
             }
         }
     }
