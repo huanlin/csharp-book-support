@@ -3,6 +3,7 @@
 
 # User-specific files
 .vs/
+*.scgdat
 *.suo
 *.user
 *.sln.docstates
