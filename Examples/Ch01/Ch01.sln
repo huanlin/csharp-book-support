@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnonymousTypeDemo", "AnonymousTypeDemo\AnonymousTypeDemo.csproj", "{B5DDBF3D-A672-4D97-8474-68042F98A360}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_AnonymousType", "AnonymousTypeDemo\Demo_AnonymousType.csproj", "{B5DDBF3D-A672-4D97-8474-68042F98A360}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethodDemo", "ExtensionMethodDemo\ExtensionMethodDemo.csproj", "{5737E225-964A-47C6-85FD-D0F7CB163341}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_ExtensionMethod", "ExtensionMethodDemo\Demo_ExtensionMethod.csproj", "{5737E225-964A-47C6-85FD-D0F7CB163341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullableTypeDemo", "NullableTypeDemo\NullableTypeDemo.csproj", "{70E45688-30D8-4FA1-9507-79023DC2E073}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_NullableType", "NullableTypeDemo\Demo_NullableType.csproj", "{70E45688-30D8-4FA1-9507-79023DC2E073}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_ObjectInitializer", "Demo_ObjectInitializer\Demo_ObjectInitializer.csproj", "{7FEDE4E3-023F-428C-BE86-FCEDBFDFD2A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{70E45688-30D8-4FA1-9507-79023DC2E073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E45688-30D8-4FA1-9507-79023DC2E073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E45688-30D8-4FA1-9507-79023DC2E073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FEDE4E3-023F-428C-BE86-FCEDBFDFD2A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FEDE4E3-023F-428C-BE86-FCEDBFDFD2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FEDE4E3-023F-428C-BE86-FCEDBFDFD2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FEDE4E3-023F-428C-BE86-FCEDBFDFD2A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
