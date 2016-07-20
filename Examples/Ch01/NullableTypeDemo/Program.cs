@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NullableTypeDemo
 {
     class Program
     {
-              public static DateTime Now { get; } 
-
         static void Main(string[] args)
+        {
+            Demo1();
+            Demo2();
+        }
+
+        static void Demo1()
         {
             Nullable<int> x = new Nullable<int>(10);
             int? y = 10;
@@ -30,7 +30,19 @@ namespace NullableTypeDemo
             if (flag == false)
             {
                 Console.WriteLine("flag is false.");
-            }            
+            }
         }
+
+        static void Demo2()
+        {
+            Console.WriteLine("--- Nullable 變數運算 --- ");
+            int? m = null;
+            int? n = 10;
+            int? o = m + n;
+            int? p = m * n;
+            Console.WriteLine("m + n = " + (o == null ? "NULL" : o.ToString()));
+            Console.WriteLine("m * n = " + (p == null ? "NULL" : p.ToString()));
+        }
+
     }
 }
