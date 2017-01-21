@@ -15,7 +15,7 @@ namespace Demo_GenericMethods
             gmd.Print<string>("Jacky");  // 這裡的 <string> 可以省略不寫。
             gmd.Print<int>(100);   // 這裡的 <int> 可以省略不寫。
 
-            var result = gmd.Print<int, DateTime>(100);
+            var result = gmd.Print<string, DateTime>("Jacky");
             Console.WriteLine("回傳值: " + result);
 
             // 使用第二個版本
@@ -33,12 +33,12 @@ namespace Demo_GenericMethods
     {
         public void Print<T>(T obj)
         {
-            Console.WriteLine("Hello, " + obj.ToString());
+            Console.WriteLine("Print<T>() 的參數值：" + obj.ToString());
         }
 
         public TResult Print<T, TResult>(T obj) where TResult : new()
         {
-            Console.WriteLine("Hello, " + obj.ToString());
+            Console.WriteLine("Print<T, TResult>() 的參數值：" + obj.ToString());
             TResult result = new TResult();
             return result;
         }
@@ -48,12 +48,12 @@ namespace Demo_GenericMethods
     {
         public void Print(T obj)   // 參數型別 T 已經改為宣告在類別層級，這裡就不用寫 <T>。
         {
-            Console.WriteLine("Hello, " + obj.ToString());
+            Console.WriteLine("Print() 的參數值：" + obj.ToString());
         }
 
         public TResult Print<TResult>(T obj) where TResult : new() 
         {
-            Console.WriteLine("Hello, " + obj.ToString());
+            Console.WriteLine("Print<TResult>() 的參數值：" + obj.ToString());
             var result = new TResult();
             return result;
         }
