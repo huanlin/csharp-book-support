@@ -11,19 +11,21 @@ namespace Demo_GenericMethods
     {
         static void Main(string[] args)
         {
-            var demo = new GenericMethodDemo();
-            demo.Print<int>(100);   // 這裡的 <int> 可以省略不寫。
+            var gmd = new GenericMethodDemo();
+            gmd.Print<string>("Jacky");  // 這裡的 <string> 可以省略不寫。
+            gmd.Print<int>(100);   // 這裡的 <int> 可以省略不寫。
 
-            var result = demo.Print<int, DateTime>(100);
-            Console.WriteLine("結果: " + result);
+            var result = gmd.Print<int, DateTime>(100);
+            Console.WriteLine("回傳值: " + result);
 
             // 使用第二個版本
-            var demoV2 = new GenericMethodDemoVersion2<int>();
-            demo.Print(100);   // 這次省略了 <int>。
+            Console.WriteLine("=== 第二個版本 ===");
+            var gmdV2 = new GenericMethodDemoVersion2<int>();
+            // gmdV2.Print("Jacky");   // 無法通過編譯! 因為型別 T 已經在建立物件時指定為 int。
+            gmdV2.Print(100);   
 
-            var result2 = demoV2.Print<DateTime>(100);
-            Console.WriteLine("結果: " + result);
-
+            var result2 = gmdV2.Print<DateTime>(100);
+            Console.WriteLine("回傳值: " + result);
         }
     }
 
