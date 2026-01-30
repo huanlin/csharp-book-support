@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="DemoVar/DemoVar.csproj" />
+  <Project Path="DemoDynamic/DemoDynamic.csproj" />
+  <Project Path="DemoObjectInitializer/DemoObjectInitializer.csproj" />
+  <Project Path="DemoAutoProperty/DemoAutoProperty.csproj" />
+  <Project Path="DemoAnonymousType/DemoAnonymousType.csproj" />
+  <Project Path="DemoStringInterpolation/DemoStringInterpolation.csproj" />
+  <Project Path="DemoTupleDeconstruct/DemoTupleDeconstruct.csproj" />
+</Solution>
