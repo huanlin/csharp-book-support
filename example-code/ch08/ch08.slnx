@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="DemoDelegate/DemoDelegate.csproj" />
+  <Project Path="DemoActionFunc/DemoActionFunc.csproj" />
+  <Project Path="DemoLambda/DemoLambda.csproj" />
+  <Project Path="DemoClosure/DemoClosure.csproj" />
+  <Project Path="DemoEvents/DemoEvents.csproj" />
+  <Project Path="DemoPracticalCases/DemoPracticalCases.csproj" />
+</Solution>
