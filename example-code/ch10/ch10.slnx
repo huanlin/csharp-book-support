@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DemoWhyExtension/DemoWhyExtension.csproj" />
+  <Project Path="DemoExtensionSyntax/DemoExtensionSyntax.csproj" />
+  <Project Path="DemoExtensionMembers/DemoExtensionMembers.csproj" />
+  <Project Path="DemoLocalMethods/DemoLocalMethods.csproj" />
+</Solution>

@@ -1,0 +1,15 @@
+  甇??斗閬???撠?...
+  ???獢?冽??啁????舫脰?????
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(96,43): error CS0103: ?迂 'FirstDayOfMonth' 銝??冽?桀??摰嫣葉 [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(14,43): error CS1503: 撘 1: ?⊥?敺?'?寞?蝢斤?' 頧???'object?' [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(18,44): error CS1503: 撘 1: ?⊥?敺?'?寞?蝢斤?' 頧???'object?' [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+
+撱箇蔭憭望???
+
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(96,43): error CS0103: ?迂 'FirstDayOfMonth' 銝??冽?桀??摰嫣葉 [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(14,43): error CS1503: 撘 1: ?⊥?敺?'?寞?蝢斤?' 頧???'object?' [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\Program.cs(18,44): error CS1503: 撘 1: ?⊥?敺?'?寞?蝢斤?' 頧???'object?' [D:\work\books\csharp-2026\example-code\ch10\DemoExtensionMembers\DemoExtensionMembers.csproj]
+    0 ?郎??
+    3 ?隤?
+
+蝬??? 00:00:00.85
