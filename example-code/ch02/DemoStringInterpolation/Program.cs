@@ -1,10 +1,13 @@
-// 示範字串插補與原始字串常值
+// 示範基本字串插補
 
-// 基本字串插補
 var name = "Michael";
 var age = 50;
-var s1 = string.Format("Name: {0}, Age: {1}", name, age);  // 傳統寫法
-var s2 = $"Name: {name}, Age: {age}";                       // 字串插補
+
+// 傳統寫法
+var s1 = string.Format("Name: {0}, Age: {1}", name, age);
+// 字串插補
+var s2 = $"Name: {name}, Age: {age}";
+
 Console.WriteLine(s1);
 Console.WriteLine(s2);
 
@@ -28,36 +31,3 @@ const string Greeting = "Hello";
 const string Target = "World";
 const string Message = $"{Greeting}, {Target}!";
 Console.WriteLine($"\n常數插補: {Message}");
-
-// 原始字串常值 (C# 11+)
-var json = """
-    {
-        "name": "Michael",
-        "age": 50,
-        "path": "C:\\Windows\\System32"
-    }
-    """;
-Console.WriteLine($"\n原始字串常值 (JSON):");
-Console.WriteLine(json);
-
-// 原始字串 + 插補
-var userName = "Michael";
-var jsonWithInterpolation = $$"""
-    {
-        "name": "{{userName}}",
-        "timestamp": "{{DateTime.Now:yyyy-MM-dd HH:mm:ss}}"
-    }
-    """;
-Console.WriteLine($"\n原始字串 + 插補:");
-Console.WriteLine(jsonWithInterpolation);
-
-// CSS 範例
-var color = "#3498db";
-var css = $$"""
-    .button {
-        background-color: {{color}};
-        border-radius: 4px;
-    }
-    """;
-Console.WriteLine($"\nCSS 範例:");
-Console.WriteLine(css);

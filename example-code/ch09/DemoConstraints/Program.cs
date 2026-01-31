@@ -8,7 +8,7 @@ Console.WriteLine("=== 泛型約束 ===\n");
 Console.WriteLine("1. where T : IComparable<T> 約束");
 Console.WriteLine(new string('-', 40));
 
-var intList = new ComparableList<int>();
+var intList = new MyList<int>();
 intList.Add(30);
 intList.Add(10);
 intList.Add(20);
@@ -75,7 +75,7 @@ Console.WriteLine("\n=== 範例結束 ===");
 // ============================================================
 
 // where T : IComparable<T>
-public class ComparableList<T> where T : IComparable<T>
+public class MyList<T> where T : IComparable<T>
 {
     private readonly List<T> _items = new();
 
