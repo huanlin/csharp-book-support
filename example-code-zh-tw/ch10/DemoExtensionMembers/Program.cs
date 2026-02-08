@@ -1,5 +1,5 @@
 // 示範 C# 14 擴充成員（Extension Members）
-// 需要 LangVersion preview
+// 需要 C# 14
 
 Console.WriteLine("=== C# 14 擴充成員 ===\n");
 

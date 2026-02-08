@@ -2,5 +2,7 @@
   <Project Path="DemoValueTypes/DemoValueTypes.csproj" />
   <Project Path="DemoReferenceTypes/DemoReferenceTypes.csproj" />
   <Project Path="DemoShallowCopy/DemoShallowCopy.csproj" />
+  <Project Path="DemoDeepCopy/DemoDeepCopy.csproj" />
+  <Project Path="DemoDeepCopyArray/DemoDeepCopyArray.csproj" />
   <Project Path="DemoBoxingUnboxing/DemoBoxingUnboxing.csproj" />
 </Solution>

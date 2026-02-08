@@ -1,8 +1,13 @@
 <Solution>
-  <Project Path="DemoDelegate/DemoDelegate.csproj" />
+  <Project Path="DemoDelegateSyntax/DemoDelegateSyntax.csproj" />
+  <Project Path="DemoDelegateMulticast/DemoDelegateMulticast.csproj" />
+  <Project Path="DemoDelegateVariance/DemoDelegateVariance.csproj" />
   <Project Path="DemoActionFunc/DemoActionFunc.csproj" />
   <Project Path="DemoLambda/DemoLambda.csproj" />
   <Project Path="DemoClosure/DemoClosure.csproj" />
   <Project Path="DemoEvents/DemoEvents.csproj" />
-  <Project Path="DemoPracticalCases/DemoPracticalCases.csproj" />
+  <Project Path="DemoPracticalCase1/DemoPracticalCase1.csproj" />
+  <Project Path="DemoPracticalCase2/DemoPracticalCase2.csproj" />
+  <Project Path="DemoPracticalCase3/DemoPracticalCase3.csproj" />
+  <Project Path="DemoPracticalCase4/DemoPracticalCase4.csproj" />
 </Solution>

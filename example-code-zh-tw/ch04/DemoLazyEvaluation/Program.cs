@@ -35,6 +35,6 @@ public record CachedPoint(double X, double Y)
 
     public double DistanceFromOrigin => _distanceCache ??= Math.Sqrt(X * X + Y * Y);
 
-    // 自訂複製建構子，不複製快取
+    // 自訂複製建構式，不複製快取
     protected CachedPoint(CachedPoint other) => (X, Y) = other;
 }

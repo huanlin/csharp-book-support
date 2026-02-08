@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="DemoTypePattern/DemoTypePattern.csproj" />
+  <Project Path="DemoNullChecking/DemoNullChecking.csproj" />
+  <Project Path="DemoVarPattern/DemoVarPattern.csproj" />
   <Project Path="DemoSwitchExpression/DemoSwitchExpression.csproj" />
   <Project Path="DemoRelationalPattern/DemoRelationalPattern.csproj" />
   <Project Path="DemoLogicalPattern/DemoLogicalPattern.csproj" />

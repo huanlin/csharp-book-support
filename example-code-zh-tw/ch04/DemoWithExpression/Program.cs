@@ -14,7 +14,7 @@ var bob = alice with { Name = "Bob", Age = 25 };
 Console.WriteLine($"bob: {bob}");
 
 Console.WriteLine();
-Console.WriteLine("=== 自訂複製建構子 ===");
+Console.WriteLine("=== 自訂複製建構式 ===");
 var p1 = new PersonWithCache("Alice", 30);
 Console.WriteLine($"p1.CachedValue: {p1.CachedValue}");  // 計算
 Console.WriteLine($"p1.CachedValue: {p1.CachedValue}");  // 使用快取
@@ -24,7 +24,7 @@ Console.WriteLine($"p2.CachedValue: {p2.CachedValue}");  // 重新計算（因�
 
 public record Person(string Name, int Age);
 
-// 自訂複製建構子的 record
+// 自訂複製建構式的 record
 public record PersonWithCache(string Name, int Age)
 {
     private int? _cachedValue;
@@ -37,7 +37,7 @@ public record PersonWithCache(string Name, int Age)
         return Name.Length * Age;
     }
 
-    // 自訂複製建構子：不複製快取
+    // 自訂複製建構式：不複製快取
     protected PersonWithCache(PersonWithCache original)
     {
         Name = original.Name;

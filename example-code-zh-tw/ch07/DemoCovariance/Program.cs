@@ -1,6 +1,6 @@
-// 示範共變性（Covariance）與反變性（Contravariance）
+// 示範共變性（Covariance）與逆變性（Contravariance）
 
-Console.WriteLine("=== 共變性與反變性 ===\n");
+Console.WriteLine("=== 共變性與逆變性 ===\n");
 
 // --------------------------------------------------------------
 // 1. 陣列的共變性（不安全）
@@ -63,13 +63,13 @@ IProducer<object> objectProducer = stringProducer;  // 共變性：合法
 Console.WriteLine($"objectProducer.GetValue() = {objectProducer.GetValue()}");
 
 // --------------------------------------------------------------
-// 5. IComparer<in T> 的反變性
+// 5. IComparer<in T> 的逆變性
 // --------------------------------------------------------------
-Console.WriteLine("\n5. IComparer<in T> 的反變性");
+Console.WriteLine("\n5. IComparer<in T> 的逆變性");
 Console.WriteLine(new string('-', 40));
 
 IComparer<object> objectComparer = new ObjectComparer();
-IComparer<string> stringComparer = objectComparer;  // 反變性：合法
+IComparer<string> stringComparer = objectComparer;  // 逆變性：合法
 
 var list = new List<string> { "Cherry", "Apple", "Banana" };
 list.Sort(stringComparer);
@@ -78,9 +78,9 @@ Console.WriteLine("使用 IComparer<object> 來排序 string：");
 Console.WriteLine($"  {string.Join(", ", list)}");
 
 // --------------------------------------------------------------
-// 6. 委派的共變性與反變性
+// 6. 委派的共變性與逆變性
 // --------------------------------------------------------------
-Console.WriteLine("\n6. 委派的共變性與反變性");
+Console.WriteLine("\n6. 委派的共變性與逆變性");
 Console.WriteLine(new string('-', 40));
 
 // Func<out TResult> 是共變的
@@ -88,7 +88,7 @@ Func<string> stringFactory = () => "Hello";
 Func<object> objectFactory = stringFactory;  // OK
 Console.WriteLine($"objectFactory() = {objectFactory()}");
 
-// Action<in T> 是反變的
+// Action<in T> 是逆變的
 Action<object> objectAction = obj => Console.WriteLine($"  處理：{obj}");
 Action<string> stringAction = objectAction;  // OK
 stringAction("Hello, World!");
@@ -103,7 +103,7 @@ Console.WriteLine("out = 輸出 = 共變（Covariance）");
 Console.WriteLine("  子類別 → 父類別（跟著繼承方向走）");
 Console.WriteLine("  例：IEnumerable<Dog> → IEnumerable<Animal>");
 
-Console.WriteLine("\nin = 輸入 = 反變（Contravariance）");
+Console.WriteLine("\nin = 輸入 = 逆變（Contravariance）");
 Console.WriteLine("  父類別 → 子類別（與繼承方向相反）");
 Console.WriteLine("  例：IComparer<Animal> → IComparer<Dog>");
 
@@ -125,7 +125,7 @@ public class StringProducer : IProducer<string>
     public string GetValue() => "這是字串";
 }
 
-// 反變介面（in T）
+// 逆變介面（in T）
 public interface IConsumer<in T>
 {
     void Process(T value);

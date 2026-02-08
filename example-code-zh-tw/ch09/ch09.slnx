@@ -1,7 +1,12 @@
 <Solution>
-  <Project Path="DemoWhyGenerics/DemoWhyGenerics.csproj" />
-  <Project Path="DemoGenericClass/DemoGenericClass.csproj" />
-  <Project Path="DemoConstraints/DemoConstraints.csproj" />
-  <Project Path="DemoGenericInterfaces/DemoGenericInterfaces.csproj" />
-  <Project Path="DemoCovariance/DemoCovariance.csproj" />
+  <Project Path="DemoClosureTraps/DemoClosureTraps.csproj" />
+  <Project Path="DemoYieldReturn/DemoYieldReturn.csproj" />
+  <Project Path="DemoDeferredExecution/DemoDeferredExecution.csproj" />
+  <Project Path="DemoYieldBreak/DemoYieldBreak.csproj" />
+  <Project Path="DemoMultipleEnumeration/DemoMultipleEnumeration.csproj" />
+  <Project Path="DemoLinqBasics/DemoLinqBasics.csproj" />
+  <Project Path="DemoLinqAdvanced/DemoLinqAdvanced.csproj" />
+  <Project Path="DemoQueryComposition/DemoQueryComposition.csproj" />
+  <Project Path="DemoQueryInto/DemoQueryInto.csproj" />
+  <Project Path="DemoQueryWrapped/DemoQueryWrapped.csproj" />
 </Solution>

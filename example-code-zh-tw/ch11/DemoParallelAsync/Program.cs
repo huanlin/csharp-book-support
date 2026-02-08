@@ -49,6 +49,33 @@ catch (TimeoutException ex)
     Console.WriteLine($"捕獲例外: {ex.Message}");
 }
 
+
+// --------------------------------------------------------------
+// 4. 逐一處理 (Task.WhenEach) - .NET 9+
+// --------------------------------------------------------------
+Console.WriteLine("\n4. 逐一處理 (Task.WhenEach) - .NET 9+");
+Console.WriteLine(new string('-', 40));
+
+var tasks = new List<Task<int>>();
+for (int i = 1; i <= 3; i++)
+{
+    tasks.Add(ProcessItemAsync(i));
+}
+
+// 使用 await foreach 搭配 Task.WhenEach
+await foreach (var task in Task.WhenEach(tasks))
+{
+    try 
+    {
+        var result = await task;
+        Console.WriteLine($"處理完成: 結果={result}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"處理失敗: {ex.Message}");
+    }
+}
+
 Console.WriteLine("\n=== 範例結束 ===");
 
 // ============================================================
@@ -86,4 +113,11 @@ async Task<string> DownloadDataAsync(string url)
 {
     await Task.Delay(3000); // 模擬慢速網路 (3秒)
     return "Data content";
+}
+
+async Task<int> ProcessItemAsync(int id)
+{
+    var delay = Random.Shared.Next(500, 1500);
+    await Task.Delay(delay);
+    return id * 10;
 }

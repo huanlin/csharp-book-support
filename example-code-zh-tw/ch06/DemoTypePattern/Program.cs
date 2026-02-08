@@ -13,9 +13,9 @@ object[] shapes = [
 ];
 
 // --------------------------------------------------------------
-// 1. 傳統寫法 vs 型別模式
+// 傳統寫法 vs 型別模式
 // --------------------------------------------------------------
-Console.WriteLine("1. 傳統寫法 vs 型別模式");
+Console.WriteLine("傳統寫法 vs 型別模式");
 Console.WriteLine(new string('-', 40));
 
 foreach (object? shape in shapes)
@@ -43,70 +43,7 @@ foreach (object? shape in shapes)
     }
 }
 
-// --------------------------------------------------------------
-// 2. 處理 null 的行為
-// --------------------------------------------------------------
-Console.WriteLine("\n2. 處理 null 的行為");
-Console.WriteLine(new string('-', 40));
-
-object? obj = null;
-
-// 型別模式不會匹配 null
-if (obj is string s)
-{
-    Console.WriteLine($"是字串：{s}");
-}
-else if (obj is null)
-{
-    Console.WriteLine("obj 是 null（使用 is null 匹配）");
-}
-
-// --------------------------------------------------------------
-// 3. 搭配 nullable reference types
-// --------------------------------------------------------------
-Console.WriteLine("\n3. 搭配 nullable reference types");
-Console.WriteLine(new string('-', 40));
-
-ProcessName("Alice");
-ProcessName(null);
-ProcessName("   ");
-
-// --------------------------------------------------------------
-// 4. is not 模式
-// --------------------------------------------------------------
-Console.WriteLine("\n4. is not 模式");
-Console.WriteLine(new string('-', 40));
-
-object value = "Hello";
-
-if (value is not null)
-{
-    Console.WriteLine($"value 不是 null：{value}");
-}
-
-if (value is not int)
-{
-    Console.WriteLine($"value 不是 int，實際型別：{value.GetType().Name}");
-}
-
 Console.WriteLine("\n=== 範例結束 ===");
-
-// ============================================================
-// 輔助方法
-// ============================================================
-
-static void ProcessName(string? name)
-{
-    if (name is string validName && !string.IsNullOrWhiteSpace(validName))
-    {
-        // validName 是 string（非 null），編譯器知道這點
-        Console.WriteLine($"名字：{validName.Trim()}，長度：{validName.Trim().Length}");
-    }
-    else
-    {
-        Console.WriteLine("沒有提供有效的名字");
-    }
-}
 
 // ============================================================
 // 形狀類別
