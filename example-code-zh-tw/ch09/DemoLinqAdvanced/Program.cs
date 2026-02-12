@@ -1,4 +1,4 @@
-// 示範 LINQ 進階運算子
+// 示範 LINQ 進階運算子 (含 .NET 6 ~ .NET 9 新特性)
 
 Console.WriteLine("=== LINQ 進階運算子範例 ===\n");
 
@@ -48,66 +48,112 @@ Console.WriteLine($"有人年薪超過 7 萬？{(hasHighSalary ? "是" : "否")}
 var allAdults = employees.All(e => e.Age >= 18);
 Console.WriteLine($"所有員工都已成年？{(allAdults ? "是" : "否")}");
 
-var hasEmptyDept = departments.Any(d => !d.Members.Any());
-Console.WriteLine($"有空的部門？{(hasEmptyDept ? "是" : "否")}");
-
 // --------------------------------------------------------------
-// 4. Count / Sum / Average / Min / Max
+// 4. 聚合運算 & MaxBy / MinBy (.NET 6)
 // --------------------------------------------------------------
-Console.WriteLine("\n4. 聚合運算：Count / Sum / Average / Min / Max");
+Console.WriteLine("\n4. 聚合運算：Count / Sum / MaxBy (.NET 6)");
 Console.WriteLine(new string('-', 40));
 
 Console.WriteLine($"員工總數：{employees.Count()}");
-Console.WriteLine($"業務人數：{employees.Count(e => e.Department == "Sales")}");
 Console.WriteLine($"薪資總和：${employees.Sum(e => e.Salary):N0}");
-Console.WriteLine($"平均年齡：{employees.Average(e => e.Age):F1}");
-Console.WriteLine($"最低薪資：${employees.Min(e => e.Salary):N0}");
-Console.WriteLine($"最高薪資：${employees.Max(e => e.Salary):N0}");
 
-// --------------------------------------------------------------
-// 5. GroupBy：分組
-// --------------------------------------------------------------
-Console.WriteLine("\n5. GroupBy：分組");
-Console.WriteLine(new string('-', 40));
+// .NET 6: MaxBy / MinBy
+var highestPaid = employees.MaxBy(e => e.Salary);
+Console.WriteLine($"最高薪員工 (MaxBy)：{highestPaid?.Name} (${highestPaid?.Salary:N0})");
 
-var byDept = employees.GroupBy(e => e.Department);
+var lowestPaid = employees.MinBy(e => e.Salary);
+Console.WriteLine($"最低薪員工 (MinBy)：{lowestPaid?.Name} (${lowestPaid?.Salary:N0})");
 
-foreach (var group in byDept)
+// .NET 6: TryGetNonEnumeratedCount
+if (employees.TryGetNonEnumeratedCount(out int count))
 {
-    Console.WriteLine($"{group.Key} 部門：");
-    foreach (var e in group)
-    {
-        Console.WriteLine($"  - {e.Name}: ${e.Salary:N0}");
-    }
-    Console.WriteLine($"  小計：${group.Sum(e => e.Salary):N0}");
+    Console.WriteLine($"快速取得數量 (TryGetNonEnumeratedCount)：{count}");
 }
 
 // --------------------------------------------------------------
-// 6. 集合運算：Union / Intersect / Except
+// 5. Chunk (.NET 6)
 // --------------------------------------------------------------
-Console.WriteLine("\n6. 集合運算：Union / Intersect / Except");
+Console.WriteLine("\n5. Chunk (.NET 6)：分批處理");
 Console.WriteLine(new string('-', 40));
 
-var set1 = new[] { "A", "B", "C", "D" };
-var set2 = new[] { "C", "D", "E", "F" };
-
-Console.WriteLine($"集合 1：{string.Join(", ", set1)}");
-Console.WriteLine($"集合 2：{string.Join(", ", set2)}");
-Console.WriteLine($"聯集：{string.Join(", ", set1.Union(set2))}");
-Console.WriteLine($"交集：{string.Join(", ", set1.Intersect(set2))}");
-Console.WriteLine($"差集 (1-2)：{string.Join(", ", set1.Except(set2))}");
+var chunkedEmployees = employees.Chunk(2); // 每 2 人一組
+int chunkIndex = 1;
+foreach (var batch in chunkedEmployees)
+{
+    Console.WriteLine($"第 {chunkIndex++} 批 ({batch.Length} 人)：{string.Join(", ", batch.Select(e => e.Name))}");
+}
 
 // --------------------------------------------------------------
-// 7. Zip：配對
+// 6. Distinct & DistinctBy (.NET 6)
 // --------------------------------------------------------------
-Console.WriteLine("\n7. Zip：配對");
+Console.WriteLine("\n6. Distinct & DistinctBy (.NET 6)");
 Console.WriteLine(new string('-', 40));
 
-var names = new[] { "Alice", "Bob", "Carol" };
-var scores = new[] { 85, 92, 78 };
+var depts = employees.Select(e => e.Department).Distinct();
+Console.WriteLine($"不重複的部門 (Distinct)：{string.Join(", ", depts)}");
 
-var paired = names.Zip(scores, (name, score) => $"{name}: {score}分");
-Console.WriteLine($"配對結果：{string.Join(", ", paired)}");
+// .NET 6: DistinctBy
+var distinctByDept = employees.DistinctBy(e => e.Department);
+Console.WriteLine("各部門代表 (DistinctBy)：");
+foreach (var emp in distinctByDept)
+{
+    Console.WriteLine($"  {emp.Department}: {emp.Name}");
+}
+
+// --------------------------------------------------------------
+// 7. GroupBy & CountBy / AggregateBy (.NET 9)
+// --------------------------------------------------------------
+Console.WriteLine("\n7. 分組：GroupBy / CountBy / AggregateBy");
+Console.WriteLine(new string('-', 40));
+
+Console.WriteLine("[GroupBy]");
+var byDept = employees.GroupBy(e => e.Department);
+foreach (var group in byDept)
+{
+    Console.WriteLine($"  {group.Key} ({group.Count()} 人): {string.Join(", ", group.Select(e => e.Name))}");
+}
+
+// .NET 9: CountBy
+Console.WriteLine("\n[CountBy (.NET 9)]");
+foreach (var (deptKey, empCount) in employees.CountBy(e => e.Department))
+{
+    Console.WriteLine($"  {deptKey}: {empCount} 人");
+}
+
+// .NET 9: AggregateBy
+Console.WriteLine("\n[AggregateBy (.NET 9)]");
+var totalSalaryByDept = employees.AggregateBy(
+    keySelector: e => e.Department,
+    seed: 0m,
+    func: (currentTotal, emp) => currentTotal + emp.Salary
+);
+
+foreach (var (deptKey, totalSal) in totalSalaryByDept)
+{
+    Console.WriteLine($"  {deptKey}: ${totalSal:N0}");
+}
+
+// --------------------------------------------------------------
+// 8. Index (.NET 9) & Zip
+// --------------------------------------------------------------
+Console.WriteLine("\n8. Index (.NET 9) & Zip");
+Console.WriteLine(new string('-', 40));
+
+// .NET 9: Index
+Console.WriteLine("[Index]");
+foreach (var (index, item) in employees.Take(3).Index())
+{
+    Console.WriteLine($"  [{index}] {item.Name}");
+}
+
+// Zip
+Console.WriteLine("\n[Zip]");
+string[] names = ["Alice", "Bob", "Carol"];
+int[] scores = [85, 92, 78];
+
+var paired = names.Zip(scores, (n, s) => $"{n}: {s}分");
+Console.WriteLine($"  配對結果：{string.Join(", ", paired)}");
+
 
 Console.WriteLine("\n=== 範例結束 ===");
 
@@ -122,19 +168,17 @@ static List<Employee> GetEmployees() =>
     new("Carol", "Sales", 62000, 42, "Manager"),
     new("Dave", "IT", 58000, 29, "Developer"),
     new("Eve", "HR", 48000, 31, "Specialist"),
-    new("Frank", "Sales", 70000, 38, "Representative")
+    new("Frank", "Sales", 70000, 38, "Representative"),
+    new("Grace", "Marketing", 60000, 33, "Specialist")
 ];
 
 static List<Department> GetDepartments() =>
 [
     new("Sales", ["Alice", "Carol", "Frank"]),
     new("IT", ["Bob", "Dave"]),
-    new("HR", ["Eve"])
+    new("HR", ["Eve"]),
+    new("Marketing", ["Grace"])
 ];
-
-// ============================================================
-// 資料類別
-// ============================================================
 
 public record Employee(string Name, string Department, decimal Salary, int Age, string Title);
 
