@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BenchmarkAllocation.AllocationBenchmarks-20260214-140029</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.7840/25H2/2025Update/HudsonValley2)
+12th Gen Intel Core i7-12700H 2.30GHz, 1 CPU, 20 logical and 14 physical cores
+.NET SDK 10.0.103
+  [Host]     : .NET 10.0.3 (10.0.3, 10.0.326.7603), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.3 (10.0.3, 10.0.326.7603), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method            </th><th>Mean</th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>HeapAllocation</td><td>15.3791 ns</td><td>0.3721 ns</td><td>0.3821 ns</td><td>1.00</td><td>0.03</td><td>0.0427</td><td>536 B</td><td>1.00</td>
+</tr><tr><td>StackAllocation</td><td>3.6129 ns</td><td>0.0278 ns</td><td>0.0247 ns</td><td>0.24</td><td>0.01</td><td>-</td><td>-</td><td>0.00</td>
+</tr><tr><td>CollectionExpressionSpan</td><td>0.2854 ns</td><td>0.0209 ns</td><td>0.0196 ns</td><td>0.02</td><td>0.00</td><td>-</td><td>-</td><td>0.00</td>
+</tr></tbody></table>
+</body>
+</html>

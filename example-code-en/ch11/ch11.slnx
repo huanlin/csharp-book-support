@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DemoAsyncBasic/DemoAsyncBasic.csproj" />
+  <Project Path="DemoParallelAsync/DemoParallelAsync.csproj" />
+  <Project Path="DemoValueTask/DemoValueTask.csproj" />
+  <Project Path="DemoCancellation/DemoCancellation.csproj" />
+  <Project Path="DemoProgress/DemoProgress.csproj" />
+</Solution>
