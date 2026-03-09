@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DemoExceptionHandling/DemoExceptionHandling.csproj" />
+  <Project Path="DemoThrowExpressions/DemoThrowExpressions.csproj" />
+  <Project Path="DemoUsingStatements/DemoUsingStatements.csproj" />
+  <Project Path="DemoDisposePattern/DemoDisposePattern.csproj" />
+  <Project Path="DemoAnonymousDisposal/DemoAnonymousDisposal.csproj" />
+</Solution>

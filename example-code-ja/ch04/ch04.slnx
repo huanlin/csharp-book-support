@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="DemoMutablePoint/DemoMutablePoint.csproj" />
+  <Project Path="DemoReadonlyStruct/DemoReadonlyStruct.csproj" />
+  <Project Path="DemoRecord/DemoRecord.csproj" />
+  <Project Path="DemoInitAccessor/DemoInitAccessor.csproj" />
+  <Project Path="DemoWithExpression/DemoWithExpression.csproj" />
+  <Project Path="DemoLazyEvaluation/DemoLazyEvaluation.csproj" />
+  <Project Path="DemoOrderModel/DemoOrderModel.csproj" />
+  <Project Path="DemoEquality/DemoEquality.csproj" />
+  <Project Path="DemoImmutableCollections/DemoImmutableCollections.csproj" />
+</Solution>

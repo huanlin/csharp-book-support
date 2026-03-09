@@ -1,0 +1,15 @@
+<Solution>
+  <Project Path="DemoTupleBasic/DemoTupleBasic.csproj" />
+  <Project Path="DemoTupleDeconstruction/DemoTupleDeconstruction.csproj" />
+  <Project Path="DemoVar/DemoVar.csproj" />
+  <Project Path="DemoAnonTypeBasic/DemoAnonTypeBasic.csproj" />
+  <Project Path="DemoAnonTypeMutation/DemoAnonTypeMutation.csproj" />
+  <Project Path="DemoAutoPropBasic/DemoAutoPropBasic.csproj" />
+  <Project Path="DemoAutoPropField/DemoAutoPropField.csproj" />
+  <Project Path="DemoCollectionInit/DemoCollectionInit.csproj" />
+  <Project Path="DemoDynamic/DemoDynamic.csproj" />
+  <Project Path="DemoIndexInit/DemoIndexInit.csproj" />
+  <Project Path="DemoObjectInit/DemoObjectInit.csproj" />
+  <Project Path="DemoRawStringLiterals/DemoRawStringLiterals.csproj" />
+  <Project Path="DemoStringInterpolation/DemoStringInterpolation.csproj" />
+</Solution>

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DemoNullableValueType/DemoNullableValueType.csproj" />
+  <Project Path="DemoNullOperators/DemoNullOperators.csproj" />
+  <Project Path="DemoNullableReferenceType/DemoNullableReferenceType.csproj" />
+  <Project Path="DemoNullPatternMatching/DemoNullPatternMatching.csproj" />
+</Solution>
