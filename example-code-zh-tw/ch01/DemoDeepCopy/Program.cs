@@ -57,6 +57,8 @@ class TeamWithCopyConstructor
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
         Name = original.Name;  // string 是 immutable,淺層複製即可
-        Members = new List<string>(original.Members);  // 深層複製
+        
+        // 由於元素是 string (不可變)，複製參考即可達到隔離效果
+        Members = new List<string>(original.Members); 
     }
 }

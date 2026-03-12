@@ -57,6 +57,8 @@ class TeamWithCopyConstructor
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
         Name = original.Name;  // string はイミュータブルなのでそのままでよい
-        Members = new List<string>(original.Members);  // ディープコピー
+
+        // 要素は string（不変）であるため、参照のコピーで分離を達成できる
+        Members = new List<string>(original.Members);  
     }
 }

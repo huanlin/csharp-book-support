@@ -57,6 +57,8 @@ class TeamWithCopyConstructor
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
         Name = original.Name;  // string is immutable; shallow copy is fine
-        Members = new List<string>(original.Members);  // Deep copy
+
+        // Elements are strings (immutable), so copying references achieves isolation
+        Members = new List<string>(original.Members);
     }
 }
