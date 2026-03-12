@@ -1,12 +1,11 @@
 // 示範不可變的領域模型
+using System.Collections.Immutable;
 
 var order = new Order(
     OrderId: 1,
     CustomerName: "Alice",
-    Items: new List<OrderItem>
-    {
-        new OrderItem("Keyboard", 1, 2500)
-    },
+    Items: ImmutableList.Create(
+        new OrderItem("Keyboard", 1, 2500)),
     CreatedAt: DateTime.Now
 );
 
@@ -47,7 +46,7 @@ public record OrderItem(string ProductName, int Quantity, decimal UnitPrice)
 public record Order(
     int OrderId,
     string CustomerName,
-    IReadOnlyList<OrderItem> Items,
+    ImmutableList<OrderItem> Items,
     DateTime CreatedAt)
 {
     public decimal TotalAmount => Items.Sum(item => item.TotalPrice);
@@ -55,7 +54,6 @@ public record Order(
     // 使用 with 表達式來「修改」訂單
     public Order AddItem(OrderItem item)
     {
-        var newItems = Items.Append(item).ToList();
-        return this with { Items = newItems };
+        return this with { Items = Items.Add(item) };
     }
 }
