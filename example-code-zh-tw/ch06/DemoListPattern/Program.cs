@@ -1,11 +1,11 @@
-// 示範串列模式（List Pattern）- C# 11+
+// 示範清單模式（List Pattern）- C# 11+
 
-Console.WriteLine("=== 串列模式範例 ===\n");
+Console.WriteLine("=== 清單模式範例 ===\n");
 
 // --------------------------------------------------------------
-// 1. 基本串列模式
+// 1. 基本清單模式
 // --------------------------------------------------------------
-Console.WriteLine("1. 基本串列模式");
+Console.WriteLine("1. 基本清單模式");
 Console.WriteLine(new string('-', 40));
 
 int[] exactMatch = [1, 2, 3, 4, 5];

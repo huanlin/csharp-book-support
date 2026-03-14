@@ -1,11 +1,11 @@
-// デモ: List Pattern（C# 11+）
+// デモ: リスト パターン（C# 11+）
 
-Console.WriteLine("=== List Pattern の例 ===\n");
+Console.WriteLine("=== リスト パターンの例 ===\n");
 
 // --------------------------------------------------------------
-// 1. 基本的な List Pattern
+// 1. 基本的なリスト パターン
 // --------------------------------------------------------------
-Console.WriteLine("1. 基本的な List Pattern");
+Console.WriteLine("1. 基本的なリスト パターン");
 Console.WriteLine(new string('-', 40));
 
 int[] exactMatch = [1, 2, 3, 4, 5];

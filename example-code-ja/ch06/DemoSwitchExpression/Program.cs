@@ -61,6 +61,7 @@ Shape[] allShapes = [
 
 foreach (Shape s in allShapes)
 {
+    // コンパイラは、明らかに不完全な switch 式を補助的に検出できる
     string name = DescribeShapeExhaustive(s);
     Console.WriteLine(name);
 }

@@ -1,4 +1,5 @@
 using BenchmarkDotNet.Attributes;
+using System.Runtime.CompilerServices;
 
 namespace BenchmarkAllocation;
 
@@ -6,24 +7,47 @@ namespace BenchmarkAllocation;
 public class AllocationBenchmarks
 {
     private const int Size = 128;
+    private static readonly int[] Source = Enumerable.Range(1, Size).ToArray();
 
     [Benchmark(Baseline = true)]
-    public int[] HeapAllocation()
+    public int HeapAllocation()
     {
-        return new int[Size];
+        int[] buffer = new int[Size];
+        Source.AsSpan().CopyTo(buffer);
+        return ConsumeArray(buffer);
     }
 
     [Benchmark]
-    public void StackAllocation()
+    public int StackAllocation()
     {
         Span<int> buffer = stackalloc int[Size];
-        buffer[0] = 1; // 値を使って最適化除去を防ぐ
+        Source.AsSpan().CopyTo(buffer);
+        return ConsumeSpan(buffer);
     }
 
     [Benchmark]
-    public void CollectionExpressionSpan()
+    public int CollectionExpressionSpan()
     {
-        Span<int> buffer = [1, 2, 3, 4, 5, 6, 7, 8];
+        Span<int> buffer = [.. Source];
+        return ConsumeSpan(buffer);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static int ConsumeArray(int[] buffer)
+    {
+        return ConsumeSpan(buffer);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static int ConsumeSpan(ReadOnlySpan<int> buffer)
+    {
+        int sum = 0;
+        for (int i = 0; i < buffer.Length; i++)
+        {
+            sum += buffer[i];
+        }
+
+        return sum;
     }
 }
 

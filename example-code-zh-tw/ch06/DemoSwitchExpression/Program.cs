@@ -61,7 +61,7 @@ Shape[] allShapes = [
 
 foreach (Shape s in allShapes)
 {
-    // 如果 Shape 是密封型別階層，編譯器可以檢查窮舉性
+    // 編譯器能協助檢查某些明顯不完整的 switch expression
     string name = DescribeShapeExhaustive(s);
     Console.WriteLine(name);
 }

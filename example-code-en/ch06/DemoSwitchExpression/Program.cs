@@ -61,7 +61,7 @@ Shape[] allShapes = [
 
 foreach (Shape s in allShapes)
 {
-    // If Shape is a sealed type hierarchy, the compiler can check exhaustiveness
+    // The compiler can help detect some obviously incomplete switch expressions
     string name = DescribeShapeExhaustive(s);
     Console.WriteLine(name);
 }
