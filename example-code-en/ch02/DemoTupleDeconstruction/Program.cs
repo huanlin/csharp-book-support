@@ -17,13 +17,13 @@ Console.WriteLine($"Latitude only: {latitude}");
 var personObj = new Person
 {
     Name = "Bob",
-    BirthDate = new DateTime(1980, 5, 15),
+    Birthday = new DateTime(1980, 5, 15),
     Email = "bob@example.com"
 };
 
 // Use Deconstruct with 2 parameters
-var (pName, birthDate) = personObj;
-Console.WriteLine($"\nDeconstructed Person (2 parameters): {pName}, {birthDate:yyyy-MM-dd}");
+var (pName, birthday) = personObj;
+Console.WriteLine($"\nDeconstructed Person (2 parameters): {pName}, {birthday:yyyy-MM-dd}");
 
 // Use Deconstruct with 3 parameters
 var (fullName, dob, email) = personObj;
@@ -37,19 +37,19 @@ static (double Lat, double Lon) GetCoordinates(string address)
 public class Person
 {
     public string Name { get; set; } = "";
-    public DateTime BirthDate { get; set; }
+    public DateTime Birthday { get; set; }
     public string Email { get; set; } = "";
 
-    public void Deconstruct(out string name, out DateTime birthDate)
+    public void Deconstruct(out string name, out DateTime birthday)
     {
         name = Name;
-        birthDate = BirthDate;
+        birthday = Birthday;
     }
 
-    public void Deconstruct(out string name, out DateTime birthDate, out string email)
+    public void Deconstruct(out string name, out DateTime birthday, out string email)
     {
         name = Name;
-        birthDate = BirthDate;
+        birthday = Birthday;
         email = Email;
     }
 }

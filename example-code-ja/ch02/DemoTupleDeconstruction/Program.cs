@@ -17,13 +17,13 @@ Console.WriteLine($"緯度のみ: {latitude}");
 var personObj = new Person
 {
     Name = "Bob",
-    BirthDate = new DateTime(1980, 5, 15),
+    Birthday = new DateTime(1980, 5, 15),
     Email = "bob@example.com"
 };
 
 // 引数2個版 Deconstruct
-var (pName, birthDate) = personObj;
-Console.WriteLine($"\nPerson 分解（2引数）: {pName}, {birthDate:yyyy-MM-dd}");
+var (pName, birthday) = personObj;
+Console.WriteLine($"\nPerson 分解（2引数）: {pName}, {birthday:yyyy-MM-dd}");
 
 // 引数3個版 Deconstruct
 var (fullName, dob, email) = personObj;
@@ -37,19 +37,19 @@ static (double Lat, double Lon) GetCoordinates(string address)
 public class Person
 {
     public string Name { get; set; } = "";
-    public DateTime BirthDate { get; set; }
+    public DateTime Birthday { get; set; }
     public string Email { get; set; } = "";
 
-    public void Deconstruct(out string name, out DateTime birthDate)
+    public void Deconstruct(out string name, out DateTime birthday)
     {
         name = Name;
-        birthDate = BirthDate;
+        birthday = Birthday;
     }
 
-    public void Deconstruct(out string name, out DateTime birthDate, out string email)
+    public void Deconstruct(out string name, out DateTime birthday, out string email)
     {
         name = Name;
-        birthDate = BirthDate;
+        birthday = Birthday;
         email = Email;
     }
 }
