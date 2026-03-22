@@ -28,8 +28,8 @@ Console.WriteLine($"array2: {string.Join(", ", array2)}");
 
 Console.WriteLine();
 Console.WriteLine("=== 效能特性說明 ===");
-Console.WriteLine("ImmutableArray: O(1) 讀取, O(N) 修改");
-Console.WriteLine("ImmutableList:  O(log N) 讀取, O(log N) 修改");
+Console.WriteLine("ImmutableArray: 依索引讀取 O(1), 修改 O(N)");
+Console.WriteLine("ImmutableList:  更新通常為 O(log N), 讀取成本視操作而定");
 Console.WriteLine("選擇建議: 讀多寫少用 ImmutableArray, 頻繁修改用 ImmutableList");
 
 Console.WriteLine();

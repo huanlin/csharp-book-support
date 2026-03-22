@@ -28,8 +28,8 @@ Console.WriteLine($"array2: {string.Join(", ", array2)}");
 
 Console.WriteLine();
 Console.WriteLine("=== 性能特性 ===");
-Console.WriteLine("ImmutableArray: 読み取り O(1), 書き込み O(N)");
-Console.WriteLine("ImmutableList:  読み取り O(log N), 書き込み O(log N)");
+Console.WriteLine("ImmutableArray: インデックス読み取り O(1), 書き込み O(N)");
+Console.WriteLine("ImmutableList:  更新は通常 O(log N)、読み取りコストは操作によって異なる");
 Console.WriteLine("目安: 読み取り中心なら ImmutableArray、更新が多いなら ImmutableList");
 
 Console.WriteLine();

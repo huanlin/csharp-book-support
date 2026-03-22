@@ -28,8 +28,8 @@ Console.WriteLine($"array2: {string.Join(", ", array2)}");
 
 Console.WriteLine();
 Console.WriteLine("=== Performance Characteristics ===");
-Console.WriteLine("ImmutableArray: O(1) Read, O(N) Write");
-Console.WriteLine("ImmutableList:  O(log N) Read, O(log N) Write");
+Console.WriteLine("ImmutableArray: O(1) indexed read, O(N) write");
+Console.WriteLine("ImmutableList:  updates are typically O(log N); read cost depends on the operation");
 Console.WriteLine("Selection Hint: Use ImmutableArray for frequent reads, ImmutableList for frequent updates.");
 
 Console.WriteLine();
