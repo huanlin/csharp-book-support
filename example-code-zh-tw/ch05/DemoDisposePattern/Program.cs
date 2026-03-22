@@ -158,9 +158,9 @@ public class ResourceHolder : IDisposable
     }
 
     // 終結器（只在忘記呼叫 Dispose 時作為備援）
+    // 不要在終結器中做 Console I/O、記錄或其他可能失敗/阻塞的工作。
     ~ResourceHolder()
     {
-        Console.WriteLine($"  {_name}：終結器被呼叫（這表示忘記呼叫 Dispose！）");
         Dispose(disposing: false);
     }
 }

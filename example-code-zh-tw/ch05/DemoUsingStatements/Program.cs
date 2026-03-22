@@ -50,7 +50,10 @@ try
     Console.WriteLine("4. 非同步資源釋放");
     Console.WriteLine(new string('-', 40));
 
-    await ReadFileAsync(testFilePath);
+    await WriteFileWithAsyncDispose("test_async.txt");
+
+    // 驗證寫入結果
+    Console.WriteLine($"寫入後的內容：\n{File.ReadAllText("test_async.txt")}");
 
     // --------------------------------------------------------------
     // 5. 示範釋放順序（後進先出）
@@ -84,6 +87,8 @@ finally
     File.Delete(testFilePath);
     if (File.Exists("test_copy.txt"))
         File.Delete("test_copy.txt");
+    if (File.Exists("test_async.txt"))
+        File.Delete("test_async.txt");
 }
 
 Console.WriteLine("=== 範例結束 ===");
@@ -113,20 +118,22 @@ static void CopyFileContent(string sourcePath, string destPath)
     Console.WriteLine($"已複製 {sourcePath} 到 {destPath}\n");
 }
 
-static async Task ReadFileAsync(string path)
+static async Task WriteFileWithAsyncDispose(string path)
 {
-    // await using 用於非同步釋放
+    byte[] data = System.Text.Encoding.UTF8.GetBytes("這段文字會透過 FileStream 非同步寫入。\n");
+
+    // await using 直接套用在實作 IAsyncDisposable 的 FileStream
     await using var stream = new FileStream(
-        path, 
-        FileMode.Open, 
-        FileAccess.Read, 
-        FileShare.Read, 
-        bufferSize: 4096, 
+        path,
+        FileMode.Create,
+        FileAccess.Write,
+        FileShare.None,
+        bufferSize: 4096,
         useAsync: true);
-    
-    using var reader = new StreamReader(stream);
-    string content = await reader.ReadToEndAsync();
-    Console.WriteLine($"非同步讀取完成，內容長度：{content.Length} 字元\n");
+
+    await stream.WriteAsync(data);
+    Console.WriteLine($"非同步寫入完成，已寫入 {data.Length} 位元組");
+    Console.WriteLine("（離開方法時會呼叫 FileStream.DisposeAsync，以便非同步完成 flush/close）\n");
 }
 
 static void DemoDisposeOrder()
