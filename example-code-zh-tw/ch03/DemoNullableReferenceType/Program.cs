@@ -48,9 +48,9 @@ ProcessWithIsPattern("Pattern matching test");
 
 // Null-forgiving operator (!)
 Console.WriteLine("\n【Null-forgiving Operator !】");
-string? maybeNull = GetSomething();
-// 我們知道 GetSomething 在這個情況下不會返回 null
-string definitelyNotNull = maybeNull!;  // 告訴編譯器：我保證不是 null
+string? maybeNull = GetLegacyRequiredValue();
+// 舊版 API 的簽名雖然是 string?，但外部契約保證此呼叫情境一定有值
+string definitelyNotNull = maybeNull!;  // 告訴編譯器：我根據外部契約保證不是 null
 Console.WriteLine($"maybeNull! = \"{definitelyNotNull}\"");
 
 // API 設計實戰範例
@@ -96,8 +96,8 @@ else
     Console.WriteLine("TryGetUser(999) 失敗: 使用者不存在");
 }
 
-// 輔助方法
-string GetSomething() => "Something";
+// 輔助方法：模擬舊版或第三方 API
+string? GetLegacyRequiredValue() => "Something";
 
 // 使用者類別
 class User
@@ -130,8 +130,9 @@ class UserService
     // 返回值可為 null：找不到就返回 null
     public User? FindUser(string email)
     {
-        // 簡化範例：用 email 比對 name
-        return _users.Find(u => u.Name.ToLower() + "@example.com" == email.ToLower());
+        // 簡化範例：用 email 比對 name，並避免 culture-sensitive 的 ToLower()
+        return _users.Find(u =>
+            string.Equals($"{u.Name}@example.com", email, StringComparison.OrdinalIgnoreCase));
     }
     
     // TryGet 模式：使用 [NotNullWhen] 屬性

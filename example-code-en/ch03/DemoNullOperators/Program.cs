@@ -29,8 +29,8 @@ Console.WriteLine($"fontName ??= \"Arial\" After: {fontName} (Unchanged, because
 // Lazy Initialization Example
 Console.WriteLine("\n[Lazy Initialization Example]");
 var cache = new LazyCache();
-Console.WriteLine($"First call to GetData(): {cache.GetData()}");
-Console.WriteLine($"Second call to GetData(): {cache.GetData()} (Using cache)");
+Console.WriteLine($"First call to GetData(): {string.Join(", ", cache.GetData())}");
+Console.WriteLine($"Second call to GetData(): {string.Join(", ", cache.GetData())} (Using cache)");
 
 // Null-conditional Operator (?.)
 Console.WriteLine("\n[Null-conditional Operator ?.]");
@@ -51,6 +51,9 @@ Console.WriteLine($"null?[0] = {firstChar?.ToString() ?? "null"}");
 str = "Hello";
 firstChar = str?[0];
 Console.WriteLine($"\"Hello\"?[0] = {firstChar}");
+
+Console.WriteLine("Using str?[0] on an empty string can still throw an index-out-of-range exception.");
+Console.WriteLine($"FirstCharOrNull(\"\") = {FirstCharOrNull("")?.ToString() ?? "null"}");
 
 // Chain Calling (Short-circuiting behavior)
 Console.WriteLine("\n[Chain Calling]");
@@ -77,6 +80,35 @@ User? user = new User { Name = "Bob", Profile = null };
 string displayName = user?.Profile?.DisplayName ?? user?.Name ?? "Anonymous";
 Console.WriteLine($"user?.Profile?.DisplayName ?? user?.Name ?? \"Anonymous\" = {displayName}");
 
+// Null-conditional Assignment Operator (C# 14)
+Console.WriteLine("\n[Null-conditional Assignment Operator]");
+int currentOrderFactoryCalls = 0;
+Customer? nullableCustomer = null;
+nullableCustomer?.CurrentOrder = GetCurrentOrder();
+Console.WriteLine($"When customer is null, GetCurrentOrder call count = {currentOrderFactoryCalls}");
+
+nullableCustomer = new Customer { Name = "Carol" };
+nullableCustomer?.CurrentOrder = GetCurrentOrder();
+Console.WriteLine($"When customer is not null, GetCurrentOrder call count = {currentOrderFactoryCalls}");
+nullableCustomer?.Points += 100;
+if (nullableCustomer is Customer ensuredCustomer)
+{
+    Console.WriteLine($"nullableCustomer.CurrentOrder?.Amount = {ensuredCustomer.CurrentOrder?.Amount}");
+    Console.WriteLine($"nullableCustomer.Points = {ensuredCustomer.Points}");
+}
+
+Order GetCurrentOrder()
+{
+    currentOrderFactoryCalls++;
+    Console.WriteLine("  GetCurrentOrder() was called");
+    return new Order { Amount = 250 };
+}
+
+char? FirstCharOrNull(string? value)
+{
+    return string.IsNullOrEmpty(value) ? null : value[0];
+}
+
 // Helper Classes
 class LazyCache
 {
@@ -99,6 +131,8 @@ class Customer
 {
     public string Name { get; set; } = "";
     public List<Order>? Orders { get; set; }
+    public Order? CurrentOrder { get; set; }
+    public int Points { get; set; }
 }
 
 class Order

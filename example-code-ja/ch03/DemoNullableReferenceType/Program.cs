@@ -48,9 +48,9 @@ ProcessWithIsPattern("Pattern matching test");
 
 // null 許容抑制演算子 (!)
 Console.WriteLine("\n[null 許容抑制演算子 !]");
-string? maybeNull = GetSomething();
-// このケースでは null にならないと分かっている
-string definitelyNotNull = maybeNull!;  // コンパイラに「null ではない」と伝える
+string? maybeNull = GetLegacyRequiredValue();
+// シグネチャ上は string? でも、外部契約によりこの呼び出しでは値があると分かっている
+string definitelyNotNull = maybeNull!;  // コンパイラに「この経路では null ではない」と伝える
 Console.WriteLine($"maybeNull! = \"{definitelyNotNull}\"");
 
 // API 設計の実例
@@ -96,8 +96,8 @@ else
     Console.WriteLine("TryGetUser(999) 失敗: ユーザーが存在しません");
 }
 
-// ヘルパーメソッド
-string GetSomething() => "Something";
+// ヘルパーメソッド: 古い API や外部ライブラリを模したもの
+string? GetLegacyRequiredValue() => "Something";
 
 // User クラス
 class User
@@ -130,8 +130,9 @@ class UserService
     // 戻り値は null 可。見つからない場合は null
     public User? FindUser(string email)
     {
-        // 簡易例: 名前からメールアドレスを作って比較
-        return _users.Find(u => u.Name.ToLower() + "@example.com" == email.ToLower());
+        // 簡易例: culture 依存の ToLower() を避けて比較する
+        return _users.Find(u =>
+            string.Equals($"{u.Name}@example.com", email, StringComparison.OrdinalIgnoreCase));
     }
 
     // TryGet パターン: [NotNullWhen] 属性を利用

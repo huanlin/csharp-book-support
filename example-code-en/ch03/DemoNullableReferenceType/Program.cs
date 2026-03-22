@@ -48,9 +48,9 @@ ProcessWithIsPattern("Pattern matching test");
 
 // Null-forgiving operator (!)
 Console.WriteLine("\n[Null-forgiving Operator !]");
-string? maybeNull = GetSomething();
-// We know GetSomething won't return null in this case
-string definitelyNotNull = maybeNull!;  // Tell the compiler: I guarantee it's not null
+string? maybeNull = GetLegacyRequiredValue();
+// The legacy API signature says string?, but the external contract guarantees a value here
+string definitelyNotNull = maybeNull!;  // Tell the compiler: this call path guarantees non-null
 Console.WriteLine($"maybeNull! = \"{definitelyNotNull}\"");
 
 // API Design Real-world Example
@@ -96,8 +96,8 @@ else
     Console.WriteLine("TryGetUser(999) Failed: User does not exist");
 }
 
-// Helper method
-string GetSomething() => "Something";
+// Helper method: simulating a legacy or third-party API
+string? GetLegacyRequiredValue() => "Something";
 
 // User class
 class User
@@ -130,8 +130,9 @@ class UserService
     // Return value can be null; returns null if not found
     public User? FindUser(string email)
     {
-        // Simplified example: matching name with email
-        return _users.Find(u => u.Name.ToLower() + "@example.com" == email.ToLower());
+        // Simplified example: matching name with email without culture-sensitive ToLower()
+        return _users.Find(u =>
+            string.Equals($"{u.Name}@example.com", email, StringComparison.OrdinalIgnoreCase));
     }
     
     // TryGet pattern: using [NotNullWhen] attribute
