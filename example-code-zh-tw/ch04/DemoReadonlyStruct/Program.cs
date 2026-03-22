@@ -15,6 +15,9 @@ Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
 p.Reset();
 Console.WriteLine($"After Reset: ({p.X}, {p.Y})");
 
+var large = new LargeStruct { Field1 = 1, Field2 = 2 };
+large.Process();
+
 // Money 是一個 readonly struct，建立後無法修改其狀態
 readonly struct Money
 {
@@ -52,5 +55,22 @@ struct Point
     public void Reset()
     {
         X = Y = 0;
+    }
+}
+
+// 示範 defensive copy：readonly 方法呼叫非 readonly 方法
+struct LargeStruct
+{
+    public int Field1;
+    public int Field2;
+
+    public readonly void Process()
+    {
+        Helper(); // 這裡會出現 CS8656
+    }
+
+    private void Helper()
+    {
+        Console.WriteLine($"Processing: {Field1}, {Field2}");
     }
 }

@@ -15,6 +15,9 @@ Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
 p.Reset();
 Console.WriteLine($"Reset 後: ({p.X}, {p.Y})");
 
+var large = new LargeStruct { Field1 = 1, Field2 = 2 };
+large.Process();
+
 // Money は readonly struct: 生成後に状態変更不可
 readonly struct Money
 {
@@ -52,5 +55,22 @@ struct Point
     public void Reset()
     {
         X = Y = 0;
+    }
+}
+
+// defensive copy の例: readonly メソッドから non-readonly メソッドを呼び出す
+struct LargeStruct
+{
+    public int Field1;
+    public int Field2;
+
+    public readonly void Process()
+    {
+        Helper(); // ここで CS8656 が出る
+    }
+
+    private void Helper()
+    {
+        Console.WriteLine($"Processing: {Field1}, {Field2}");
     }
 }

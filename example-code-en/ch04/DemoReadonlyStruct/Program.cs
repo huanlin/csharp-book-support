@@ -15,6 +15,9 @@ Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
 p.Reset();
 Console.WriteLine($"After Reset: ({p.X}, {p.Y})");
 
+var large = new LargeStruct { Field1 = 1, Field2 = 2 };
+large.Process();
+
 // Money is a readonly struct, its state cannot be modified after creation
 readonly struct Money
 {
@@ -52,5 +55,22 @@ struct Point
     public void Reset()
     {
         X = Y = 0;
+    }
+}
+
+// Demonstrates a defensive copy: a readonly method calls a non-readonly method.
+struct LargeStruct
+{
+    public int Field1;
+    public int Field2;
+
+    public readonly void Process()
+    {
+        Helper(); // This line produces CS8656
+    }
+
+    private void Helper()
+    {
+        Console.WriteLine($"Processing: {Field1}, {Field2}");
     }
 }
