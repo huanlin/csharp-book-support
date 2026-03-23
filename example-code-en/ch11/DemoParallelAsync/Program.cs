@@ -105,7 +105,7 @@ async Task<string> GetDataWithTimeoutAsync(string url, int timeoutMs)
         throw new TimeoutException("Operation timed out!");
     }
     
-    // Ensure exception is not thrown here (although dataTask is complete, it might have failed)
+    // This retrieves the result; if dataTask failed, the exception is rethrown here
     return await dataTask;
 }
 

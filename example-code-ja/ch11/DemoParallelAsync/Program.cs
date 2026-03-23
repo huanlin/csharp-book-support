@@ -105,7 +105,7 @@ async Task<string> GetDataWithTimeoutAsync(string url, int timeoutMs)
         throw new TimeoutException("操作がタイムアウトしました。");
     }
     
-    // ここで例外再送出を防ぐため await して結果を返す
+    // ここで結果を取得する。dataTask が失敗していれば、この await で例外が再送出される
     return await dataTask;
 }
 

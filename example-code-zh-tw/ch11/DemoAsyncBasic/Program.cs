@@ -21,7 +21,7 @@ Console.WriteLine($"主執行緒 ID: {Environment.CurrentManagedThreadId}");
 // 將繁重運算丟到背景執行緒
 await Task.Run(() => LongRunningCalculation());
 
-Console.WriteLine("計算完成，回到主執行緒");
+Console.WriteLine($"計算完成，後續程式碼在執行緒 ID: {Environment.CurrentManagedThreadId}");
 
 // --------------------------------------------------------------
 // 3. ConfigureAwait(false)
@@ -29,8 +29,7 @@ Console.WriteLine("計算完成，回到主執行緒");
 Console.WriteLine("\n3. Library 模式 (ConfigureAwait)");
 Console.WriteLine(new string('-', 40));
 
-// 在 Library 中通常不需要回到原本的 Context
-await DoLibraryWorkAsync().ConfigureAwait(false);
+await DoLibraryWorkAsync();
 
 Console.WriteLine("\n=== 範例結束 ===");
 
@@ -62,7 +61,10 @@ void LongRunningCalculation()
 
 async Task DoLibraryWorkAsync()
 {
-    Console.WriteLine("Library 工作開始...");
+    Console.WriteLine($"Library 工作開始... (執行緒 ID: {Environment.CurrentManagedThreadId})");
+    
+    // 在 Library 內部通常不需要回到原本的 Context
     await Task.Delay(500).ConfigureAwait(false);
-    Console.WriteLine("Library 工作結束 (可能在不同執行緒)");
+    
+    Console.WriteLine($"Library 工作結束 (執行緒 ID: {Environment.CurrentManagedThreadId})");
 }

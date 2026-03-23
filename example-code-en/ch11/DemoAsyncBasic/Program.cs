@@ -21,7 +21,7 @@ Console.WriteLine($"Main Thread ID: {Environment.CurrentManagedThreadId}");
 // Offload heavy calculation to a background thread
 await Task.Run(() => LongRunningCalculation());
 
-Console.WriteLine("Calculation complete, back to main thread");
+Console.WriteLine($"Calculation complete, continuation running on Thread ID: {Environment.CurrentManagedThreadId}");
 
 // --------------------------------------------------------------
 // 3. ConfigureAwait(false)
@@ -29,8 +29,7 @@ Console.WriteLine("Calculation complete, back to main thread");
 Console.WriteLine("\n3. Library Pattern (ConfigureAwait)");
 Console.WriteLine(new string('-', 40));
 
-// In libraries, we usually don't need to return to the original context
-await DoLibraryWorkAsync().ConfigureAwait(false);
+await DoLibraryWorkAsync();
 
 Console.WriteLine("\n=== Example End ===");
 
@@ -62,7 +61,10 @@ void LongRunningCalculation()
 
 async Task DoLibraryWorkAsync()
 {
-    Console.WriteLine("Library work starting...");
+    Console.WriteLine($"Library work starting... (Thread ID: {Environment.CurrentManagedThreadId})");
+    
+    // Inside library code, we usually don't need to return to the original context
     await Task.Delay(500).ConfigureAwait(false);
-    Console.WriteLine("Library work finished (might be on a different thread)");
+    
+    Console.WriteLine($"Library work finished (Thread ID: {Environment.CurrentManagedThreadId})");
 }

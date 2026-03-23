@@ -21,7 +21,7 @@ Console.WriteLine($"メインスレッド ID: {Environment.CurrentManagedThreadI
 // 重い計算をバックグラウンドスレッドへオフロード
 await Task.Run(() => LongRunningCalculation());
 
-Console.WriteLine("計算完了、メインスレッドへ復帰");
+Console.WriteLine($"計算完了。後続コードの実行スレッド ID: {Environment.CurrentManagedThreadId}");
 
 // --------------------------------------------------------------
 // 3. ConfigureAwait(false)
@@ -29,8 +29,7 @@ Console.WriteLine("計算完了、メインスレッドへ復帰");
 Console.WriteLine("\n3. ライブラリパターン（ConfigureAwait）");
 Console.WriteLine(new string('-', 40));
 
-// ライブラリでは通常、元のコンテキストへ戻る必要がない
-await DoLibraryWorkAsync().ConfigureAwait(false);
+await DoLibraryWorkAsync();
 
 Console.WriteLine("\n=== 例の終了 ===");
 
@@ -62,7 +61,10 @@ void LongRunningCalculation()
 
 async Task DoLibraryWorkAsync()
 {
-    Console.WriteLine("ライブラリ処理開始...");
+    Console.WriteLine($"ライブラリ処理開始...（スレッド ID: {Environment.CurrentManagedThreadId}）");
+    
+    // ライブラリ内部では通常、元のコンテキストへ戻る必要がない
     await Task.Delay(500).ConfigureAwait(false);
-    Console.WriteLine("ライブラリ処理完了（別スレッドの可能性あり）");
+    
+    Console.WriteLine($"ライブラリ処理完了（スレッド ID: {Environment.CurrentManagedThreadId}）");
 }

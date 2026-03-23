@@ -105,7 +105,7 @@ async Task<string> GetDataWithTimeoutAsync(string url, int timeoutMs)
         throw new TimeoutException("作業逾時！");
     }
     
-    // 確保這裡不會拋出例外 (雖然 dataTask 已完成，但可能是失敗的)
+    // 這裡會取得結果；如果 dataTask 已失敗，會在此重新拋出例外
     return await dataTask;
 }
 
