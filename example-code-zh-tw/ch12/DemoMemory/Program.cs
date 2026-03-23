@@ -72,7 +72,7 @@ public class DataProcessor
         
         // 第一次操作：轉為 Span
         // 注意：Span 只能在當前的同步區塊中使用
-        Console.WriteLine($"[同步] 處裡前三個 byte: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        Console.WriteLine($"[同步] 處理前三個 byte: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
 
         Console.WriteLine("[非同步] 等待 I/O (100ms)...");
         await Task.Delay(100);

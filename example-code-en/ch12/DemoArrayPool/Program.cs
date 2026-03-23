@@ -30,9 +30,9 @@ static void ProcessStream(Stream stream)
     
     try
     {
-        // 2. Use: Note to operate on the actual read length
-        // Because the buffer might contain dirty data from previous users, and actual length > requested
-        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+        // 2. Use: Read using the original requested size
+        // The buffer might contain dirty data from previous users, and actual capacity may exceed the request
+        int bytesRead = stream.Read(buffer, 0, bufferSize);
         
         // Convert to Span to process only valid data
         ReadOnlySpan<byte> span = buffer.AsSpan(0, bytesRead);
@@ -41,7 +41,7 @@ static void ProcessStream(Stream stream)
         Console.WriteLine($"Read content: \"{content}\"");
         
         // More simulations...
-        while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+        while ((bytesRead = stream.Read(buffer, 0, bufferSize)) > 0)
         {
              span = buffer.AsSpan(0, bytesRead);
              content = Encoding.UTF8.GetString(span);

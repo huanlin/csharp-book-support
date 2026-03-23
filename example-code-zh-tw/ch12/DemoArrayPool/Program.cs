@@ -30,18 +30,18 @@ static void ProcessStream(Stream stream)
     
     try
     {
-        // 2. 使用：注意要針對實際讀取的長度操作
-        // 因為 buffer 可能由上一個使用者留下髒資料，且實際長度大於需求
-        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+        // 2. 使用：讀取時仍以原本需求的大小為準
+        // 因為 buffer 可能由上一個使用者留下髒資料，且實際長度可能大於需求
+        int bytesRead = stream.Read(buffer, 0, bufferSize);
         
-        // 轉為 Span 只處裡有效資料
+        // 轉為 Span 只處理有效資料
         ReadOnlySpan<byte> span = buffer.AsSpan(0, bytesRead);
         
         string content = Encoding.UTF8.GetString(span);
         Console.WriteLine($"讀取內容: \"{content}\"");
         
         // 模擬更多讀取...
-        while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+        while ((bytesRead = stream.Read(buffer, 0, bufferSize)) > 0)
         {
              span = buffer.AsSpan(0, bytesRead);
              content = Encoding.UTF8.GetString(span);

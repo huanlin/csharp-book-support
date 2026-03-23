@@ -30,9 +30,9 @@ static void ProcessStream(Stream stream)
     
     try
     {
-        // 2. Use: 実際に読み取った長さだけを処理する
-        // バッファには前回利用時のデータが残っている可能性があり、かつ長さが要求値より大きいこともある
-        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+        // 2. Use: 読み込みは元の要求サイズを基準に行う
+        // バッファには前回利用時のデータが残っている可能性があり、実際の容量は要求値より大きいこともある
+        int bytesRead = stream.Read(buffer, 0, bufferSize);
         
         // Span に変換して有効データのみ処理
         ReadOnlySpan<byte> span = buffer.AsSpan(0, bytesRead);
@@ -41,7 +41,7 @@ static void ProcessStream(Stream stream)
         Console.WriteLine($"読み取り内容: \"{content}\"");
         
         // さらに読み込みを継続
-        while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+        while ((bytesRead = stream.Read(buffer, 0, bufferSize)) > 0)
         {
              span = buffer.AsSpan(0, bytesRead);
              content = Encoding.UTF8.GetString(span);
