@@ -1,6 +1,5 @@
 // デモ: readonly struct と readonly メソッド
 
-// メイン処理
 var m1 = new Money(100, "TWD");
 var m2 = new Money(50, "TWD");
 var m3 = m1.Add(m2);
@@ -15,10 +14,7 @@ Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
 p.Reset();
 Console.WriteLine($"Reset 後: ({p.X}, {p.Y})");
 
-var large = new LargeStruct { Field1 = 1, Field2 = 2 };
-large.Process();
-
-// Money は readonly struct: 生成後に状態変更不可
+// Money は readonly struct であり、生成後は状態を変更できない
 readonly struct Money
 {
     public decimal Amount { get; }
@@ -45,32 +41,15 @@ struct Point
     public int X;
     public int Y;
 
-    // readonly メソッド: フィールドを変更しないことを保証
+    // readonly メソッドはフィールドを変更しないことを保証する
     public readonly double GetDistance()
     {
         return Math.Sqrt(X * X + Y * Y);
     }
 
-    // こちらはフィールド変更可能
+    // このメソッドはフィールドを変更できる
     public void Reset()
     {
         X = Y = 0;
-    }
-}
-
-// defensive copy の例: readonly メソッドから non-readonly メソッドを呼び出す
-struct LargeStruct
-{
-    public int Field1;
-    public int Field2;
-
-    public readonly void Process()
-    {
-        Helper(); // ここで CS8656 が出る
-    }
-
-    private void Helper()
-    {
-        Console.WriteLine($"Processing: {Field1}, {Field2}");
     }
 }

@@ -1,6 +1,5 @@
 // Demo: readonly struct and readonly methods
 
-// Main program
 var m1 = new Money(100, "TWD");
 var m2 = new Money(50, "TWD");
 var m3 = m1.Add(m2);
@@ -15,10 +14,7 @@ Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
 p.Reset();
 Console.WriteLine($"After Reset: ({p.X}, {p.Y})");
 
-var large = new LargeStruct { Field1 = 1, Field2 = 2 };
-large.Process();
-
-// Money is a readonly struct, its state cannot be modified after creation
+// Money is a readonly struct, so its state cannot be modified after creation
 readonly struct Money
 {
     public decimal Amount { get; }
@@ -45,32 +41,15 @@ struct Point
     public int X;
     public int Y;
 
-    // readonly method guarantees that fields won't be modified
+    // A readonly method guarantees it won't mutate fields
     public readonly double GetDistance()
     {
         return Math.Sqrt(X * X + Y * Y);
     }
 
-    // This method can modify fields
+    // This method can mutate fields
     public void Reset()
     {
         X = Y = 0;
-    }
-}
-
-// Demonstrates a defensive copy: a readonly method calls a non-readonly method.
-struct LargeStruct
-{
-    public int Field1;
-    public int Field2;
-
-    public readonly void Process()
-    {
-        Helper(); // This line produces CS8656
-    }
-
-    private void Helper()
-    {
-        Console.WriteLine($"Processing: {Field1}, {Field2}");
     }
 }

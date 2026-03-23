@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="DemoMutablePoint/DemoMutablePoint.csproj" />
   <Project Path="DemoReadonlyStruct/DemoReadonlyStruct.csproj" />
+  <Project Path="DemoReadonlyMethod/DemoReadonlyMethod.csproj" />
+  <Project Path="DemoDefensiveCopy/DemoDefensiveCopy.csproj" />
   <Project Path="DemoRecord/DemoRecord.csproj" />
   <Project Path="DemoInitAccessor/DemoInitAccessor.csproj" />
   <Project Path="DemoWithExpression/DemoWithExpression.csproj" />
