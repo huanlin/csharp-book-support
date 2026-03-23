@@ -83,7 +83,7 @@ try
 {
     var _ = collection[10];
 }
-catch (IndexOutOfRangeException ex)
+catch (ArgumentOutOfRangeException ex)
 {
     Console.WriteLine($"collection[10]: {ex.Message}");
 }
@@ -138,5 +138,8 @@ public class SafeCollection<T>
     public T this[int index] =>
         index >= 0 && index < _items.Length
             ? _items[index]
-            : throw new IndexOutOfRangeException($"インデックス {index} は範囲外です [0, {_items.Length - 1}]");
+            : throw new ArgumentOutOfRangeException(
+                nameof(index),
+                index,
+                $"インデックスは 0 から {_items.Length - 1} の範囲である必要があります");
 }

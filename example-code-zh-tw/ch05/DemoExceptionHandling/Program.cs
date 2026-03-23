@@ -169,8 +169,8 @@ static DateTime StringToDate(string input)
     }
     catch (FormatException ex)
     {
-        // 將原始例外保存在 innerException 參數
-        throw new ArgumentException($"無效的引數：{nameof(input)}", ex);
+        // 將原始例外保存在 innerException 參數，並正確指定參數名稱
+        throw new ArgumentException("無效的日期字串。", nameof(input), ex);
     }
 }
 

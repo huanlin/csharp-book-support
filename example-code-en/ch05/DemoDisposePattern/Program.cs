@@ -101,7 +101,7 @@ public class SimpleResource : IDisposable
 
 /// <summary>
 /// Full Dispose pattern (including Finalizer support)
-/// Suitable for directly wrapping unmanaged resources or as a base class
+/// Full version for types that directly wrap unmanaged resources
 /// </summary>
 public class ResourceHolder : IDisposable
 {
@@ -158,9 +158,9 @@ public class ResourceHolder : IDisposable
     }
 
     // Finalizer (backup in case Dispose call is forgotten)
+    // Avoid Console I/O, logging, or other fragile work here in real code.
     ~ResourceHolder()
     {
-        Console.WriteLine($"  {_name}: Finalizer called (this means Dispose was forgotten!)");
         Dispose(disposing: false);
     }
 }
@@ -168,6 +168,7 @@ public class ResourceHolder : IDisposable
 /// <summary>
 /// Derived class inheriting from ResourceHolder
 /// Demonstrates how to correctly override the Dispose pattern
+/// and guard members after disposal
 /// </summary>
 public class DerivedResourceHolder : ResourceHolder
 {
@@ -181,6 +182,7 @@ public class DerivedResourceHolder : ResourceHolder
 
     public void DoDerivedWork()
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         Console.WriteLine("  Executing derived class work...");
     }
 

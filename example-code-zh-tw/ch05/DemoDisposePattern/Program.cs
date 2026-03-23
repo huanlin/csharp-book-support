@@ -101,7 +101,7 @@ public class SimpleResource : IDisposable
 
 /// <summary>
 /// 完整的 Dispose 模式（含 Finalizer 支援）
-/// 適用於直接包裝非受控資源或作為基底類別的情況
+/// 適用於直接包裝非受控資源的完整版本
 /// </summary>
 public class ResourceHolder : IDisposable
 {
@@ -167,7 +167,7 @@ public class ResourceHolder : IDisposable
 
 /// <summary>
 /// 繼承自 ResourceHolder 的衍生類別
-/// 展示如何正確覆寫 Dispose 模式
+/// 展示如何正確覆寫 Dispose 模式，並在成員中檢查 disposed 狀態
 /// </summary>
 public class DerivedResourceHolder : ResourceHolder
 {
@@ -181,6 +181,7 @@ public class DerivedResourceHolder : ResourceHolder
 
     public void DoDerivedWork()
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         Console.WriteLine("  執行衍生類別的工作...");
     }
 

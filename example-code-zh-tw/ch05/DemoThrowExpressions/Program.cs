@@ -83,7 +83,7 @@ try
 {
     var _ = collection[10];
 }
-catch (IndexOutOfRangeException ex)
+catch (ArgumentOutOfRangeException ex)
 {
     Console.WriteLine($"collection[10]：{ex.Message}");
 }
@@ -140,5 +140,8 @@ public class SafeCollection<T>
     public T this[int index] =>
         index >= 0 && index < _items.Length
             ? _items[index]
-            : throw new IndexOutOfRangeException($"索引 {index} 超出範圍 [0, {_items.Length - 1}]");
+            : throw new ArgumentOutOfRangeException(
+                nameof(index),
+                index,
+                $"索引必須介於 0 與 {_items.Length - 1} 之間");
 }

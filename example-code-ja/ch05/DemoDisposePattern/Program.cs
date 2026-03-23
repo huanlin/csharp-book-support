@@ -101,7 +101,7 @@ public class SimpleResource : IDisposable
 
 /// <summary>
 /// Finalizer 対応を含む完全な Dispose パターン
-/// アンマネージリソースを直接扱う/基底クラスに適する
+/// アンマネージリソースを直接扱う型向けの完全版
 /// </summary>
 public class ResourceHolder : IDisposable
 {
@@ -158,15 +158,16 @@ public class ResourceHolder : IDisposable
     }
 
     // Dispose 忘れの保険
+    // 実運用コードでは、ここで Console I/O やログ出力などは避ける。
     ~ResourceHolder()
     {
-        Console.WriteLine($"  {_name}: Finalizer 呼び出し（Dispose 忘れ）");
         Dispose(disposing: false);
     }
 }
 
 /// <summary>
 /// 継承先での Dispose パターン実装例
+/// Dispose 後のメンバー利用も防ぐ
 /// </summary>
 public class DerivedResourceHolder : ResourceHolder
 {
@@ -180,6 +181,7 @@ public class DerivedResourceHolder : ResourceHolder
 
     public void DoDerivedWork()
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         Console.WriteLine("  派生クラスの処理を実行...");
     }
 

@@ -169,8 +169,8 @@ static DateTime StringToDate(string input)
     }
     catch (FormatException ex)
     {
-        // Preserve original exception in innerException parameter
-        throw new ArgumentException($"Invalid argument: {nameof(input)}", ex);
+        // Preserve the original exception as innerException and set the parameter name correctly
+        throw new ArgumentException("Invalid date string.", nameof(input), ex);
     }
 }
 

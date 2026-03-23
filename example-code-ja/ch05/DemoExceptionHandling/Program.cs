@@ -166,7 +166,8 @@ static DateTime StringToDate(string input)
     }
     catch (FormatException ex)
     {
-        throw new ArgumentException($"不正な引数: {nameof(input)}", ex);
+        // 元の例外を innerException として保持しつつ、引数名も正しく指定する
+        throw new ArgumentException("日付文字列が無効です。", nameof(input), ex);
     }
 }
 
