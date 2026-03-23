@@ -88,7 +88,7 @@ public class Program
         // Explanation
         Console.WriteLine("\n=== Explanation ===");
         Console.WriteLine("These extension methods demonstrate how to add new features to LINQ.");
-        Console.WriteLine("Note: .NET 6+ has built-in DistinctBy and Chunk (similar to Batch).");
+        Console.WriteLine("Note: .NET 6+ already includes Chunk (conceptually similar to Batch).");
         Console.WriteLine("Custom extension methods are suitable for project-specific query logic.");
     }
 }

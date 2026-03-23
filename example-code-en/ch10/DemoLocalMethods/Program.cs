@@ -1,35 +1,35 @@
-// Demo: Local Methods
+// Demo: Local Functions
 
-Console.WriteLine("=== Local Methods ===\n");
+Console.WriteLine("=== Local Functions ===\n");
 
 // --------------------------------------------------------------
-// 1. Basic Local Method
+// 1. Basic Local Function
 // --------------------------------------------------------------
-Console.WriteLine("1. Basic Local Method");
+Console.WriteLine("1. Basic Local Function");
 Console.WriteLine(new string('-', 40));
 
 Demo();
 
 // --------------------------------------------------------------
-// 2. Local Method Accessing Outer Variables (Closure)
+// 2. Local Function Accessing Outer Variables (Closure)
 // --------------------------------------------------------------
-Console.WriteLine("\n2. Local Method Accessing Outer Variables");
+Console.WriteLine("\n2. Local Function Accessing Outer Variables");
 Console.WriteLine(new string('-', 40));
 
 DemoWithClosure();
 
 // --------------------------------------------------------------
-// 3. Recursive Local Method
+// 3. Recursive Local Function
 // --------------------------------------------------------------
-Console.WriteLine("\n3. Recursive Local Method");
+Console.WriteLine("\n3. Recursive Local Function");
 Console.WriteLine(new string('-', 40));
 
 DemoRecursive();
 
 // --------------------------------------------------------------
-// 4. Iterator Local Method
+// 4. Iterator Local Function
 // --------------------------------------------------------------
-Console.WriteLine("\n4. Iterator Local Method");
+Console.WriteLine("\n4. Iterator Local Function");
 Console.WriteLine(new string('-', 40));
 
 foreach (var num in GetEvenNumbers(1, 10))

@@ -88,7 +88,7 @@ public class Program
         // 解説
         Console.WriteLine("\n=== 解説 ===");
         Console.WriteLine("これらの拡張メソッドは LINQ に機能を追加する方法を示している。");
-        Console.WriteLine("注: .NET 6+ には DistinctBy や Chunk（Batch に近い）が標準搭載。");
+        Console.WriteLine("注: .NET 6+ には Chunk（Batch に近い概念）が標準搭載。");
         Console.WriteLine("独自拡張はプロジェクト固有のクエリロジックに適している。");
     }
 }

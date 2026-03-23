@@ -10,12 +10,12 @@ public static class EnumerableExtensions
         public bool IsEmpty => !source.Any();
     }
     
-    // 需要參考型別約束的擴充
-    extension<TSource>(IEnumerable<TSource> source) where TSource : class?
+    // 需要參考型別約束的擴充：輸入可含 null，輸出則是非 null 參考型別序列
+    extension<TSource>(IEnumerable<TSource?> source) where TSource : class
     {
         public IEnumerable<TSource> WhereNotNull()
         {
-            return source.Where(x => x is not null);
+            return source.Where(x => x is not null)!;
         }
     }
     
@@ -72,8 +72,8 @@ public class Program
         var merged = list1 + list2;
         Console.WriteLine($"  [\"a\",\"b\"] + [\"c\",\"d\"] = [{string.Join(", ", merged)}]\n");
 
-        // 情境 4：WhereNotNull（有型別約束的擴充）
-        Console.WriteLine("情境 4：帶型別約束的擴充方法");
+        // 情境 4：WhereNotNull（過濾後會回傳非 null 型別）
+        Console.WriteLine("情境 4：過濾 null 並收斂型別");
         var names = new[] { "Alice", null, "Bob", null };
         var validNames = names.WhereNotNull();
         Console.WriteLine($"  過濾 null 後：[{string.Join(", ", validNames)}]");
@@ -83,5 +83,6 @@ public class Program
         Console.WriteLine("- 實例成員：extension<T>(IEnumerable<T> source) 有參數名稱");
         Console.WriteLine("- 靜態成員：extension<T>(IEnumerable<T>) 沒有參數名稱");
         Console.WriteLine("- 擴充運算子：可為現有型別「添加」運算子");
+        Console.WriteLine("- WhereNotNull：輸入 IEnumerable<T?>，輸出 IEnumerable<T>");
     }
 }

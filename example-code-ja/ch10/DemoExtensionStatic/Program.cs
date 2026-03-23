@@ -10,12 +10,12 @@ public static class EnumerableExtensions
         public bool IsEmpty => !source.Any();
     }
     
-    // 参照型制約付き拡張
-    extension<TSource>(IEnumerable<TSource> source) where TSource : class?
+    // 参照型制約付き拡張: 入力は null を含められるが、出力は非 null 参照型シーケンス
+    extension<TSource>(IEnumerable<TSource?> source) where TSource : class
     {
         public IEnumerable<TSource> WhereNotNull()
         {
-            return source.Where(x => x is not null);
+            return source.Where(x => x is not null)!;
         }
     }
     
@@ -72,8 +72,8 @@ public class Program
         var merged = list1 + list2;
         Console.WriteLine($"  [\"a\",\"b\"] + [\"c\",\"d\"] = [{string.Join(", ", merged)}]\n");
 
-        // シナリオ 4: WhereNotNull（型制約付き拡張）
-        Console.WriteLine("シナリオ 4: 型制約付き拡張メソッド");
+        // シナリオ 4: WhereNotNull（null を除外して要素型も絞り込む）
+        Console.WriteLine("シナリオ 4: null を除外して要素型を絞り込む");
         var names = new[] { "Alice", null, "Bob", null };
         var validNames = names.WhereNotNull();
         Console.WriteLine($"  null 除外後: [{string.Join(", ", validNames)}]");
@@ -83,5 +83,6 @@ public class Program
         Console.WriteLine("- インスタンスメンバー: extension<T>(IEnumerable<T> source) はパラメーター名あり");
         Console.WriteLine("- static メンバー: extension<T>(IEnumerable<T>) はパラメーター名なし");
         Console.WriteLine("- 拡張演算子: 既存型に演算子を追加できる");
+        Console.WriteLine("- WhereNotNull: 入力は IEnumerable<T?>、出力は IEnumerable<T>");
     }
 }

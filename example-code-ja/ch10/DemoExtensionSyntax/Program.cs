@@ -115,7 +115,9 @@ public static class ObjectExtensions
 {
     public static bool IsCapitalized(this object s)
     {
-        return s?.ToString() is string str && char.IsUpper(str[0]);
+        return s?.ToString() is string str
+            && str.Length > 0
+            && char.IsUpper(str[0]);
     }
 }
 

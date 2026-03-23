@@ -10,12 +10,12 @@ public static class EnumerableExtensions
         public bool IsEmpty => !source.Any();
     }
     
-    // Extension with reference type constraint
-    extension<TSource>(IEnumerable<TSource> source) where TSource : class?
+    // Extension with reference type constraint: nullable input, non-null output
+    extension<TSource>(IEnumerable<TSource?> source) where TSource : class
     {
         public IEnumerable<TSource> WhereNotNull()
         {
-            return source.Where(x => x is not null);
+            return source.Where(x => x is not null)!;
         }
     }
     
@@ -72,8 +72,8 @@ public class Program
         var merged = list1 + list2;
         Console.WriteLine($"  [\"a\",\"b\"] + [\"c\",\"d\"] = [{string.Join(", ", merged)}]\n");
 
-        // Scenario 4: WhereNotNull (Extension with type constraint)
-        Console.WriteLine("Scenario 4: Extension method with type constraint");
+        // Scenario 4: WhereNotNull (Narrows the result to non-null elements)
+        Console.WriteLine("Scenario 4: Filter null and narrow the element type");
         var names = new[] { "Alice", null, "Bob", null };
         var validNames = names.WhereNotNull();
         Console.WriteLine($"  After filtering null: [{string.Join(", ", validNames)}]");
@@ -83,5 +83,6 @@ public class Program
         Console.WriteLine("- Instance members: extension<T>(IEnumerable<T> source) has parameter name");
         Console.WriteLine("- Static members: extension<T>(IEnumerable<T>) has no parameter name");
         Console.WriteLine("- Extension operators: Can \"add\" operators to existing types");
+        Console.WriteLine("- WhereNotNull: Input is IEnumerable<T?>, output is IEnumerable<T>");
     }
 }
