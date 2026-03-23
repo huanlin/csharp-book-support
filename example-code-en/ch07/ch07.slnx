@@ -3,5 +3,6 @@
   <Project Path="DemoGenericClass/DemoGenericClass.csproj" />
   <Project Path="DemoConstraints/DemoConstraints.csproj" />
   <Project Path="DemoGenericInterfaces/DemoGenericInterfaces.csproj" />
+  <Project Path="DemoGenericAttribute/DemoGenericAttribute.csproj" />
   <Project Path="DemoCovariance/DemoCovariance.csproj" />
 </Solution>
