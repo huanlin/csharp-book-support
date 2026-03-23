@@ -168,5 +168,5 @@ static string CheckPattern(int[] values) => values switch
     [0, _] => "0 で始まり、続いて1要素",
     [0, ..] => "0 で始まり、後続は任意",
     [2, .. int[] others] => $"2 で始まり、後続 {others.Length} 要素",
-    [..] => "任意要素"
+    [..] => "任意の内容、任意の長さ"
 };

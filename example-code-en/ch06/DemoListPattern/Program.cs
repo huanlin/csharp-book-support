@@ -168,5 +168,5 @@ static string CheckPattern(int[] values) => values switch
     [0, _] => "Starts with 0, followed by one number",
     [0, ..] => "Starts with 0, followed by any amount",
     [2, .. int[] others] => $"Starts with 2, followed by {others.Length} others",
-    [..] => "Any elements in any order"
+    [..] => "Any contents, any length"
 };

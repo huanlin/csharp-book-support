@@ -168,5 +168,5 @@ static string CheckPattern(int[] values) => values switch
     [0, _] => "以 0 開頭，後面跟一個數字",
     [0, ..] => "以 0 開頭，後面可以是任意數量",
     [2, .. int[] others] => $"以 2 開頭，後面還有 {others.Length} 個",
-    [..] => "任意順序的任意元素"
+    [..] => "任意內容、任意長度"
 };
