@@ -4,6 +4,7 @@
   <Project Path="DemoDelegateVariance/DemoDelegateVariance.csproj" />
   <Project Path="DemoActionFunc/DemoActionFunc.csproj" />
   <Project Path="DemoLambda/DemoLambda.csproj" />
+  <Project Path="DemoLambdaAttributes/DemoLambdaAttributes.csproj" />
   <Project Path="DemoClosure/DemoClosure.csproj" />
   <Project Path="DemoEventBasics/DemoEventBasics.csproj" />
   <Project Path="DemoEventStandard/DemoEventStandard.csproj" />
