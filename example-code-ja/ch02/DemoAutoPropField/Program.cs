@@ -13,7 +13,7 @@ try
 {
     person.Age = -5;  // 例外が発生する想定
 }
-catch (ArgumentException ex)
+catch (ArgumentOutOfRangeException ex)
 {
     Console.WriteLine($"\nバリデーション失敗: {ex.Message}");
 }
@@ -42,7 +42,7 @@ public class Person
         set
         {
             if (value < 0)
-                throw new ArgumentException("年齢は負の値にできません");
+                throw new ArgumentOutOfRangeException(nameof(value), "年齢は負の値にできません");
             field = value;
         }
     }

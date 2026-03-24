@@ -4,7 +4,7 @@ var json = """
     {
         "name": "Michael",
         "age": 50,
-        "path": "C:\\Windows\\System32"
+        "path": "C:\Windows\System32"
     }
     """;
 Console.WriteLine("原始字串常值 (JSON):");

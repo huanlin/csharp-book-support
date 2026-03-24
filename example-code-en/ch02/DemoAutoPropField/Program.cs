@@ -13,7 +13,7 @@ try
 {
     person.Age = -5;  // Should throw an exception
 }
-catch (ArgumentException ex)
+catch (ArgumentOutOfRangeException ex)
 {
     Console.WriteLine($"\nValidation failed: {ex.Message}");
 }
@@ -42,7 +42,7 @@ public class Person
         set
         {
             if (value < 0)
-                throw new ArgumentException("Age cannot be negative!");
+                throw new ArgumentOutOfRangeException(nameof(value), "Age cannot be negative!");
             field = value;
         }
     }

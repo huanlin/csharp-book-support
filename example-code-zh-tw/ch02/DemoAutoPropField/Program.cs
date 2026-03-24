@@ -13,7 +13,7 @@ try
 {
     person.Age = -5;  // 應該拋出例外
 }
-catch (ArgumentException ex)
+catch (ArgumentOutOfRangeException ex)
 {
     Console.WriteLine($"\n驗證失敗: {ex.Message}");
 }
@@ -42,7 +42,7 @@ public class Person
         set
         {
             if (value < 0)
-                throw new ArgumentException("年齡不可為負數！");
+                throw new ArgumentOutOfRangeException(nameof(value), "年齡不可為負數！");
             field = value;
         }
     }
