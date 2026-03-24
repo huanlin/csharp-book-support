@@ -161,15 +161,17 @@ static void MethodThatRethrows()
     }
 }
 
-static DateTime StringToDate(string input)
+static DateTime StringToDate(string? input)
 {
+    ArgumentNullException.ThrowIfNull(input);
+
     try
     {
-        return Convert.ToDateTime(input);
+        return DateTime.Parse(input);
     }
     catch (FormatException ex)
     {
-        // Preserve the original exception as innerException and set the parameter name correctly
+        // null is handled by ThrowIfNull; only wrap format errors here
         throw new ArgumentException("Invalid date string.", nameof(input), ex);
     }
 }

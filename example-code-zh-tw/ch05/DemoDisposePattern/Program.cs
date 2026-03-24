@@ -150,7 +150,10 @@ public class ResourceHolder : IDisposable
         // 釋放非受控資源（無論 disposing 為何都要執行）
         if (_unmanagedHandle != IntPtr.Zero)
         {
-            Console.WriteLine($"  {_name}：釋放非受控資源（Handle: {_unmanagedHandle}）");
+            if (disposing)
+            {
+                Console.WriteLine($"  {_name}：釋放非受控資源（Handle: {_unmanagedHandle}）");
+            }
             _unmanagedHandle = IntPtr.Zero;
         }
 

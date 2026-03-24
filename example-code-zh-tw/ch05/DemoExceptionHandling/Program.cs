@@ -161,15 +161,17 @@ static void MethodThatRethrows()
     }
 }
 
-static DateTime StringToDate(string input)
+static DateTime StringToDate(string? input)
 {
+    ArgumentNullException.ThrowIfNull(input);
+
     try
     {
-        return Convert.ToDateTime(input);
+        return DateTime.Parse(input);
     }
     catch (FormatException ex)
     {
-        // 將原始例外保存在 innerException 參數，並正確指定參數名稱
+        // null 會由 ThrowIfNull 處理；這裡只包裝格式錯誤
         throw new ArgumentException("無效的日期字串。", nameof(input), ex);
     }
 }

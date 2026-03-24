@@ -150,7 +150,10 @@ public class ResourceHolder : IDisposable
         // アンマネージリソース解放
         if (_unmanagedHandle != IntPtr.Zero)
         {
-            Console.WriteLine($"  {_name}: アンマネージリソースを解放（Handle: {_unmanagedHandle}）");
+            if (disposing)
+            {
+                Console.WriteLine($"  {_name}: アンマネージリソースを解放（Handle: {_unmanagedHandle}）");
+            }
             _unmanagedHandle = IntPtr.Zero;
         }
 

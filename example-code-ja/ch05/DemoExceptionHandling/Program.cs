@@ -158,15 +158,17 @@ static void MethodThatRethrows()
     }
 }
 
-static DateTime StringToDate(string input)
+static DateTime StringToDate(string? input)
 {
+    ArgumentNullException.ThrowIfNull(input);
+
     try
     {
-        return Convert.ToDateTime(input);
+        return DateTime.Parse(input);
     }
     catch (FormatException ex)
     {
-        // 元の例外を innerException として保持しつつ、引数名も正しく指定する
+        // null は ThrowIfNull で処理し、ここでは書式エラーだけをラップする
         throw new ArgumentException("日付文字列が無効です。", nameof(input), ex);
     }
 }

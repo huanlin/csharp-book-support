@@ -150,7 +150,10 @@ public class ResourceHolder : IDisposable
         // Release unmanaged resources (must execute regardless of disposing value)
         if (_unmanagedHandle != IntPtr.Zero)
         {
-            Console.WriteLine($"  {_name}: Released unmanaged resources (Handle: {_unmanagedHandle})");
+            if (disposing)
+            {
+                Console.WriteLine($"  {_name}: Released unmanaged resources (Handle: {_unmanagedHandle})");
+            }
             _unmanagedHandle = IntPtr.Zero;
         }
 
