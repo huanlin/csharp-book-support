@@ -21,7 +21,7 @@ var team3 = new Team
     Members = new List<string> { "Alice", "Bob" }
 };
 
-// ディープコピー: List を新規生成
+// この例で分離できるのは、新しい List を作成し、要素の string が不変だから
 var team4 = new Team
 {
     Name = team3.Name,
@@ -31,7 +31,7 @@ team4.Members.Add("Charlie");
 
 Console.WriteLine($"team3.Members.Count = {team3.Members.Count}");  // 2（影響なし）
 Console.WriteLine($"team4.Members.Count = {team4.Members.Count}");  // 3
-Console.WriteLine("結論: ディープコピーでは、ネストした参照型メンバーまで個別に複製する必要がある");
+Console.WriteLine("結論: この例では、要素が不変な string なので List コンテナーを複製すれば十分");
 
 // シンプルな class（初期化子デモ用）
 class Team
@@ -56,9 +56,11 @@ class TeamWithCopyConstructor
     // コピーコンストラクター
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
-        Name = original.Name;  // string はイミュータブルなのでそのままでよい
+        // string はイミュータブルなので、参照を直接コピーしても可変状態の共有にはならない
+        Name = original.Name;
 
-        // 要素は string（不変）であるため、参照のコピーで分離を達成できる
-        Members = new List<string>(original.Members);  
+        // 分離を達成するために新しい List コンテナーを作成する
+        // 要素は不変な string なので、コンテナーを複製するだけで可変コレクションの共有を回避できる
+        Members = new List<string>(original.Members);
     }
 }

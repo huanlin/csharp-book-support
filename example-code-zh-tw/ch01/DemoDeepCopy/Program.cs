@@ -21,7 +21,7 @@ var team3 = new Team
     Members = new List<string> { "Alice", "Bob" }
 };
 
-// 深層複製:手動建立新的 List
+// 這個範例之所以能隔離，是因為建立了新的 List，且元素 string 為不可變
 var team4 = new Team
 {
     Name = team3.Name,
@@ -31,7 +31,7 @@ team4.Members.Add("Charlie");
 
 Console.WriteLine($"team3.Members.Count = {team3.Members.Count}");  // 2 (不受影響)
 Console.WriteLine($"team4.Members.Count = {team4.Members.Count}");  // 3
-Console.WriteLine("結論:深層複製會深入內層複製所有參考型別成員");
+Console.WriteLine("結論:這個範例只要複製 List 容器即可，因為元素是不可變的 string");
 
 // 簡單的類別(用於物件初始化語法示範)
 class Team
@@ -56,9 +56,11 @@ class TeamWithCopyConstructor
     // 複製建構式(copy constructor)
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
-        Name = original.Name;  // string 是 immutable,淺層複製即可
-        
-        // 由於元素是 string (不可變)，複製參考即可達到隔離效果
-        Members = new List<string>(original.Members); 
+        // string 是 immutable，直接複製參考不會導致可變狀態共享
+        Name = original.Name; 
+
+        // 建立新的 List 複製容器以達到隔離（new List<string>(original.Members)），
+        // 因為元素為不可變的 string，複製容器即可避免共享可變集合
+        Members = new List<string>(original.Members);
     }
 }

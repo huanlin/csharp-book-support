@@ -16,7 +16,7 @@ Console.WriteLine("=== Unboxing ===");
 int j = (int)o;  // Unboxing: Casting the object back to int
 
 Console.WriteLine($"j = {j}");
-Console.WriteLine("During unboxing, the CLR checks the type and copies the value from the heap back to the stack");
+Console.WriteLine("During unboxing, the CLR checks the type and copies the value into the destination value-type storage location");
 
 Console.WriteLine();
 Console.WriteLine("=== Unboxing with Mismatched Types Throws an Exception ===");

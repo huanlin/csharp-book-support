@@ -16,7 +16,7 @@ Console.WriteLine("=== Unboxing（拆箱）===");
 int j = (int)o;  // Unboxing：將 object 轉回 int
 
 Console.WriteLine($"j = {j}");
-Console.WriteLine("Unboxing 時，CLR 會檢查型別並將值從 heap 複製回 stack");
+Console.WriteLine("Unboxing 時，CLR 會檢查型別，並把值複製到目標的 value type 儲存位置");
 
 Console.WriteLine();
 Console.WriteLine("=== Unboxing 型別不符會拋出例外 ===");

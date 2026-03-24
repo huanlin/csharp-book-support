@@ -21,7 +21,7 @@ var team3 = new Team
     Members = new List<string> { "Alice", "Bob" }
 };
 
-// Deep copy: Manually create a new List
+// This achieves isolation here because we create a new List and the elements are immutable strings
 var team4 = new Team
 {
     Name = team3.Name,
@@ -31,7 +31,7 @@ team4.Members.Add("Charlie");
 
 Console.WriteLine($"team3.Members.Count = {team3.Members.Count}");  // 2 (Not affected)
 Console.WriteLine($"team4.Members.Count = {team4.Members.Count}");  // 3
-Console.WriteLine("Conclusion: Deep copy involves copying all nested reference-type members");
+Console.WriteLine("Conclusion: In this example, copying the List container is enough because the elements are immutable strings");
 
 // Simple class (used for object initializer syntax demo)
 class Team
@@ -56,9 +56,11 @@ class TeamWithCopyConstructor
     // Copy constructor
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
-        Name = original.Name;  // string is immutable; shallow copy is fine
+        // string is immutable, copying the reference does not lead to shared mutable state
+        Name = original.Name;
 
-        // Elements are strings (immutable), so copying references achieves isolation
+        // Create a new List container to achieve isolation (new List<string>(original.Members)).
+        // Since the elements are immutable strings, copying the container prevents sharing a mutable collection.
         Members = new List<string>(original.Members);
     }
 }

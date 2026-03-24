@@ -16,7 +16,7 @@ Console.WriteLine("=== Unboxing ===");
 int j = (int)o;  // Unboxing: object から int へ戻す
 
 Console.WriteLine($"j = {j}");
-Console.WriteLine("Unboxing では CLR が型確認を行い、ヒープ上の値を値型として取り出す");
+Console.WriteLine("Unboxing では CLR が型確認を行い、値をコピー先の値型ストレージへ取り出す");
 
 Console.WriteLine();
 Console.WriteLine("=== 型不一致の Unboxing は例外になる ===");
