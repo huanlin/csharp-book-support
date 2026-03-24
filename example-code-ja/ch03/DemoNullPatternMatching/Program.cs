@@ -11,7 +11,7 @@ User? user2 = new User { Name = "Alice", IsVip = true };
 // 従来の書き方
 if (user1 == null) Console.WriteLine("user1 == null: true（従来書式）");
 
-// モダンな書き方（C# 9+）
+// モダンな書き方
 if (user1 is null) Console.WriteLine("user1 is null: true（モダン書式）");
 if (user2 is not null) Console.WriteLine("user2 is not null: true（モダン書式）");
 

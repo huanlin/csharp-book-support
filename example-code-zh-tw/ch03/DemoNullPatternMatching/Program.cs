@@ -11,7 +11,7 @@ User? user2 = new User { Name = "Alice", IsVip = true };
 // 傳統寫法
 if (user1 == null) Console.WriteLine("user1 == null: true（傳統寫法）");
 
-// 現代寫法（C# 9+）
+// 現代寫法
 if (user1 is null) Console.WriteLine("user1 is null: true（現代寫法）");
 if (user2 is not null) Console.WriteLine("user2 is not null: true（現代寫法）");
 

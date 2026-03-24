@@ -11,7 +11,7 @@ User? user2 = new User { Name = "Alice", IsVip = true };
 // Traditional approach
 if (user1 == null) Console.WriteLine("user1 == null: true (traditional approach)");
 
-// Modern approach (C# 9+)
+// Modern approach
 if (user1 is null) Console.WriteLine("user1 is null: true (modern approach)");
 if (user2 is not null) Console.WriteLine("user2 is not null: true (modern approach)");
 
