@@ -42,8 +42,8 @@ public class Program
         string reversed = text.Reverse();
         Console.WriteLine($"  \"hello\".Reverse() = \"{reversed}\"\n");
 
-        // Scenario 3: Method Chaining
-        Console.WriteLine("Scenario 3: Method Chaining");
+        // Scenario 3: Calling the extension method again
+        Console.WriteLine("Scenario 3: Calling the extension method again");
         string result = "world".Reverse();
         Console.WriteLine($"  \"world\".Reverse() = \"{result}\"");
 

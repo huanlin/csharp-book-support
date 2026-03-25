@@ -42,8 +42,8 @@ public class Program
         string reversed = text.Reverse();
         Console.WriteLine($"  \"hello\".Reverse() = \"{reversed}\"\n");
 
-        // シナリオ 3: メソッドチェーン
-        Console.WriteLine("シナリオ 3: メソッドチェーン");
+        // シナリオ 3: 拡張メソッドをもう一度呼び出す
+        Console.WriteLine("シナリオ 3: 拡張メソッドをもう一度呼び出す");
         string result = "world".Reverse();
         Console.WriteLine($"  \"world\".Reverse() = \"{result}\"");
 

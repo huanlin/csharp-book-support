@@ -63,9 +63,6 @@ void DemoWithClosure()
     Console.WriteLine(Multiply(5));   // 50
     Console.WriteLine(Multiply(3));   // 30
 
-    multiplier = 100;  // 修改外層變數
-    Console.WriteLine(Multiply(5));   // 500
-
     int Multiply(int n)
     {
         return n * multiplier;  // 直接存取外層變數

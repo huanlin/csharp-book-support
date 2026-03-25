@@ -63,9 +63,6 @@ void DemoWithClosure()
     Console.WriteLine(Multiply(5));   // 50
     Console.WriteLine(Multiply(3));   // 30
 
-    multiplier = 100;  // 外側変数を変更
-    Console.WriteLine(Multiply(5));   // 500
-
     int Multiply(int n)
     {
         return n * multiplier;  // 外側変数へ直接アクセス

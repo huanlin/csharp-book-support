@@ -43,8 +43,8 @@ Console.WriteLine(new string('-', 40));
 string reversed = "Hello".Reverse();
 Console.WriteLine($"\"Hello\".Reverse() = \"{reversed}\"");
 
-string iso = DateTime.Now.ToIso8601();
-Console.WriteLine($"DateTime.Now.ToIso8601() = \"{iso}\"");
+string sortable = DateTime.Now.ToSortableDateTimeString();
+Console.WriteLine($"DateTime.Now.ToSortableDateTimeString() = \"{sortable}\"");
 
 // --------------------------------------------------------------
 // 4. コレクション拡張
@@ -95,8 +95,8 @@ public static class DateTimeExtensions
         // 拡張プロパティ: 月末日を取得（注: dt.FirstDayOfMonth 経由で呼ぶ）
         public DateTime LastDayOfMonth => dt.FirstDayOfMonth.AddMonths(1).AddDays(-1);
 
-        // 拡張メソッド: ISO 8601 形式に変換
-        public string ToIso8601() => dt.ToString("yyyy-MM-ddTHH:mm:ss");
+        // 拡張メソッド: 並べ替えしやすい日時文字列に変換
+        public string ToSortableDateTimeString() => dt.ToString("s");
     }
 }
 

@@ -43,8 +43,8 @@ Console.WriteLine(new string('-', 40));
 string reversed = "Hello".Reverse();
 Console.WriteLine($"\"Hello\".Reverse() = \"{reversed}\"");
 
-string iso = DateTime.Now.ToIso8601();
-Console.WriteLine($"DateTime.Now.ToIso8601() = \"{iso}\"");
+string sortable = DateTime.Now.ToSortableDateTimeString();
+Console.WriteLine($"DateTime.Now.ToSortableDateTimeString() = \"{sortable}\"");
 
 // --------------------------------------------------------------
 // 4. 集合擴充
@@ -95,8 +95,8 @@ public static class DateTimeExtensions
         // 擴充屬性：取得該月的最後一天（注意：必須透過 dt 來呼叫 FirstDayOfMonth）
         public DateTime LastDayOfMonth => dt.FirstDayOfMonth.AddMonths(1).AddDays(-1);
 
-        // 擴充方法：格式化為 ISO 8601
-        public string ToIso8601() => dt.ToString("yyyy-MM-ddTHH:mm:ss");
+        // 擴充方法：格式化為可排序的日期時間字串
+        public string ToSortableDateTimeString() => dt.ToString("s");
     }
 }
 

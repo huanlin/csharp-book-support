@@ -43,8 +43,8 @@ Console.WriteLine(new string('-', 40));
 string reversed = "Hello".Reverse();
 Console.WriteLine($"\"Hello\".Reverse() = \"{reversed}\"");
 
-string iso = DateTime.Now.ToIso8601();
-Console.WriteLine($"DateTime.Now.ToIso8601() = \"{iso}\"");
+string sortable = DateTime.Now.ToSortableDateTimeString();
+Console.WriteLine($"DateTime.Now.ToSortableDateTimeString() = \"{sortable}\"");
 
 // --------------------------------------------------------------
 // 4. Collection Extensions
@@ -95,8 +95,8 @@ public static class DateTimeExtensions
         // Extension Property: Gets the last day of the month (Note: must call via dt.FirstDayOfMonth)
         public DateTime LastDayOfMonth => dt.FirstDayOfMonth.AddMonths(1).AddDays(-1);
 
-        // Extension Method: Formats as ISO 8601
-        public string ToIso8601() => dt.ToString("yyyy-MM-ddTHH:mm:ss");
+        // Extension Method: Formats as a sortable date-time string
+        public string ToSortableDateTimeString() => dt.ToString("s");
     }
 }
 

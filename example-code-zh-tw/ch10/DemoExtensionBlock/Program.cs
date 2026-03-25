@@ -42,8 +42,8 @@ public class Program
         string reversed = text.Reverse();
         Console.WriteLine($"  \"hello\".Reverse() = \"{reversed}\"\n");
 
-        // 情境 3：鏈式呼叫
-        Console.WriteLine("情境 3：鏈式呼叫");
+        // 情境 3：再次呼叫擴充方法
+        Console.WriteLine("情境 3：再次呼叫擴充方法");
         string result = "world".Reverse();
         Console.WriteLine($"  \"world\".Reverse() = \"{result}\"");
 
