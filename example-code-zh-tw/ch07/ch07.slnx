@@ -3,6 +3,9 @@
   <Project Path="DemoGenericClass/DemoGenericClass.csproj" />
   <Project Path="DemoConstraints/DemoConstraints.csproj" />
   <Project Path="DemoGenericInterfaces/DemoGenericInterfaces.csproj" />
+  <Project Path="DemoGenericStructs/DemoGenericStructs.csproj" />
+  <Project Path="DemoUnboundGenericTypes/DemoUnboundGenericTypes.csproj" />
+  <Project Path="DemoGenericMethods/DemoGenericMethods.csproj" />
   <Project Path="DemoGenericAttribute/DemoGenericAttribute.csproj" />
   <Project Path="DemoCovariance/DemoCovariance.csproj" />
 </Solution>

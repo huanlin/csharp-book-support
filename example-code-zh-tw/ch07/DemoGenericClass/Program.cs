@@ -107,7 +107,8 @@ public class MyGenericList<T>
         if (_count >= _elements.Length)
         {
             // 擴充容量
-            var newArray = new T[_elements.Length * 2];
+            int newCapacity = _elements.Length == 0 ? 4 : _elements.Length * 2;
+            var newArray = new T[newCapacity];
             Array.Copy(_elements, newArray, _elements.Length);
             _elements = newArray;
         }
