@@ -38,7 +38,7 @@ static IEnumerable<long> Fibonacci()
 {
     long current = 1, next = 1;
 
-    while (true) // 無窮迴圈！但在迭代器中是安全的
+    while (true) // 這裡故意產生無限序列；呼叫端要自行限制列舉範圍
     {
         yield return current;
         (current, next) = (next, current + next);

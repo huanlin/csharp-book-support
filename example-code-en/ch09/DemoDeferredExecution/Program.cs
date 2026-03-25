@@ -38,7 +38,7 @@ static IEnumerable<long> Fibonacci()
 {
     long current = 1, next = 1;
 
-    while (true) // Infinite loop! But safe within an iterator
+    while (true) // Intentionally produces an infinite sequence; the caller must limit enumeration
     {
         yield return current;
         (current, next) = (next, current + next);

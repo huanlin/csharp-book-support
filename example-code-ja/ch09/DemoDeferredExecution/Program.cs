@@ -38,7 +38,7 @@ static IEnumerable<long> Fibonacci()
 {
     long current = 1, next = 1;
 
-    while (true)
+    while (true) // 意図的に無限シーケンスを生成している。列挙範囲の制限は呼び出し側が行う
     {
         yield return current;
         (current, next) = (next, current + next);
