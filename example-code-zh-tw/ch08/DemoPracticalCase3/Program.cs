@@ -5,9 +5,11 @@ Console.WriteLine(new string('-', 40));
 
 var aggregator = new EventAggregator();
 
+Action<OrderPlaced> orderPlacedHandler = evt =>
+    Console.WriteLine($"  [訂單模組] 訂單 {evt.OrderId} 已建立，金額：${evt.Amount}");
+
 // 模組 A 訂閱訂單事件
-aggregator.Subscribe<OrderPlaced>(evt =>
-    Console.WriteLine($"  [訂單模組] 訂單 {evt.OrderId} 已建立，金額：${evt.Amount}"));
+aggregator.Subscribe(orderPlacedHandler);
 
 // 模組 B 訂閱付款事件
 aggregator.Subscribe<PaymentReceived>(evt =>
@@ -22,6 +24,8 @@ aggregator.Publish(new OrderPlaced("ORD-001", 1500));
 
 Console.WriteLine("\n發布 PaymentReceived 事件：");
 aggregator.Publish(new PaymentReceived("ORD-001"));
+
+aggregator.Unsubscribe(orderPlacedHandler);
 
 Console.ReadKey();
 
@@ -47,13 +51,27 @@ public class EventAggregator
         _subscribers[eventType].Add(handler);
     }
 
+    public void Unsubscribe<TEvent>(Action<TEvent> handler)
+    {
+        var eventType = typeof(TEvent);
+
+        if (_subscribers.TryGetValue(eventType, out var handlers))
+        {
+            handlers.Remove(handler);
+
+            if (handlers.Count == 0)
+                _subscribers.Remove(eventType);
+        }
+    }
+
     public void Publish<TEvent>(TEvent eventData)
     {
         var eventType = typeof(TEvent);
 
         if (_subscribers.TryGetValue(eventType, out var handlers))
         {
-            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>())
+            // 建立快照，避免處理器在通知過程中增減訂閱而破壞列舉
+            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>().ToArray())
             {
                 handler(eventData);
             }

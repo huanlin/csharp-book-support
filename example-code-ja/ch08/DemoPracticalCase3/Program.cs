@@ -5,9 +5,11 @@ Console.WriteLine(new string('-', 40));
 
 var aggregator = new EventAggregator();
 
+Action<OrderPlaced> orderPlacedHandler = evt =>
+    Console.WriteLine($"  [注文モジュール] 注文 {evt.OrderId} が作成, 金額: ${evt.Amount}");
+
 // モジュール A: 注文イベント購読
-aggregator.Subscribe<OrderPlaced>(evt =>
-    Console.WriteLine($"  [注文モジュール] 注文 {evt.OrderId} が作成, 金額: ${evt.Amount}"));
+aggregator.Subscribe(orderPlacedHandler);
 
 // モジュール B: 入金イベント購読
 aggregator.Subscribe<PaymentReceived>(evt =>
@@ -22,6 +24,8 @@ aggregator.Publish(new OrderPlaced("ORD-001", 1500));
 
 Console.WriteLine("\nPaymentReceived イベント発行:");
 aggregator.Publish(new PaymentReceived("ORD-001"));
+
+aggregator.Unsubscribe(orderPlacedHandler);
 
 Console.ReadKey();
 
@@ -46,13 +50,27 @@ public class EventAggregator
         _subscribers[eventType].Add(handler);
     }
 
+    public void Unsubscribe<TEvent>(Action<TEvent> handler)
+    {
+        var eventType = typeof(TEvent);
+
+        if (_subscribers.TryGetValue(eventType, out var handlers))
+        {
+            handlers.Remove(handler);
+
+            if (handlers.Count == 0)
+                _subscribers.Remove(eventType);
+        }
+    }
+
     public void Publish<TEvent>(TEvent eventData)
     {
         var eventType = typeof(TEvent);
 
         if (_subscribers.TryGetValue(eventType, out var handlers))
         {
-            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>())
+            // スナップショットを作成し、発行中の購読変更で列挙が壊れないようにする
+            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>().ToArray())
             {
                 handler(eventData);
             }

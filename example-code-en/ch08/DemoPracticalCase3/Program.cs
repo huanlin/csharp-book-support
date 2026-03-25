@@ -5,9 +5,11 @@ Console.WriteLine(new string('-', 40));
 
 var aggregator = new EventAggregator();
 
+Action<OrderPlaced> orderPlacedHandler = evt =>
+    Console.WriteLine($"  [Order Module] Order {evt.OrderId} created, Amount: ${evt.Amount}");
+
 // Module A subscribes to order events
-aggregator.Subscribe<OrderPlaced>(evt =>
-    Console.WriteLine($"  [Order Module] Order {evt.OrderId} created, Amount: ${evt.Amount}"));
+aggregator.Subscribe(orderPlacedHandler);
 
 // Module B subscribes to payment events
 aggregator.Subscribe<PaymentReceived>(evt =>
@@ -22,6 +24,8 @@ aggregator.Publish(new OrderPlaced("ORD-001", 1500));
 
 Console.WriteLine("\nPublishing PaymentReceived event:");
 aggregator.Publish(new PaymentReceived("ORD-001"));
+
+aggregator.Unsubscribe(orderPlacedHandler);
 
 Console.ReadKey();
 
@@ -47,13 +51,27 @@ public class EventAggregator
         _subscribers[eventType].Add(handler);
     }
 
+    public void Unsubscribe<TEvent>(Action<TEvent> handler)
+    {
+        var eventType = typeof(TEvent);
+
+        if (_subscribers.TryGetValue(eventType, out var handlers))
+        {
+            handlers.Remove(handler);
+
+            if (handlers.Count == 0)
+                _subscribers.Remove(eventType);
+        }
+    }
+
     public void Publish<TEvent>(TEvent eventData)
     {
         var eventType = typeof(TEvent);
 
         if (_subscribers.TryGetValue(eventType, out var handlers))
         {
-            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>())
+            // Take a snapshot so subscription changes during publication don't break enumeration.
+            foreach (Action<TEvent> handler in handlers.Cast<Action<TEvent>>().ToArray())
             {
                 handler(eventData);
             }
