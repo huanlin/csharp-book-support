@@ -124,7 +124,7 @@ static (decimal Price, string Note) CalculateDetailedPrice(Passenger passenger) 
             (500M, "[軽量手荷物]"),
         CoachClassPassenger { CarryOnKG: < 20.0 } =>
             (600M, "[標準手荷物]"),
-        CoachClassPassenger { CarryOnKG: >= 20.0, CarryOnKG: var kg } =>
+        CoachClassPassenger { CarryOnKG: >= 20.0 and var kg } =>
             (650M + (decimal)(kg - 20) * 10M, "[超過手荷物加算]"),
 
         // デフォルト

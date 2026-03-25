@@ -50,7 +50,10 @@ try
     Console.WriteLine("4. Asynchronous resource disposal");
     Console.WriteLine(new string('-', 40));
 
-    await ReadFileAsync(testFilePath);
+    await WriteFileWithAsyncDispose("test_async.txt");
+
+    // Verify write result
+    Console.WriteLine($"Written content:\n{File.ReadAllText("test_async.txt")}");
 
     // --------------------------------------------------------------
     // 5. Demonstrate disposal order (LIFO - Last In, First Out)
@@ -84,6 +87,8 @@ finally
     File.Delete(testFilePath);
     if (File.Exists("test_copy.txt"))
         File.Delete("test_copy.txt");
+    if (File.Exists("test_async.txt"))
+        File.Delete("test_async.txt");
 }
 
 Console.WriteLine("=== Example End ===");
@@ -113,20 +118,23 @@ static void CopyFileContent(string sourcePath, string destPath)
     Console.WriteLine($"Copied {sourcePath} to {destPath}\n");
 }
 
-static async Task ReadFileAsync(string path)
+static async Task WriteFileWithAsyncDispose(string path)
 {
-    // await using is used for asynchronous disposal
+    byte[] data = System.Text.Encoding.UTF8.GetBytes(
+        "This text will be written asynchronously through FileStream.\n");
+
+    // Apply await using directly to FileStream, which implements IAsyncDisposable
     await using var stream = new FileStream(
-        path, 
-        FileMode.Open, 
-        FileAccess.Read, 
-        FileShare.Read, 
-        bufferSize: 4096, 
+        path,
+        FileMode.Create,
+        FileAccess.Write,
+        FileShare.None,
+        bufferSize: 4096,
         useAsync: true);
-    
-    using var reader = new StreamReader(stream);
-    string content = await reader.ReadToEndAsync();
-    Console.WriteLine($"Asynchronous read completed, content length: {content.Length} characters\n");
+
+    await stream.WriteAsync(data);
+    Console.WriteLine($"Asynchronous write completed, {data.Length} bytes written");
+    Console.WriteLine("(When leaving the method, FileStream.DisposeAsync will flush/close asynchronously)\n");
 }
 
 static void DemoDisposeOrder()

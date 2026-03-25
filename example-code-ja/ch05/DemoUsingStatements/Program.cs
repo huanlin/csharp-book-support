@@ -49,7 +49,10 @@ try
     Console.WriteLine("4. 非同期リソース解放");
     Console.WriteLine(new string('-', 40));
 
-    await ReadFileAsync(testFilePath);
+    await WriteFileWithAsyncDispose("test_async.txt");
+
+    // 書き込み結果を確認
+    Console.WriteLine($"書き込み後の内容:\n{File.ReadAllText("test_async.txt")}");
 
     // --------------------------------------------------------------
     // 5. 解放順序（LIFO）
@@ -82,6 +85,8 @@ finally
     File.Delete(testFilePath);
     if (File.Exists("test_copy.txt"))
         File.Delete("test_copy.txt");
+    if (File.Exists("test_async.txt"))
+        File.Delete("test_async.txt");
 }
 
 Console.WriteLine("=== 例の終了 ===");
@@ -110,20 +115,23 @@ static void CopyFileContent(string sourcePath, string destPath)
     Console.WriteLine($"{sourcePath} を {destPath} へコピー\n");
 }
 
-static async Task ReadFileAsync(string path)
+static async Task WriteFileWithAsyncDispose(string path)
 {
-    // await using: 非同期解放
+    byte[] data = System.Text.Encoding.UTF8.GetBytes(
+        "このテキストは FileStream を通じて非同期に書き込まれます。\n");
+
+    // IAsyncDisposable を実装する FileStream に直接 await using を適用
     await using var stream = new FileStream(
         path,
-        FileMode.Open,
-        FileAccess.Read,
-        FileShare.Read,
+        FileMode.Create,
+        FileAccess.Write,
+        FileShare.None,
         bufferSize: 4096,
         useAsync: true);
 
-    using var reader = new StreamReader(stream);
-    string content = await reader.ReadToEndAsync();
-    Console.WriteLine($"非同期読み取り完了。文字数: {content.Length}\n");
+    await stream.WriteAsync(data);
+    Console.WriteLine($"非同期書き込み完了。{data.Length} バイトを書き込みました");
+    Console.WriteLine("（メソッドを抜けると FileStream.DisposeAsync が呼ばれ、flush/close が非同期に行われる）\n");
 }
 
 static void DemoDisposeOrder()

@@ -124,7 +124,7 @@ static (decimal Price, string Note) CalculateDetailedPrice(Passenger passenger) 
             (500M, "[Light Luggage]"),
         CoachClassPassenger { CarryOnKG: < 20.0 } =>
             (600M, "[Standard Luggage]"),
-        CoachClassPassenger { CarryOnKG: >= 20.0, CarryOnKG: var kg } =>
+        CoachClassPassenger { CarryOnKG: >= 20.0 and var kg } =>
             (650M + (decimal)(kg - 20) * 10M, $"[Overweight Luggage Surcharge]"),
 
         // Default
