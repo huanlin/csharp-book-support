@@ -63,7 +63,7 @@ static async Task ProcessWithPoolAsync()
 public class DataProcessor
 {
     // Fields can store Memory<byte>, but not Span<byte>
-    // This is the primary use of Memory<T>: across async methods or long-term storage
+    // This is a common use of Memory<T>: across async methods or long-term storage
     private Memory<byte> _buffer; 
 
     public async Task ProcessAsync(Memory<byte> data)
@@ -72,13 +72,21 @@ public class DataProcessor
         
         // First operation: convert to Span
         // Note: Span can only be used within the current synchronous block
-        Console.WriteLine($"[Sync] Processing first three bytes: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        if (_buffer.Length >= 3)
+        {
+            Console.WriteLine($"[Sync] Processing first three bytes: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        }
+        else
+        {
+            Console.WriteLine($"[Sync] Buffer is shorter than 3 bytes. Current length: {_buffer.Length}");
+        }
 
         Console.WriteLine("[Async] Waiting for I/O (100ms)...");
         await Task.Delay(100);
         
         // Second operation: convert to Span again
-        // Since _buffer is Memory<T> (stored on Heap), it remains valid after await
+        // Because the field stores a Memory<T> view and the underlying storage is still alive,
+        // we can obtain Span again after await and keep working with it
         if (_buffer.Length >= 3)
         {
              _buffer.Span[0] = 255;

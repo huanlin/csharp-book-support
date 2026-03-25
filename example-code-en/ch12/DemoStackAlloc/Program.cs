@@ -23,9 +23,8 @@ Console.WriteLine($"Modified Numbers[0]: {numbers[0]}");
 Console.WriteLine("\n2. Collection Expressions (C# 12)");
 Console.WriteLine(new string('-', 40));
 
-// The compiler automatically optimizes:
-// If the target is Span<T>, it tends to use stackalloc (if length is known and small enough)
-// Otherwise, it creates a regular array
+// This syntax is concise, but the actual lowering still depends on the compiler
+// Don't treat it as a language guarantee equivalent to explicit stackalloc
 Span<int> data = [10, 20, 30, 40, 50];
 
 Console.WriteLine($"Data[0]: {data[0]}");

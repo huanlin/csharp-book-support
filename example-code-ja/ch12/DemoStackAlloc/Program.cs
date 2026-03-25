@@ -23,9 +23,8 @@ Console.WriteLine($"変更後 数値[0]: {numbers[0]}");
 Console.WriteLine("\n2. コレクション式（C# 12）");
 Console.WriteLine(new string('-', 40));
 
-// コンパイラは自動最適化する:
-// ターゲットが Span<T> でサイズが既知かつ小さい場合は stackalloc になりやすい
-// それ以外は通常の配列を作る
+// この書き方は簡潔だが、実際にどう lower されるかはコンパイラ次第
+// 明示的な stackalloc と同等だという言語保証として受け取らないこと
 Span<int> data = [10, 20, 30, 40, 50];
 
 Console.WriteLine($"データ[0]: {data[0]}");

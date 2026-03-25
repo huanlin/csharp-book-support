@@ -63,7 +63,7 @@ static async Task ProcessWithPoolAsync()
 public class DataProcessor
 {
     // フィールドには Memory<byte> は保持できるが、Span<byte> は保持できない
-    // これが Memory<T> の主用途: async を跨ぐ／長期保持する
+    // これは Memory<T> の代表的な用途: async を跨ぐ／長期保持する
     private Memory<byte> _buffer; 
 
     public async Task ProcessAsync(Memory<byte> data)
@@ -72,13 +72,21 @@ public class DataProcessor
         
         // 1 回目処理: Span に変換して利用
         // 注: Span は現在の同期ブロック内でのみ有効
-        Console.WriteLine($"[Sync] 最初の 3 バイトを処理: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        if (_buffer.Length >= 3)
+        {
+            Console.WriteLine($"[Sync] 最初の 3 バイトを処理: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        }
+        else
+        {
+            Console.WriteLine($"[Sync] Buffer の長さが 3 未満です。現在の長さ: {_buffer.Length}");
+        }
 
         Console.WriteLine("[Async] I/O 待機中 (100ms)...");
         await Task.Delay(100);
         
         // 2 回目処理: 再度 Span に変換
-        // _buffer は Memory<T>（Heap 上）なので await 後も有効
+        // フィールドには Memory<T> の view を保持しており、基盤ストレージもまだ有効なので、
+        // await 後に再び Span を取得して処理を続けられる
         if (_buffer.Length >= 3)
         {
              _buffer.Span[0] = 255;

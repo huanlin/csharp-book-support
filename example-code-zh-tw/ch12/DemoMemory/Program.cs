@@ -63,7 +63,7 @@ static async Task ProcessWithPoolAsync()
 public class DataProcessor
 {
     // field 可以儲存 Memory<byte>，但不能儲存 Span<byte>
-    // 這是 Memory<T> 最主要的用途：跨越非同步方法或長期儲存
+    // 這是 Memory<T> 常見的用途：跨越非同步方法或長期儲存
     private Memory<byte> _buffer; 
 
     public async Task ProcessAsync(Memory<byte> data)
@@ -72,13 +72,21 @@ public class DataProcessor
         
         // 第一次操作：轉為 Span
         // 注意：Span 只能在當前的同步區塊中使用
-        Console.WriteLine($"[同步] 處理前三個 byte: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        if (_buffer.Length >= 3)
+        {
+            Console.WriteLine($"[同步] 處理前三個 byte: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+        }
+        else
+        {
+            Console.WriteLine($"[同步] Buffer 長度不足 3，目前長度: {_buffer.Length}");
+        }
 
         Console.WriteLine("[非同步] 等待 I/O (100ms)...");
         await Task.Delay(100);
         
         // 第二次操作：再次轉為 Span
-        // 由於 _buffer 是 Memory<T> (儲存在 Heap)，它在 await 之後仍然有效
+        // 由於欄位保存的是 Memory<T> 視窗，而且底層儲存仍然存活，
+        // 所以在 await 之後仍可再次取得 Span 來操作
         if (_buffer.Length >= 3)
         {
              _buffer.Span[0] = 255;

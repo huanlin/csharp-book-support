@@ -23,9 +23,8 @@ Console.WriteLine($"修改後 Numbers[0]: {numbers[0]}");
 Console.WriteLine("\n2. Collection Expressions (C# 12)");
 Console.WriteLine(new string('-', 40));
 
-// 編譯器會自動最佳化：
-// 如果目標是 Span<T>，它會傾向使用 stackalloc (如果長度已知且夠小)
-// 否則會建立一般陣列
+// 這種寫法語法上很精簡，但實際 lowering 仍取決於編譯器
+// 不應把它視為一定等同於顯式 stackalloc 的語言保證
 Span<int> data = [10, 20, 30, 40, 50];
 
 Console.WriteLine($"Data[0]: {data[0]}");
