@@ -7,6 +7,7 @@ Console.WriteLine("=== 非同步程式設計基礎 ===\n");
 // --------------------------------------------------------------
 Console.WriteLine("1. 模擬 I/O 操作 (Task.Delay)");
 Console.WriteLine(new string('-', 40));
+Console.WriteLine($"呼叫前: {DescribeExecutionEnvironment()}");
 
 await DownloadFileAsync("file1.txt");
 
@@ -16,18 +17,19 @@ await DownloadFileAsync("file1.txt");
 Console.WriteLine("\n2. CPU 密集型操作 (Task.Run)");
 Console.WriteLine(new string('-', 40));
 
-Console.WriteLine($"主執行緒 ID: {Environment.CurrentManagedThreadId}");
+Console.WriteLine($"Task.Run 前: {DescribeExecutionEnvironment()}");
 
-// 將繁重運算丟到背景執行緒
+// 將繁重運算排入 thread pool 執行
 await Task.Run(() => LongRunningCalculation());
 
-Console.WriteLine($"計算完成，後續程式碼在執行緒 ID: {Environment.CurrentManagedThreadId}");
+Console.WriteLine($"Task.Run 後: {DescribeExecutionEnvironment()}");
 
 // --------------------------------------------------------------
 // 3. ConfigureAwait(false)
 // --------------------------------------------------------------
 Console.WriteLine("\n3. Library 模式 (ConfigureAwait)");
 Console.WriteLine(new string('-', 40));
+Console.WriteLine("Console App 預設沒有 SynchronizationContext，這裡重點是語意，不是觀察執行緒一定改變。");
 
 await DoLibraryWorkAsync();
 
@@ -39,17 +41,17 @@ Console.WriteLine("\n=== 範例結束 ===");
 
 async Task DownloadFileAsync(string fileName)
 {
-    Console.WriteLine($"開始下載 {fileName}...");
+    Console.WriteLine($"開始下載 {fileName}... ({DescribeExecutionEnvironment()})");
     
     // 模擬 I/O 等待 (非阻塞)
     await Task.Delay(1000);
     
-    Console.WriteLine($"下載完成: {fileName}");
+    Console.WriteLine($"下載完成: {fileName} ({DescribeExecutionEnvironment()})");
 }
 
 void LongRunningCalculation()
 {
-    Console.WriteLine($"計算中... (執行緒 ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"計算中... ({DescribeExecutionEnvironment()})");
     
     // 模擬 CPU 運算
     double result = 0;
@@ -61,10 +63,16 @@ void LongRunningCalculation()
 
 async Task DoLibraryWorkAsync()
 {
-    Console.WriteLine($"Library 工作開始... (執行緒 ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"Library 工作開始... ({DescribeExecutionEnvironment()})");
     
-    // 在 Library 內部通常不需要回到原本的 Context
+    // 在通用 Library 內部通常不需要特地排回原本的 Context
     await Task.Delay(500).ConfigureAwait(false);
     
-    Console.WriteLine($"Library 工作結束 (執行緒 ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"Library 工作結束 ({DescribeExecutionEnvironment()})");
+}
+
+string DescribeExecutionEnvironment()
+{
+    var syncContext = SynchronizationContext.Current?.GetType().Name ?? "<null>";
+    return $"Thread={Environment.CurrentManagedThreadId}, SyncContext={syncContext}";
 }

@@ -9,7 +9,7 @@ var service = new CachedDataService();
 // --------------------------------------------------------------
 Console.WriteLine("1. 第一次呼叫 (Cache Miss)");
 
-// 將 ValueTask 轉為 Task 以便觀察狀態 (實務上通常直接 await)
+// 轉成 Task 以便觀察狀態；若後續需要重複使用，也應先轉成 Task
 Task<int> t1 = service.GetDataAsync(1).AsTask(); 
 
 Console.WriteLine($"Task 是否已完成? {t1.IsCompleted}");
@@ -22,10 +22,8 @@ Console.WriteLine($"取得資料: {val1}");
 // --------------------------------------------------------------
 Console.WriteLine("\n2. 第二次呼叫 (Cache Hit)");
 
-ValueTask<int> vt2 = service.GetDataAsync(1);
-
-Console.WriteLine($"ValueTask 是否已完成? {vt2.IsCompleted}");
-int val2 = await vt2;
+// 命中快取時，最安全且最常見的寫法是直接 await
+int val2 = await service.GetDataAsync(1);
 Console.WriteLine($"取得資料: {val2}");
 
 Console.WriteLine("\n=== 範例結束 ===");

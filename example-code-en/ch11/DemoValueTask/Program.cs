@@ -9,7 +9,7 @@ var service = new CachedDataService();
 // --------------------------------------------------------------
 Console.WriteLine("1. First call (Cache Miss)");
 
-// Convert ValueTask to Task to observe state (in practice, usually just await directly)
+// Convert ValueTask to Task so we can inspect its state; if you need reuse, convert it first
 Task<int> t1 = service.GetDataAsync(1).AsTask(); 
 
 Console.WriteLine($"Task completed? {t1.IsCompleted}");
@@ -22,10 +22,8 @@ Console.WriteLine($"Data retrieved: {val1}");
 // --------------------------------------------------------------
 Console.WriteLine("\n2. Second call (Cache Hit)");
 
-ValueTask<int> vt2 = service.GetDataAsync(1);
-
-Console.WriteLine($"ValueTask completed? {vt2.IsCompleted}");
-int val2 = await vt2;
+// On a cache hit, the safest and most common style is to await directly
+int val2 = await service.GetDataAsync(1);
 Console.WriteLine($"Data retrieved: {val2}");
 
 Console.WriteLine("\n=== Example End ===");

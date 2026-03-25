@@ -9,7 +9,7 @@ var service = new CachedDataService();
 // --------------------------------------------------------------
 Console.WriteLine("1. 1 回目呼び出し（キャッシュミス）");
 
-// ValueTask を Task に変換して状態を観察（通常はそのまま await で良い）
+// 状態確認のために Task へ変換する。再利用が必要な場合も、先に Task 化する
 Task<int> t1 = service.GetDataAsync(1).AsTask(); 
 
 Console.WriteLine($"Task 完了済み? {t1.IsCompleted}");
@@ -22,10 +22,8 @@ Console.WriteLine($"取得データ: {val1}");
 // --------------------------------------------------------------
 Console.WriteLine("\n2. 2 回目呼び出し（キャッシュヒット）");
 
-ValueTask<int> vt2 = service.GetDataAsync(1);
-
-Console.WriteLine($"ValueTask 完了済み? {vt2.IsCompleted}");
-int val2 = await vt2;
+// キャッシュヒット時は、直接 await するのが最も安全で一般的
+int val2 = await service.GetDataAsync(1);
 Console.WriteLine($"取得データ: {val2}");
 
 Console.WriteLine("\n=== 例の終了 ===");

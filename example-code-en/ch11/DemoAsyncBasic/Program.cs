@@ -7,6 +7,7 @@ Console.WriteLine("=== Asynchronous Programming Basics ===\n");
 // --------------------------------------------------------------
 Console.WriteLine("1. Simulating I/O operations (Task.Delay)");
 Console.WriteLine(new string('-', 40));
+Console.WriteLine($"Before call: {DescribeExecutionEnvironment()}");
 
 await DownloadFileAsync("file1.txt");
 
@@ -16,18 +17,19 @@ await DownloadFileAsync("file1.txt");
 Console.WriteLine("\n2. CPU-bound operations (Task.Run)");
 Console.WriteLine(new string('-', 40));
 
-Console.WriteLine($"Main Thread ID: {Environment.CurrentManagedThreadId}");
+Console.WriteLine($"Before Task.Run: {DescribeExecutionEnvironment()}");
 
-// Offload heavy calculation to a background thread
+// Queue heavy computation to the thread pool
 await Task.Run(() => LongRunningCalculation());
 
-Console.WriteLine($"Calculation complete, continuation running on Thread ID: {Environment.CurrentManagedThreadId}");
+Console.WriteLine($"After Task.Run: {DescribeExecutionEnvironment()}");
 
 // --------------------------------------------------------------
 // 3. ConfigureAwait(false)
 // --------------------------------------------------------------
 Console.WriteLine("\n3. Library Pattern (ConfigureAwait)");
 Console.WriteLine(new string('-', 40));
+Console.WriteLine("Console apps have no SynchronizationContext by default, so the point here is semantics, not proving a thread switch.");
 
 await DoLibraryWorkAsync();
 
@@ -39,17 +41,17 @@ Console.WriteLine("\n=== Example End ===");
 
 async Task DownloadFileAsync(string fileName)
 {
-    Console.WriteLine($"Starting download {fileName}...");
+    Console.WriteLine($"Starting download {fileName}... ({DescribeExecutionEnvironment()})");
     
     // Simulating I/O wait (non-blocking)
     await Task.Delay(1000);
     
-    Console.WriteLine($"Download complete: {fileName}");
+    Console.WriteLine($"Download complete: {fileName} ({DescribeExecutionEnvironment()})");
 }
 
 void LongRunningCalculation()
 {
-    Console.WriteLine($"Calculating... (Thread ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"Calculating... ({DescribeExecutionEnvironment()})");
     
     // Simulating CPU computation
     double result = 0;
@@ -61,10 +63,16 @@ void LongRunningCalculation()
 
 async Task DoLibraryWorkAsync()
 {
-    Console.WriteLine($"Library work starting... (Thread ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"Library work starting... ({DescribeExecutionEnvironment()})");
     
-    // Inside library code, we usually don't need to return to the original context
+    // In general-purpose library code, we usually don't need to post back to the original context
     await Task.Delay(500).ConfigureAwait(false);
     
-    Console.WriteLine($"Library work finished (Thread ID: {Environment.CurrentManagedThreadId})");
+    Console.WriteLine($"Library work finished ({DescribeExecutionEnvironment()})");
+}
+
+string DescribeExecutionEnvironment()
+{
+    var syncContext = SynchronizationContext.Current?.GetType().Name ?? "<null>";
+    return $"Thread={Environment.CurrentManagedThreadId}, SyncContext={syncContext}";
 }
