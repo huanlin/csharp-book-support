@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 var person = new Person();
 person.Name = "Li Si";
 person.Age = 30;
-person.Email = "test@example.com";
 Console.WriteLine($"Person: Name={person.Name}, Age={person.Age}, ID={person.Id}");
 Console.WriteLine($"Email: {person.Email}");
 
@@ -20,6 +19,7 @@ catch (ArgumentOutOfRangeException ex)
 
 // Testing property change notification
 Console.WriteLine("\nTesting property change notification:");
+person.Email = "test@example.com"; // First assignment: should trigger OnPropertyChanged
 person.Email = "new@example.com";  // Should trigger OnPropertyChanged
 person.Email = "new@example.com";  // Same value; should not trigger
 

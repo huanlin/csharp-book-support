@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 var person = new Person();
 person.Name = "李四";
 person.Age = 30;
-person.Email = "test@example.com";
 Console.WriteLine($"人員: Name={person.Name}, Age={person.Age}, ID={person.Id}");
 Console.WriteLine($"Email: {person.Email}");
 
@@ -20,6 +19,7 @@ catch (ArgumentOutOfRangeException ex)
 
 // 測試屬性變更通知
 Console.WriteLine("\n測試屬性變更通知:");
+person.Email = "test@example.com"; // 第一次指定，會觸發 OnPropertyChanged
 person.Email = "new@example.com";  // 應該觸發 OnPropertyChanged
 person.Email = "new@example.com";  // 相同值，不會觸發
 

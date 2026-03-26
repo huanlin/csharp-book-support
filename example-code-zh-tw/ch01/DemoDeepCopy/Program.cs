@@ -10,7 +10,7 @@ team2.Members.Add("Charlie");
 
 Console.WriteLine($"team1.Members.Count = {team1.Members.Count}");  // 2 (不受影響)
 Console.WriteLine($"team2.Members.Count = {team2.Members.Count}");  // 3
-Console.WriteLine("結論:複製建構式可以明確控制每個成員的複製行為");
+Console.WriteLine("結論：複製建構式可以明確控制每個成員的複製行為");
 
 Console.WriteLine();
 Console.WriteLine("=== 深層複製(使用物件初始化語法) ===");
@@ -57,7 +57,7 @@ class TeamWithCopyConstructor
     public TeamWithCopyConstructor(TeamWithCopyConstructor original)
     {
         // string 是 immutable，直接複製參考不會導致可變狀態共享
-        Name = original.Name; 
+        Name = original.Name;
 
         // 建立新的 List 複製容器以達到隔離（new List<string>(original.Members)），
         // 因為元素為不可變的 string，複製容器即可避免共享可變集合

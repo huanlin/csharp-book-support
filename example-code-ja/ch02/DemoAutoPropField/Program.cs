@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 var person = new Person();
 person.Name = "Li Si";
 person.Age = 30;
-person.Email = "test@example.com";
 Console.WriteLine($"Person: Name={person.Name}, Age={person.Age}, ID={person.Id}");
 Console.WriteLine($"Email: {person.Email}");
 
@@ -20,6 +19,7 @@ catch (ArgumentOutOfRangeException ex)
 
 // プロパティ変更通知の確認
 Console.WriteLine("\nプロパティ変更通知のテスト:");
+person.Email = "test@example.com"; // 最初の代入なので OnPropertyChanged が呼ばれる
 person.Email = "new@example.com";  // OnPropertyChanged が呼ばれる
 person.Email = "new@example.com";  // 同じ値なので呼ばれない
 

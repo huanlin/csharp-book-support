@@ -7,7 +7,7 @@ var student = new Student
 };
 Console.WriteLine($"學生: {student.Name}, 生日: {student.Birthday:yyyy-MM-dd}");
 
-// 搭配建構子使用
+// 搭配建構式使用
 var stud2 = new Student("黃濤") { Birthday = new DateTime(1991, 6, 17) };
 Console.WriteLine($"學生: {stud2.Name}, 生日: {stud2.Birthday:yyyy-MM-dd}");
 

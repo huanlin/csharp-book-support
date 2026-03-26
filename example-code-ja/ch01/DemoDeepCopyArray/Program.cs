@@ -9,7 +9,7 @@ int[] copy1 = (int[])original1.Clone();
 copy1[0] = 999;
 Console.WriteLine($"original1[0] = {original1[0]}");  // 1（影響なし）
 Console.WriteLine($"copy1[0] = {copy1[0]}");          // 999
-Console.WriteLine("結論: 値型要素の配列では、シャローコピーで十分");
+Console.WriteLine("結論：値型要素の配列では、シャローコピーで十分");
 
 Console.WriteLine();
 Console.WriteLine("=== 配列のシャローコピー（参照型要素） ===");

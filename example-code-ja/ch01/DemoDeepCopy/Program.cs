@@ -10,7 +10,7 @@ team2.Members.Add("Charlie");
 
 Console.WriteLine($"team1.Members.Count = {team1.Members.Count}");  // 2（影響なし）
 Console.WriteLine($"team2.Members.Count = {team2.Members.Count}");  // 3
-Console.WriteLine("結論: コピーコンストラクターを使うと、各メンバーのコピー方法を明示的に制御できる");
+Console.WriteLine("結論：コピーコンストラクターを使うと、各メンバーのコピー方法を明示的に制御できる");
 
 Console.WriteLine();
 Console.WriteLine("=== ディープコピー（オブジェクト初期化子） ===");

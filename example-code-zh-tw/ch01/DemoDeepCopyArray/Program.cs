@@ -9,7 +9,7 @@ int[] copy1 = (int[])original1.Clone();
 copy1[0] = 999;
 Console.WriteLine($"original1[0] = {original1[0]}");  // 1 (不受影響)
 Console.WriteLine($"copy1[0] = {copy1[0]}");          // 999
-Console.WriteLine("結論: value type 元素，淺層複製已經足夠");
+Console.WriteLine("結論：value type 元素，淺層複製已經足夠");
 
 Console.WriteLine();
 Console.WriteLine("=== 陣列的淺層複製 (reference type 元素) ===");
