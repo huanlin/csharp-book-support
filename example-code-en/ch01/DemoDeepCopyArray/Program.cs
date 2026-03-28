@@ -9,7 +9,7 @@ int[] copy1 = (int[])original1.Clone();
 copy1[0] = 999;
 Console.WriteLine($"original1[0] = {original1[0]}");  // 1 (Not affected)
 Console.WriteLine($"copy1[0] = {copy1[0]}");          // 999
-Console.WriteLine("Conclusion: Shallow copy is sufficient for value type elements");
+Console.WriteLine("Conclusion: For value type elements like int that do not contain reference fields, a shallow copy is often sufficient");
 
 Console.WriteLine();
 Console.WriteLine("=== Shallow Copy of Arrays (reference type elements) ===");

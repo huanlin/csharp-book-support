@@ -151,8 +151,8 @@ static string ParseCommand(string[] args) => args switch
 
 static string DescribeArray(int[] arr) => arr switch
 {
-    [> 0, > 0, > 0] => "All elements are positive",
     [1 or 2, _, < 10] => "First is 1 or 2, last is less than 10",
+    [> 0, > 0, > 0] => "All elements are positive",
     [_, _, _] => "Array with three elements",
     _ => "Other"
 };

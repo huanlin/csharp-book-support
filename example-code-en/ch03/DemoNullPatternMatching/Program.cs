@@ -15,7 +15,7 @@ if (user1 == null) Console.WriteLine("user1 == null: true (traditional approach)
 if (user1 is null) Console.WriteLine("user1 is null: true (modern approach)");
 if (user2 is not null) Console.WriteLine("user2 is not null: true (modern approach)");
 
-// is not null is safer than != null because it won't be overridden by custom == operators
+// is not null is safer than != null because it isn't affected by overloaded custom == operators
 Console.WriteLine("\n[Advantage: is null is unaffected by custom == operators]");
 var customObj = new CustomEquality();
 Console.WriteLine($"customObj == null: {customObj == null} (custom == may return true)");

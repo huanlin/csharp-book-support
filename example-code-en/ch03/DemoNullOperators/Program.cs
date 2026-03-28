@@ -40,7 +40,7 @@ Console.WriteLine($"null?.ToString() = {converted ?? "null"}");
 
 obj = 42;
 converted = obj?.ToString();
-Console.WriteLine($"42?.ToString() = {converted}");
+Console.WriteLine($"obj?.ToString() = {converted} (with obj = 42)");
 
 // With Indexer (?[])
 Console.WriteLine("\n[Null-conditional Operator with Indexer ?[]]");

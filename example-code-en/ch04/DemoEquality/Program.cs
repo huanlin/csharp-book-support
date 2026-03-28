@@ -19,7 +19,7 @@ Console.WriteLine("=== Importance of GetHashCode ===");
 var dict = new Dictionary<Person, string>();
 dict[p1] = "First";
 Console.WriteLine($"dict[p1]: {dict[p1]}");
-Console.WriteLine($"dict[p2]: {dict[p2]}");  // Found! Because GetHashCode is consistent Across instances
+Console.WriteLine($"dict[p2]: {dict[p2]}");  // Found! Because both Equals and GetHashCode are consistent
  Console.WriteLine(); Console.WriteLine("=== HashCode.Combine Demo ==="); Console.WriteLine($"p1.GetHashCode(): {p1.GetHashCode()}"); Console.WriteLine($"p2.GetHashCode(): {p2.GetHashCode()}"); Console.WriteLine($"HashCode same: {p1.GetHashCode() == p2.GetHashCode()}");
 
 // Class with manually implemented value equality

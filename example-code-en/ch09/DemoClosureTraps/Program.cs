@@ -27,12 +27,27 @@ Console.WriteLine(new string('-', 40));
 string testString = "Not what you might expect";
 string vowels = "aeiou";
 
+Console.WriteLine($"Source: \"{testString}\"");
+
+// Incorrect version: the for loop captures i directly
+IEnumerable<char> brokenQuery = testString;
+for (int i = 0; i < vowels.Length; i++)
+    brokenQuery = brokenQuery.Where(c => c != vowels[i]);
+
+try
+{
+    Console.WriteLine($"for loop (broken version): \"{string.Concat(brokenQuery)}\"");
+}
+catch (IndexOutOfRangeException ex)
+{
+    Console.WriteLine($"for loop (broken version) throws: {ex.GetType().Name}");
+}
+
 // Solution 1: foreach
 IEnumerable<char> query1 = testString;
 foreach (char vowel in vowels)
     query1 = query1.Where(c => c != vowel);
 
-Console.WriteLine($"Source: \"{testString}\"");
 Console.WriteLine($"foreach removing vowels: \"{string.Concat(query1)}\"");
 
 // Solution 2: Create a copy within for loop
