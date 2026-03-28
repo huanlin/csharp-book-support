@@ -19,7 +19,7 @@ Console.WriteLine("=== GetHashCode の重要性 ===");
 var dict = new Dictionary<Person, string>();
 dict[p1] = "First";
 Console.WriteLine($"dict[p1]: {dict[p1]}");
-Console.WriteLine($"dict[p2]: {dict[p2]}");  // ヒット: GetHashCode が一貫しているため
+Console.WriteLine($"dict[p2]: {dict[p2]}");  // ヒット: Equals と GetHashCode の両方が一貫しているため
 
 Console.WriteLine();
 Console.WriteLine("=== HashCode.Combine の確認 ===");

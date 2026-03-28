@@ -14,14 +14,14 @@ var (isValid, errors) = passwordValidator.Validate("ab123");
 if (!isValid)
 {
     foreach (var error in errors)
-        Console.WriteLine($"  ✗ {error}");
+        Console.WriteLine($"  失敗: {error}");
 }
 
 Console.WriteLine("\n'MyP@ssw0rd' を検証:");
 (isValid, errors) = passwordValidator.Validate("MyP@ssw0rd");
 if (isValid)
 {
-    Console.WriteLine("  ✓ すべてのルールを満たす");
+    Console.WriteLine("  成功: すべてのルールを満たす");
 }
 
 Console.ReadKey();

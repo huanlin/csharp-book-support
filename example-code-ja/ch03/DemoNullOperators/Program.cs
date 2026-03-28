@@ -40,7 +40,7 @@ Console.WriteLine($"null?.ToString() = {converted ?? "null"}");
 
 obj = 42;
 converted = obj?.ToString();
-Console.WriteLine($"42?.ToString() = {converted}");
+Console.WriteLine($"obj?.ToString() = {converted}（この時点で obj = 42）");
 
 // インデクサ付き（?[]）
 Console.WriteLine("\n[インデクサ付き null 条件演算子 ?[]]");

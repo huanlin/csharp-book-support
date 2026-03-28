@@ -151,8 +151,8 @@ static string ParseCommand(string[] args) => args switch
 
 static string DescribeArray(int[] arr) => arr switch
 {
-    [> 0, > 0, > 0] => "すべて正の値",
     [1 or 2, _, < 10] => "先頭が1または2で、末尾が10未満",
+    [> 0, > 0, > 0] => "すべて正の値",
     [_, _, _] => "3要素の配列",
     _ => "その他"
 };

@@ -27,12 +27,27 @@ Console.WriteLine(new string('-', 40));
 string testString = "Not what you might expect";
 string vowels = "aeiou";
 
+Console.WriteLine($"元文字列: \"{testString}\"");
+
+// 誤った書き方: for ループが i をそのまま捕捉する
+IEnumerable<char> brokenQuery = testString;
+for (int i = 0; i < vowels.Length; i++)
+    brokenQuery = brokenQuery.Where(c => c != vowels[i]);
+
+try
+{
+    Console.WriteLine($"for の誤った版: \"{string.Concat(brokenQuery)}\"");
+}
+catch (IndexOutOfRangeException ex)
+{
+    Console.WriteLine($"for の誤った版は {ex.GetType().Name} を送出");
+}
+
 // 対策1: foreach
 IEnumerable<char> query1 = testString;
 foreach (char vowel in vowels)
     query1 = query1.Where(c => c != vowel);
 
-Console.WriteLine($"元文字列: \"{testString}\"");
 Console.WriteLine($"foreach で母音除去: \"{string.Concat(query1)}\"");
 
 // 対策2: for 内でローカルコピーを作る
