@@ -151,8 +151,8 @@ static string ParseCommand(string[] args) => args switch
 
 static string DescribeArray(int[] arr) => arr switch
 {
-    [> 0, > 0, > 0] => "所有元素都是正數",
     [1 or 2, _, < 10] => "第一個是 1 或 2，最後一個小於 10",
+    [> 0, > 0, > 0] => "所有元素都是正數",
     [_, _, _] => "三個元素的陣列",
     _ => "其他"
 };

@@ -27,12 +27,27 @@ Console.WriteLine(new string('-', 40));
 string testString = "Not what you might expect";
 string vowels = "aeiou";
 
+Console.WriteLine($"來源：\"{testString}\"");
+
+// 錯誤寫法：for 迴圈直接捕獲 i
+IEnumerable<char> brokenQuery = testString;
+for (int i = 0; i < vowels.Length; i++)
+    brokenQuery = brokenQuery.Where(c => c != vowels[i]);
+
+try
+{
+    Console.WriteLine($"for（錯誤版本）：\"{string.Concat(brokenQuery)}\"");
+}
+catch (IndexOutOfRangeException ex)
+{
+    Console.WriteLine($"for（錯誤版本）拋出：{ex.GetType().Name}");
+}
+
 // 正確寫法 1：foreach
 IEnumerable<char> query1 = testString;
 foreach (char vowel in vowels)
     query1 = query1.Where(c => c != vowel);
 
-Console.WriteLine($"來源：\"{testString}\"");
 Console.WriteLine($"foreach 移除母音：\"{string.Concat(query1)}\"");
 
 // 正確寫法 2：for 迴圈內建立副本

@@ -40,7 +40,7 @@ Console.WriteLine($"null?.ToString() = {converted ?? "null"}");
 
 obj = 42;
 converted = obj?.ToString();
-Console.WriteLine($"42?.ToString() = {converted}");
+Console.WriteLine($"obj?.ToString() = {converted}（此時 obj = 42）");
 
 // 搭配索引子（?[]）
 Console.WriteLine("\n【Null 條件運算子與索引子 ?[]】");

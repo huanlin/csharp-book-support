@@ -19,7 +19,7 @@ Console.WriteLine("=== GetHashCode 的重要性 ===");
 var dict = new Dictionary<Person, string>();
 dict[p1] = "First";
 Console.WriteLine($"dict[p1]: {dict[p1]}");
-Console.WriteLine($"dict[p2]: {dict[p2]}");  // 找得到！因為 GetHashCode 一致
+Console.WriteLine($"dict[p2]: {dict[p2]}");  // 找得到！因為 Equals 與 GetHashCode 都一致
 
 Console.WriteLine();
 Console.WriteLine("=== HashCode.Combine 示範 ===");

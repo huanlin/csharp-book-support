@@ -15,7 +15,7 @@ if (user1 == null) Console.WriteLine("user1 == null: true（傳統寫法）");
 if (user1 is null) Console.WriteLine("user1 is null: true（現代寫法）");
 if (user2 is not null) Console.WriteLine("user2 is not null: true（現代寫法）");
 
-// is not null 比 != null 更安全，因為不會被自訂的 == 運算子覆寫
+// is not null 比 != null 更安全，因為不會被自訂的 == 運算子多載影響
 Console.WriteLine("\n【優點：is null 不受自訂 == 運算子影響】");
 var customObj = new CustomEquality();
 Console.WriteLine($"customObj == null: {customObj == null}（自訂 == 可能回傳 true）");
