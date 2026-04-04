@@ -75,7 +75,7 @@ public static class StringHelper
     public static string Capitalize(string s)
     {
         if (string.IsNullOrEmpty(s)) return s;
-        return char.ToUpper(s[0]) + s.Substring(1);
+        return char.ToUpper(s[0]) + s[1..];
     }
 }
 
@@ -96,7 +96,7 @@ public static class StringExtensions
     public static string Capitalize(this string s)
     {
         if (string.IsNullOrEmpty(s)) return s;
-        return char.ToUpper(s[0]) + s.Substring(1);
+        return char.ToUpper(s[0]) + s[1..];
     }
 
     public static string Truncate(this string? value, int maxLength)

@@ -88,7 +88,7 @@ public class Program
         // 說明
         Console.WriteLine("\n=== 說明 ===");
         Console.WriteLine("這些擴充方法展示了如何為 LINQ 添加新功能。");
-        Console.WriteLine("注意：.NET 6+ 已內建 Chunk（概念上類似 Batch）。");
+        Console.WriteLine("注意：.NET 6+ 已內建 Chunk（概念上類似 Batch，但回傳的是陣列）。");
         Console.WriteLine("自訂擴充方法適合處理專案特有的查詢邏輯。");
     }
 }

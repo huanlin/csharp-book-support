@@ -5,7 +5,7 @@ Console.WriteLine("=== 3.3 Null 運算子 ===\n");
 // Null 聯合運算子（??）
 Console.WriteLine("【Null 聯合運算子 ??】");
 int? x = null;
-int? y = x ?? 5;  // y 的結果是 5
+int y = x ?? 5;  // y 的結果是 5
 Console.WriteLine($"int? x = null; x ?? 5 = {y}");
 
 int? score = null;

@@ -6,6 +6,7 @@
   <Project Path="DemoAnonTypeMutation/DemoAnonTypeMutation.csproj" />
   <Project Path="DemoAutoPropBasic/DemoAutoPropBasic.csproj" />
   <Project Path="DemoAutoPropField/DemoAutoPropField.csproj" />
+  <Project Path="DemoCollectionExpressions/DemoCollectionExpressions.csproj" />
   <Project Path="DemoCollectionInit/DemoCollectionInit.csproj" />
   <Project Path="DemoDynamic/DemoDynamic.csproj" />
   <Project Path="DemoIndexInit/DemoIndexInit.csproj" />

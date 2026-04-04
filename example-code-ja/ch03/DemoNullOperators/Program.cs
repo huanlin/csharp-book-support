@@ -5,7 +5,7 @@ Console.WriteLine("=== 3.3 Null Operators ===\n");
 // null 合体演算子（??）
 Console.WriteLine("[null 合体演算子 ??]");
 int? x = null;
-int? y = x ?? 5;
+int y = x ?? 5;
 Console.WriteLine($"int? x = null; x ?? 5 = {y}");
 
 int? score = null;

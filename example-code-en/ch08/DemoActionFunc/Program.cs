@@ -56,10 +56,10 @@ Console.WriteLine(new string('-', 40));
 var items = new[] { "apple", "BANANA", "Cherry", "date" };
 Console.WriteLine($"Test Data: {string.Join(", ", items)}");
 
-// Configuration 1: Process uppercase strings
+// Configuration 1: Process strings containing uppercase letters
 var processor1 = new DataProcessor(
     shouldProcess: s => s.Any(char.IsUpper),
-    onProcessed: s => Console.WriteLine($"  Processing uppercase item: {s}")
+    onProcessed: s => Console.WriteLine($"  Processing item containing uppercase letters: {s}")
 );
 Console.WriteLine("\nProcessing items containing uppercase letters:");
 processor1.Process(items);

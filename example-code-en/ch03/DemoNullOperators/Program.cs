@@ -5,7 +5,7 @@ Console.WriteLine("=== 3.3 Null Operators ===\n");
 // Null Coalescing Operator (??)
 Console.WriteLine("[Null Coalescing Operator ??]");
 int? x = null;
-int? y = x ?? 5;  // y's result is 5
+int y = x ?? 5;  // y's result is 5
 Console.WriteLine($"int? x = null; x ?? 5 = {y}");
 
 int? score = null;

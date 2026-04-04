@@ -56,12 +56,12 @@ Console.WriteLine(new string('-', 40));
 var items = new[] { "apple", "BANANA", "Cherry", "date" };
 Console.WriteLine($"測試資料：{string.Join(", ", items)}");
 
-// 配置 1：處理大寫字串
+// 配置 1：處理包含大寫字母的字串
 var processor1 = new DataProcessor(
     shouldProcess: s => s.Any(char.IsUpper),
-    onProcessed: s => Console.WriteLine($"  處理大寫項目: {s}")
+    onProcessed: s => Console.WriteLine($"  處理包含大寫字母的項目: {s}")
 );
-Console.WriteLine("\n處理包含大寫的項目：");
+Console.WriteLine("\n處理包含大寫字母的項目：");
 processor1.Process(items);
 
 // 配置 2：處理長度大於 5 的字串
