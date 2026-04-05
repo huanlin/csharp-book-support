@@ -1,39 +1,69 @@
 // Demo: collection expressions
 
-// 1. Basic initialization: the same right-hand syntax can target different types
-int[] array = [1, 2, 3];
-List<int> list = [1, 2, 3];
-Span<int> span = [1, 2, 3];
+PrintSection("1. Initializing collections");
+int[] numbers = [1, 2, 3];
+List<string> strings = ["A", "B", "C"];
+Console.WriteLine($"numbers = [{string.Join(", ", numbers)}]");
+Console.WriteLine($"strings = [{string.Join(", ", strings)}]");
 
-Console.WriteLine("Basic initialization:");
-Console.WriteLine($"  array = [{string.Join(", ", array)}]");
-Console.WriteLine($"  list  = [{string.Join(", ", list)}]");
-Console.WriteLine($"  span  = [{string.Join(", ", span.ToArray())}]");
+PrintSection("2. Combining multiple collections");
+int[] section1 = [1, 2];
+int[] section2 = [5, 6];
+int[] allLevels = [0, .. section1, 3, 4, .. section2, 7];
+Console.WriteLine($"allLevels = [{string.Join(", ", allLevels)}]");
 
-// 2. Target-typed behavior: method arguments can provide the target type too
-Console.WriteLine($"\nSum([1, 2, 3]) = {Sum([1, 2, 3])}");
+PrintSection("3. Passing collection arguments");
+PrintTags(["C#", ".NET", "Coding"]);
 
-// 3. Empty collections
+Console.WriteLine();
+Console.WriteLine("Three ways to call PrintNumbers:");
+PrintNumbers(1, 2, 3);
+PrintNumbers([1, 2, 3]);
+PrintNumbers(new List<int> { 1, 2, 3 });
+
+PrintSection("4. Creating empty collections");
 int[] emptyArray = [];
-List<string> names = [];
-Console.WriteLine($"\nEmpty collections: emptyArray.Length = {emptyArray.Length}, names.Count = {names.Count}");
+List<string> tags = [];
+ReadOnlySpan<int> values = [];
+Console.WriteLine($"emptyArray.Length = {emptyArray.Length}");
+Console.WriteLine($"tags.Count = {tags.Count}");
+Console.WriteLine($"values.Length = {values.Length}");
 
-// 4. Spread syntax: expand an existing sequence
-int[] source = [1, 2, 3];
-int[] numbers = [0, .. source, 4];
-List<int> copied = [.. source];
+PrintSection("5. Span<T> / ReadOnlySpan<T> example");
+ReadOnlySpan<byte> header = [0xDE, 0xAD, 0xBE, 0xEF];
+Console.WriteLine($"header = [{string.Join(", ", header.ToArray().Select(b => $"0x{b:X2}"))}]");
 
-Console.WriteLine("\nSpread:");
-Console.WriteLine($"  source = [{string.Join(", ", source)}]");
-Console.WriteLine($"  numbers = [{string.Join(", ", numbers)}]");
-Console.WriteLine($"  copied = [{string.Join(", ", copied)}]");
-
-static int Sum(int[] values)
+PrintSection("6. Limitations with dictionary initialization");
+var scores = new Dictionary<string, int>
 {
-    int total = 0;
-    foreach (int x in values)
+    ["Alice"] = 95,
+    ["Bob"] = 87
+};
+Dictionary<string, int> emptyScores = [];
+Console.WriteLine($"scores[\"Alice\"] = {scores["Alice"]}");
+Console.WriteLine($"emptyScores.Count = {emptyScores.Count}");
+
+PrintSection("7. No type inference with var");
+// var inferred = [1, 2, 3];  // ✗ Won't compile: collection expressions do not have a fixed natural type
+Console.WriteLine("See the comment above: a collection expression cannot be used directly with var.");
+
+static void PrintSection(string title)
+{
+    Console.WriteLine();
+    Console.WriteLine(title);
+    Console.WriteLine(new string('-', title.Length));
+}
+
+static void PrintTags(ReadOnlySpan<string> tags)
+{
+    Console.WriteLine("PrintTags:");
+    foreach (var tag in tags)
     {
-        total += x;
+        Console.WriteLine($"  {tag}");
     }
-    return total;
+}
+
+static void PrintNumbers(params IList<int> numbers)
+{
+    Console.WriteLine($"  [{string.Join(", ", numbers)}]");
 }

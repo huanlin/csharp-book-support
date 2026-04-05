@@ -1,39 +1,69 @@
 // 示範集合運算式（Collection Expressions）
 
-// 1. 基本初始化：相同的右邊寫法，可對應不同目標型別
-int[] array = [1, 2, 3];
-List<int> list = [1, 2, 3];
-Span<int> span = [1, 2, 3];
+PrintSection("1. 初始化集合");
+int[] numbers = [1, 2, 3];
+List<string> strings = ["A", "B", "C"];
+Console.WriteLine($"numbers = [{string.Join(", ", numbers)}]");
+Console.WriteLine($"strings = [{string.Join(", ", strings)}]");
 
-Console.WriteLine("基本初始化:");
-Console.WriteLine($"  array = [{string.Join(", ", array)}]");
-Console.WriteLine($"  list  = [{string.Join(", ", list)}]");
-Console.WriteLine($"  span  = [{string.Join(", ", span.ToArray())}]");
+PrintSection("2. 合併多個集合");
+int[] section1 = [1, 2];
+int[] section2 = [5, 6];
+int[] allLevels = [0, .. section1, 3, 4, .. section2, 7];
+Console.WriteLine($"allLevels = [{string.Join(", ", allLevels)}]");
 
-// 2. target-typed：方法引數也能提供目標型別
-Console.WriteLine($"\nSum([1, 2, 3]) = {Sum([1, 2, 3])}");
+PrintSection("3. 傳遞參數給方法");
+PrintTags(["C#", ".NET", "Coding"]);
 
-// 3. 空集合
+Console.WriteLine();
+Console.WriteLine("PrintNumbers 的三種呼叫方式:");
+PrintNumbers(1, 2, 3);
+PrintNumbers([1, 2, 3]);
+PrintNumbers(new List<int> { 1, 2, 3 });
+
+PrintSection("4. 需要空集合時");
 int[] emptyArray = [];
-List<string> names = [];
-Console.WriteLine($"\n空集合: emptyArray.Length = {emptyArray.Length}, names.Count = {names.Count}");
+List<string> tags = [];
+ReadOnlySpan<int> values = [];
+Console.WriteLine($"emptyArray.Length = {emptyArray.Length}");
+Console.WriteLine($"tags.Count = {tags.Count}");
+Console.WriteLine($"values.Length = {values.Length}");
 
-// 4. spread 語法：展開既有序列
-int[] source = [1, 2, 3];
-int[] numbers = [0, .. source, 4];
-List<int> copied = [.. source];
+PrintSection("5. Span<T> / ReadOnlySpan<T> 範例");
+ReadOnlySpan<byte> header = [0xDE, 0xAD, 0xBE, 0xEF];
+Console.WriteLine($"header = [{string.Join(", ", header.ToArray().Select(b => $"0x{b:X2}"))}]");
 
-Console.WriteLine($"\nspread:");
-Console.WriteLine($"  source = [{string.Join(", ", source)}]");
-Console.WriteLine($"  numbers = [{string.Join(", ", numbers)}]");
-Console.WriteLine($"  copied = [{string.Join(", ", copied)}]");
-
-static int Sum(int[] values)
+PrintSection("6. Dictionary 初始化的限制");
+var scores = new Dictionary<string, int>
 {
-    int total = 0;
-    foreach (int x in values)
+    ["Alice"] = 95,
+    ["Bob"] = 87
+};
+Dictionary<string, int> emptyScores = [];
+Console.WriteLine($"scores[\"Alice\"] = {scores["Alice"]}");
+Console.WriteLine($"emptyScores.Count = {emptyScores.Count}");
+
+PrintSection("7. 無法靠 var 推斷型別");
+// var inferred = [1, 2, 3];  // ✗ 編譯失敗：collection expression 沒有固定自然型別
+Console.WriteLine("請參考上方註解：collection expression 不能直接搭配 var。");
+
+static void PrintSection(string title)
+{
+    Console.WriteLine();
+    Console.WriteLine(title);
+    Console.WriteLine(new string('-', title.Length));
+}
+
+static void PrintTags(ReadOnlySpan<string> tags)
+{
+    Console.WriteLine("PrintTags:");
+    foreach (var tag in tags)
     {
-        total += x;
+        Console.WriteLine($"  {tag}");
     }
-    return total;
+}
+
+static void PrintNumbers(params IList<int> numbers)
+{
+    Console.WriteLine($"  [{string.Join(", ", numbers)}]");
 }
