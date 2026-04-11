@@ -1,8 +1,8 @@
 <Solution>
-  <Project Path="DemoSlicing/DemoSlicing.csproj" />
-  <Project Path="DemoStringParsing/DemoStringParsing.csproj" />
-  <Project Path="DemoSearchValues/DemoSearchValues.csproj" />
-  <Project Path="DemoMemory/DemoMemory.csproj" />
-  <Project Path="DemoArrayPool/DemoArrayPool.csproj" />
-  <Project Path="DemoStackAlloc/DemoStackAlloc.csproj" />
+  <Project Path="DemoAsyncBasic/DemoAsyncBasic.csproj" />
+  <Project Path="DemoAsyncStreams/DemoAsyncStreams.csproj" />
+  <Project Path="DemoParallelAsync/DemoParallelAsync.csproj" />
+  <Project Path="DemoValueTask/DemoValueTask.csproj" />
+  <Project Path="DemoCancellation/DemoCancellation.csproj" />
+  <Project Path="DemoProgress/DemoProgress.csproj" />
 </Solution>

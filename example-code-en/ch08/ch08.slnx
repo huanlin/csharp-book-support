@@ -6,11 +6,4 @@
   <Project Path="DemoLambda/DemoLambda.csproj" />
   <Project Path="DemoLambdaAttributes/DemoLambdaAttributes.csproj" />
   <Project Path="DemoClosure/DemoClosure.csproj" />
-  <Project Path="DemoEventBasics/DemoEventBasics.csproj" />
-  <Project Path="DemoEventStandard/DemoEventStandard.csproj" />
-  <Project Path="DemoEventMemoryLeak/DemoEventMemoryLeak.csproj" />
-  <Project Path="DemoPracticalCase1/DemoPracticalCase1.csproj" />
-  <Project Path="DemoPracticalCase2/DemoPracticalCase2.csproj" />
-  <Project Path="DemoPracticalCase3/DemoPracticalCase3.csproj" />
-  <Project Path="DemoPracticalCase4/DemoPracticalCase4.csproj" />
 </Solution>
