@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="DemoSlicing/DemoSlicing.csproj" />
+  <Project Path="DemoStringParsing/DemoStringParsing.csproj" />
+  <Project Path="DemoSearchValues/DemoSearchValues.csproj" />
+  <Project Path="DemoMemory/DemoMemory.csproj" />
+  <Project Path="DemoArrayPool/DemoArrayPool.csproj" />
+  <Project Path="DemoStackAlloc/DemoStackAlloc.csproj" />
+</Solution>

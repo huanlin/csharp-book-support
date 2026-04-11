@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BenchmarkParser/BenchmarkParser.csproj" />
+  <Project Path="BenchmarkArrayPool/BenchmarkArrayPool.csproj" />
+  <Project Path="BenchmarkSearchValues/BenchmarkSearchValues.csproj" />
+  <Project Path="BenchmarkAllocation/BenchmarkAllocation.csproj" />
+</Solution>
