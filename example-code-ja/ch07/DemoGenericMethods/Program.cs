@@ -7,7 +7,7 @@ Console.WriteLine(new string('-', 40));
 
 var util = new Utility();
 util.Print<int>(100);
-util.Print<string>("Hello");
+util.Print<string>("こんにちは");
 
 DateTime result = util.Create<string, DateTime>("now");
 Console.WriteLine($"Create<string, DateTime>(\"now\") = {result:O}");
@@ -16,15 +16,15 @@ Console.WriteLine("\n2. 型推論");
 Console.WriteLine(new string('-', 40));
 
 util.Print(3.14);
-util.Print("Type inference works");
+util.Print("型推論が機能します");
 
 Console.WriteLine("\n3. メソッドレベルとクラスレベルの型パラメーター");
 Console.WriteLine(new string('-', 40));
 
 var demo = new Demo<int>();
 demo.Method1(42);
-demo.Method2("hello");
-demo.Method3("shadowed T");
+demo.Method2("こんにちは");
+demo.Method3("隠された T");
 
 Console.WriteLine("\n4. ジェネリック拡張メソッド");
 Console.WriteLine(new string('-', 40));
@@ -41,12 +41,12 @@ public class Utility
 {
     public void Print<T>(T obj)
     {
-        Console.WriteLine($"Type: {typeof(T).Name}, Value: {obj}");
+        Console.WriteLine($"型: {typeof(T).Name}, 値: {obj}");
     }
 
     public TResult Create<T, TResult>(T obj) where TResult : new()
     {
-        Console.WriteLine($"Creating from {obj}");
+        Console.WriteLine($"{obj} から作成中");
         return new TResult();
     }
 }

@@ -1,4 +1,8 @@
 // 案例 4：帶重試的操作執行器
+// 本例只示範委派如何分開執行流程與實際操作，失敗由呼叫端模擬。
+// 實際使用前須確認可重試的錯誤與操作的冪等性，並設計等待、逾時及取消機制。
+// 此處未實作上述策略；catch (Exception) 僅用於攔截模擬失敗。
+// 詳見本書第 9 章，以及 https://learn.microsoft.com/azure/architecture/patterns/retry
 
 Console.WriteLine("案例 4：帶重試的操作執行器");
 Console.WriteLine(new string('-', 40));

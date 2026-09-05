@@ -46,8 +46,8 @@ string? text = null;
 Console.WriteLine($"null.IsNullOrWhiteSpace() = {text.IsNullOrWhiteSpace()}");
 Console.WriteLine($"null.Truncate(10) = \"{text.Truncate(10)}\"");
 
-text = "Hello, World!";
-Console.WriteLine($"\"Hello, World!\".Truncate(5) = \"{text.Truncate(5)}\"");
+text = "こんにちは、世界!";
+Console.WriteLine($"\"こんにちは、世界!\".Truncate(5) = \"{text.Truncate(5)}\"");
 
 // --------------------------------------------------------------
 // 4. 優先順位: インスタンスメソッド > 拡張メソッド

@@ -1,6 +1,6 @@
 // デモ: Wrapped Query
 
-Console.WriteLine("=== Wrapped Query の例 ===\n");
+Console.WriteLine("=== ラップしたクエリの例 ===\n");
 
 string[] names = ["Tom", "Dick", "Harry", "Mary", "Jay"];
 
@@ -14,7 +14,7 @@ var wrappedQuery = from n1 in
                    orderby n1
                    select n1;
 
-Console.WriteLine($"Wrapped Query 結果: {string.Join(", ", wrappedQuery)}");
+Console.WriteLine($"ラップしたクエリの結果: {string.Join(", ", wrappedQuery)}");
 
 var fluentQuery = names
     .Select(n => n.Replace("a", "").Replace("e", "")

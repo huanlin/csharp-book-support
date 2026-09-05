@@ -1,7 +1,7 @@
 // デモ: パターンマッチングと null
 #nullable enable
 
-Console.WriteLine("=== 3.5 Pattern Matching and Null ===\n");
+Console.WriteLine("=== 3.5 パターンマッチングと null ===\n");
 
 // is null / is not null
 Console.WriteLine("[is null と is not null]");
@@ -25,14 +25,14 @@ Console.WriteLine($"customObj is null: {customObj is null}（is null は常に�
 Console.WriteLine("\n[Switch 式と null]");
 string GetDisplayName(User? user) => user switch
 {
-    null => "Guest",
+    null => "ゲスト",
     { IsVip: true } => $"VIP: {user.Name}",
     _ => user.Name
 };
 
 Console.WriteLine($"GetDisplayName(null) = {GetDisplayName(null)}");
-Console.WriteLine($"GetDisplayName(VIP user) = {GetDisplayName(user2)}");
-Console.WriteLine($"GetDisplayName(normal user) = {GetDisplayName(new User { Name = "Bob", IsVip = false })}");
+Console.WriteLine($"GetDisplayName(VIP ユーザー) = {GetDisplayName(user2)}");
+Console.WriteLine($"GetDisplayName(通常ユーザー) = {GetDisplayName(new User { Name = "Bob", IsVip = false })}");
 
 // プロパティパターンと null
 Console.WriteLine("\n[プロパティパターンと null]");
@@ -86,10 +86,10 @@ string ProcessOrder(Order? order) => order switch
 };
 
 Console.WriteLine($"ProcessOrder(null) = {ProcessOrder(null)}");
-Console.WriteLine($"ProcessOrder(Cancelled) = {ProcessOrder(new Order { Status = OrderStatus.Cancelled })}");
-Console.WriteLine($"ProcessOrder(Empty) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string>() })}");
-Console.WriteLine($"ProcessOrder(Large) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string> { "A" }, TotalAmount = 15000 })}");
-Console.WriteLine($"ProcessOrder(Normal) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string> { "B" }, TotalAmount = 500 })}");
+Console.WriteLine($"ProcessOrder(キャンセル) = {ProcessOrder(new Order { Status = OrderStatus.Cancelled })}");
+Console.WriteLine($"ProcessOrder(空) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string>() })}");
+Console.WriteLine($"ProcessOrder(高額) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string> { "A" }, TotalAmount = 15000 })}");
+Console.WriteLine($"ProcessOrder(通常) = {ProcessOrder(new Order { Status = OrderStatus.Active, Items = new List<string> { "B" }, TotalAmount = 500 })}");
 
 // 補助クラス
 class User

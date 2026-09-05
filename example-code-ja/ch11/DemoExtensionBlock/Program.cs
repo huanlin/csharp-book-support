@@ -30,9 +30,9 @@ public class Program
 
         // シナリオ 1: 拡張プロパティの利用
         Console.WriteLine("シナリオ 1: 拡張プロパティ（括弧不要）");
-        string text = "hello";
+        string text = "こんにちは";
         bool isEmpty = text.IsEmpty;
-        Console.WriteLine($"  \"hello\".IsEmpty = {isEmpty}");
+        Console.WriteLine($"  \"こんにちは\".IsEmpty = {isEmpty}");
         
         string emptyText = "";
         Console.WriteLine($"  \"\".IsEmpty = {emptyText.IsEmpty}\n");
@@ -40,12 +40,12 @@ public class Program
         // シナリオ 2: 拡張メソッドの利用
         Console.WriteLine("シナリオ 2: 拡張メソッド（括弧が必要）");
         string reversed = text.Reverse();
-        Console.WriteLine($"  \"hello\".Reverse() = \"{reversed}\"\n");
+        Console.WriteLine($"  \"こんにちは\".Reverse() = \"{reversed}\"\n");
 
         // シナリオ 3: 拡張メソッドをもう一度呼び出す
         Console.WriteLine("シナリオ 3: 拡張メソッドをもう一度呼び出す");
-        string result = "world".Reverse();
-        Console.WriteLine($"  \"world\".Reverse() = \"{result}\"");
+        string result = "世界".Reverse();
+        Console.WriteLine($"  \"世界\".Reverse() = \"{result}\"");
 
         // 解説
         Console.WriteLine("\n=== 解説 ===");

@@ -24,7 +24,7 @@ Console.WriteLine("\n2. class / struct 制約");
 Console.WriteLine(new string('-', 40));
 
 var refContainer = new RefContainer<string>();
-refContainer.Value = "Hello";
+refContainer.Value = "こんにちは";
 Console.WriteLine($"RefContainer<string>.Value = {refContainer.Value}");
 
 var valContainer = new ValContainer<int>();

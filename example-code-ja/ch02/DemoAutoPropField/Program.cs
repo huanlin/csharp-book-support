@@ -2,10 +2,10 @@
 using System.Runtime.CompilerServices;
 
 var person = new Person();
-person.Name = "Li Si";
+person.Name = "李四";
 person.Age = 30;
-Console.WriteLine($"Person: Name={person.Name}, Age={person.Age}, ID={person.Id}");
-Console.WriteLine($"Email: {person.Email}");
+Console.WriteLine($"Person: 名前={person.Name}, 年齢={person.Age}, ID={person.Id}");
+Console.WriteLine($"メール: {person.Email}");
 
 // バリデーションの確認
 try

@@ -1,11 +1,11 @@
 // デモ: Position パターンと Tuple パターン
 
-Console.WriteLine("=== Tuple パターンと Position パターンの例 ===\n");
+Console.WriteLine("=== タプルパターンと位置パターンの例 ===\n");
 
 // --------------------------------------------------------------
 // 1. 基本的な Tuple パターン
 // --------------------------------------------------------------
-Console.WriteLine("1. 基本的な Tuple パターン");
+Console.WriteLine("1. 基本的なタプルパターン");
 Console.WriteLine(new string('-', 40));
 
 (int, int)[] points = [(0, 0), (0, 5), (5, 0), (3, 3), (2, 7)];
@@ -19,7 +19,7 @@ foreach (var (x, y) in points)
 // --------------------------------------------------------------
 // 2. record で Position パターン
 // --------------------------------------------------------------
-Console.WriteLine("\n2. record で Position パターン");
+Console.WriteLine("\n2. record で位置パターン");
 Console.WriteLine(new string('-', 40));
 
 Point[] recordPoints =
@@ -40,7 +40,7 @@ foreach (Point p in recordPoints)
 // --------------------------------------------------------------
 // 3. Position パターンで値をキャプチャ
 // --------------------------------------------------------------
-Console.WriteLine("\n3. Position パターンで値をキャプチャ");
+Console.WriteLine("\n3. 位置パターンで値をキャプチャ");
 Console.WriteLine(new string('-', 40));
 
 foreach (Point p in recordPoints)

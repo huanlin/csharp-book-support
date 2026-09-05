@@ -9,7 +9,7 @@ Console.WriteLine("=== C# 14 拡張メンバー ===\n");
 Console.WriteLine("1. 拡張プロパティ");
 Console.WriteLine(new string('-', 40));
 
-string text = "hello";
+string text = "こんにちは";
 Console.WriteLine($"text = \"{text}\"");
 Console.WriteLine($"text.IsEmpty = {text.IsEmpty}");
 
@@ -40,8 +40,8 @@ Console.WriteLine($"IsWeekend = {saturday.IsWeekend}");
 Console.WriteLine("\n3. 拡張メソッド（新構文）");
 Console.WriteLine(new string('-', 40));
 
-string reversed = "Hello".Reverse();
-Console.WriteLine($"\"Hello\".Reverse() = \"{reversed}\"");
+string reversed = "こんにちは".Reverse();
+Console.WriteLine($"\"こんにちは\".Reverse() = \"{reversed}\"");
 
 string sortable = DateTime.Now.ToSortableDateTimeString();
 Console.WriteLine($"DateTime.Now.ToSortableDateTimeString() = \"{sortable}\"");

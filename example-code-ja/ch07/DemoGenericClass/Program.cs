@@ -34,7 +34,7 @@ Console.WriteLine($"GetValueOrDefault(intList, 0) = {GetValueOrDefault(intList, 
 Console.WriteLine($"GetValueOrDefault(intList, 99) = {GetValueOrDefault(intList, 99)}");
 
 var strList = new MyGenericList<string>(3);
-strList.Add("Hello");
+strList.Add("こんにちは");
 
 Console.WriteLine($"GetValueOrDefault(strList, 0) = {GetValueOrDefault(strList, 0)}");
 Console.WriteLine($"GetValueOrDefault(strList, 99) = {GetValueOrDefault(strList, 99) ?? "(null)"}");
@@ -47,7 +47,7 @@ Console.WriteLine(new string('-', 40));
 
 var util = new Utility();
 util.Print(100);
-util.Print("Hello");
+util.Print("こんにちは");
 util.Print(3.14);
 
 // --------------------------------------------------------------

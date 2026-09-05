@@ -1,6 +1,6 @@
 // デモ: Null 演算子 ??, ??=, ?., ?[]
 
-Console.WriteLine("=== 3.3 Null Operators ===\n");
+Console.WriteLine("=== 3.3 Null 演算子 ===\n");
 
 // null 合体演算子（??）
 Console.WriteLine("[null 合体演算子 ??]");
@@ -13,8 +13,8 @@ int finalScore = score ?? 0;
 Console.WriteLine($"score = null; score ?? 0 = {finalScore}");
 
 string? userName = null;
-string name = userName ?? "Guest";
-Console.WriteLine($"userName = null; userName ?? \"Guest\" = {name}");
+string name = userName ?? "ゲスト";
+Console.WriteLine($"userName = null; userName ?? \"ゲスト\" = {name}");
 
 // null 合体代入演算子（??=）
 Console.WriteLine("\n[null 合体代入演算子 ??=]");
@@ -48,9 +48,9 @@ string? str = null;
 char? firstChar = str?[0];
 Console.WriteLine($"null?[0] = {firstChar?.ToString() ?? "null"}");
 
-str = "Hello";
+str = "こんにちは";
 firstChar = str?[0];
-Console.WriteLine($"\"Hello\"?[0] = {firstChar}");
+Console.WriteLine($"\"こんにちは\"?[0] = {firstChar}");
 
 Console.WriteLine("空文字列に対して str?[0] を使うと、依然としてインデックス範囲外例外が発生し得ます。");
 Console.WriteLine($"FirstCharOrNull(\"\") = {FirstCharOrNull("")?.ToString() ?? "null"}");
@@ -69,7 +69,7 @@ Console.WriteLine($"(customer = null) customer?.Orders?.Count = {orderCount?.ToS
 Console.WriteLine("\n[組み合わせ利用: ?. + ??]");
 string ConvertToString(object? obj)
 {
-    return obj?.ToString() ?? "None";
+    return obj?.ToString() ?? "なし";
 }
 Console.WriteLine($"ConvertToString(null) = {ConvertToString(null)}");
 Console.WriteLine($"ConvertToString(123) = {ConvertToString(123)}");
@@ -77,8 +77,8 @@ Console.WriteLine($"ConvertToString(123) = {ConvertToString(123)}");
 // 多段 null ハンドリング
 Console.WriteLine("\n[多段 null ハンドリング]");
 User? user = new User { Name = "Bob", Profile = null };
-string displayName = user?.Profile?.DisplayName ?? user?.Name ?? "Anonymous";
-Console.WriteLine($"user?.Profile?.DisplayName ?? user?.Name ?? \"Anonymous\" = {displayName}");
+string displayName = user?.Profile?.DisplayName ?? user?.Name ?? "匿名";
+Console.WriteLine($"user?.Profile?.DisplayName ?? user?.Name ?? \"匿名\" = {displayName}");
 
 // null 条件代入演算子（C# 14）
 Console.WriteLine("\n[null 条件代入演算子]");
@@ -123,7 +123,7 @@ class LazyCache
     private List<string> LoadFromDatabase()
     {
         Console.WriteLine("  （データベースから読み込み中...）");
-        return new List<string> { "Item1", "Item2", "Item3" };
+        return new List<string> { "項目1", "項目2", "項目3" };
     }
 }
 

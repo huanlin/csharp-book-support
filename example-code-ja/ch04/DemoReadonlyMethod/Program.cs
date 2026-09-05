@@ -10,12 +10,12 @@ struct Point
 
     public readonly void PrintInfo()
     {
-        Console.WriteLine($"Point: ({X}, {Y})");
+        Console.WriteLine($"点: ({X}, {Y})");
         LogState(); // この行で CS8656 が出る
     }
 
     private void LogState()
     {
-        Console.WriteLine($"Current state: X={X}, Y={Y}");
+        Console.WriteLine($"現在の状態: X={X}, Y={Y}");
     }
 }

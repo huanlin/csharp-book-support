@@ -2,11 +2,11 @@
 #nullable enable
 using System.Diagnostics.CodeAnalysis;
 
-Console.WriteLine("=== 3.4 Nullable Reference Types ===\n");
+Console.WriteLine("=== 3.4 Null 許容参照型 ===\n");
 
 // 基本概念: string と string?
 Console.WriteLine("[非 Nullable 参照型 vs Nullable 参照型]");
-string nonNullable = "Hello";       // null 不可
+string nonNullable = "こんにちは";  // null 不可
 string? nullable = null;             // null 可
 
 Console.WriteLine($"string nonNullable = \"{nonNullable}\"（null 不可）");
@@ -97,7 +97,7 @@ else
 }
 
 // ヘルパーメソッド: 古い API や外部ライブラリを模したもの
-string? GetLegacyRequiredValue() => "Something";
+string? GetLegacyRequiredValue() => "何らかの値";
 
 // User クラス
 class User

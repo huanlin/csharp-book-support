@@ -3,11 +3,11 @@
 // Tuple の分解
 var personTuple = ("Alice", 30);
 (string name, int age) = personTuple;
-Console.WriteLine($"分解結果: name={name}, age={age}");
+Console.WriteLine($"分解結果: 名前={name}, 年齢={age}");
 
 // var を使った分解
 var (lat, lon) = GetCoordinates("Taipei 101");
-Console.WriteLine($"var 分解: lat={lat}, lon={lon}");
+Console.WriteLine($"var 分解: 緯度={lat}, 経度={lon}");
 
 // 破棄変数
 var (latitude, _) = GetCoordinates("Taipei 101");

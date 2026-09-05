@@ -11,7 +11,7 @@ Console.WriteLine("1. Rent/Return パターン");
 Console.WriteLine(new string('-', 40));
 
 // ストリーム読み込みをシミュレーション
-byte[] sampleData = Encoding.UTF8.GetBytes("Hello ArrayPool! This is a test string.");
+byte[] sampleData = Encoding.UTF8.GetBytes("こんにちは ArrayPool! これはテスト文字列です。");
 using var stream = new MemoryStream(sampleData);
 
 ProcessStream(stream);
@@ -26,7 +26,7 @@ static void ProcessStream(Stream stream)
     int bufferSize = 16;
     byte[] buffer = ArrayPool<byte>.Shared.Rent(bufferSize);
     
-    Console.WriteLine($"要求サイズ {bufferSize} bytes, 実際に取得: {buffer.Length} bytes");
+    Console.WriteLine($"要求サイズ {bufferSize} バイト, 実際に取得: {buffer.Length} バイト");
     
     try
     {

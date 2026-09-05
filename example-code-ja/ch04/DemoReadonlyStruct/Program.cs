@@ -9,7 +9,7 @@ Console.WriteLine($"m2: {m2.Amount} {m2.Currency}");
 Console.WriteLine($"m3: {m3.Amount} {m3.Currency}");
 
 var p = new Point { X = 3, Y = 4 };
-Console.WriteLine($"Point: ({p.X}, {p.Y}), Distance: {p.GetDistance()}");
+Console.WriteLine($"点: ({p.X}, {p.Y}), 距離: {p.GetDistance()}");
 
 p.Reset();
 Console.WriteLine($"Reset 後: ({p.X}, {p.Y})");

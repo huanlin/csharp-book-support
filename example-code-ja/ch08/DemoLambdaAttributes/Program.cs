@@ -8,15 +8,15 @@ Console.WriteLine("=== C# ラムダ新機能の例 ===\n");
 // --------------------------------------------------------------
 Console.WriteLine("1. ラムダへの属性付与（C# 10）");
 
-var func = [Description("This is a test")] () => { Console.WriteLine("ラムダ実行中..."); };
+var func = [Description("これはテストです")] () => { Console.WriteLine("ラムダ実行中..."); };
 
 var add = ([Description("第1オペランド")] int a, [Description("第2オペランド")] int b) => a + b;
 
-var getMessage = [return: NotNull] () => "Hello";
+var getMessage = [return: NotNull] () => "こんにちは";
 
 func();
 Console.WriteLine($"1 + 2 = {add(1, 2)}");
-Console.WriteLine($"Message: {getMessage()}");
+Console.WriteLine($"メッセージ: {getMessage()}");
 
 var methodInfo = func.Method;
 var attr = methodInfo.GetCustomAttributes(typeof(DescriptionAttribute), false).FirstOrDefault() as DescriptionAttribute;
@@ -34,7 +34,7 @@ foreach (var p in paramsInfo)
 // --------------------------------------------------------------
 Console.WriteLine("\n2. ラムダ既定引数（C# 12）");
 
-var print = (string message = "World") => Console.WriteLine($"Hello, {message}!");
+var print = (string message = "世界") => Console.WriteLine($"こんにちは、{message}!");
 
 print();
 print("C# 12");

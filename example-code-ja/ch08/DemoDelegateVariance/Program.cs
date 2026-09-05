@@ -18,7 +18,7 @@ Console.WriteLine("\n2. 引数反変・戻り値共変");
 Console.WriteLine(new string('-', 40));
 
 StringAction sa = ActOnObject;
-sa("hello world");
+sa("こんにちは、世界");
 
 ObjectRetriever or = RetrieveString;
 Console.WriteLine($"  取得値: {or()}");
@@ -29,9 +29,9 @@ Console.ReadKey();
 // ヘルパーメソッド
 // ============================================================
 
-static void SayHello() => Console.WriteLine("  Hello!");
+static void SayHello() => Console.WriteLine("  こんにちは!");
 static void ActOnObject(object o) => Console.WriteLine($"  オブジェクト処理: {o}");
-static string RetrieveString() => "This is a string";
+static string RetrieveString() => "これは文字列です";
 
 // ============================================================
 // デリゲート型宣言

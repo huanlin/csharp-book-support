@@ -1,13 +1,13 @@
 // デモ: Type Pattern
 
-Console.WriteLine("=== Type Pattern の例 ===\n");
+Console.WriteLine("=== 型パターンの例 ===\n");
 
 // テストデータ
 object[] shapes = [
     new Circle(5),
     new Rectangle(4, 6),
     new Triangle(3, 8),
-    "This is a string",
+    "これは文字列です",
     42,
     null!
 ];
@@ -15,7 +15,7 @@ object[] shapes = [
 // --------------------------------------------------------------
 // 従来方式 vs Type Pattern
 // --------------------------------------------------------------
-Console.WriteLine("従来方式 vs Type Pattern");
+Console.WriteLine("従来方式 vs 型パターン");
 Console.WriteLine(new string('-', 40));
 
 foreach (object? shape in shapes)

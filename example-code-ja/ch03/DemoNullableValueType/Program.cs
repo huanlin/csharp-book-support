@@ -4,7 +4,7 @@
 int? nullableInt = null;
 int? anotherNullable = 25;
 
-Console.WriteLine("=== 3.2 Nullable Value Types ===\n");
+Console.WriteLine("=== 3.2 Null 許容値型 ===\n");
 
 // 代入と取得
 Console.WriteLine("[代入と取得]");

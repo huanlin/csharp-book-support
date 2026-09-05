@@ -8,7 +8,7 @@ Console.WriteLine("=== throw 式の例 ===\n");
 Console.WriteLine("1. null 合体演算子内の throw");
 Console.WriteLine(new string('-', 40));
 
-string? nullableInput = "Hello";
+string? nullableInput = "こんにちは";
 string result1 = nullableInput ?? throw new ArgumentNullException(nameof(nullableInput));
 Console.WriteLine($"結果: {result1}");
 

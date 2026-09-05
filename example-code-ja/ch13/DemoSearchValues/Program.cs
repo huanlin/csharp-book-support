@@ -4,7 +4,7 @@ using System.Buffers;
 
 Console.WriteLine("=== SearchValues<T> (.NET 8+) ===\n");
 
-string text = "Hello World! This is a test.";
+string text = "Konnichiwa sekai! kore wa tesuto desu.";
 int vowels = VowelCounter.CountVowels(text);
 Console.WriteLine($"文字列: \"{text}\"");
 Console.WriteLine($"母音の数: {vowels}");

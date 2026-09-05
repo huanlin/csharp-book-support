@@ -14,6 +14,16 @@ foreach (DayOfWeek day in Enum.GetValues<DayOfWeek>())
     Console.WriteLine($"{day}: {dayType}");
 }
 
+// 未定義的列舉值也要保留原本的例外行為。
+try
+{
+    GetDayType((DayOfWeek)99);
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"未定義值 99: {ex.Message}");
+}
+
 // --------------------------------------------------------------
 // 2. 型別模式在 Switch 表達式中
 // --------------------------------------------------------------
@@ -75,7 +85,9 @@ Console.WriteLine("\n=== 範例結束 ===");
 static string GetDayType(DayOfWeek day) => day switch
 {
     DayOfWeek.Saturday or DayOfWeek.Sunday => "週末",
-    _ => "工作日"
+    DayOfWeek.Monday or DayOfWeek.Tuesday or DayOfWeek.Wednesday
+        or DayOfWeek.Thursday or DayOfWeek.Friday => "工作日",
+    _ => throw new ArgumentException("未定義的星期值", nameof(day))
 };
 
 static string DescribeShape(object? shape) => shape switch

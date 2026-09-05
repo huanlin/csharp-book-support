@@ -45,7 +45,7 @@ static async Task ProcessWithPoolAsync()
             buffer.Span[i] = (byte)(i * 10);
         }
         
-        Console.WriteLine($"{buffer.Length} bytes をレンタル");
+        Console.WriteLine($"{buffer.Length} バイトをレンタル");
         
         var processor = new DataProcessor();
         await processor.ProcessAsync(buffer);
@@ -74,14 +74,14 @@ public class DataProcessor
         // 注: Span は現在の同期ブロック内でのみ有効
         if (_buffer.Length >= 3)
         {
-            Console.WriteLine($"[Sync] 最初の 3 バイトを処理: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
+            Console.WriteLine($"[同期] 最初の 3 バイトを処理: {_buffer.Span[0]}, {_buffer.Span[1]}, {_buffer.Span[2]}");
         }
         else
         {
-            Console.WriteLine($"[Sync] Buffer の長さが 3 未満です。現在の長さ: {_buffer.Length}");
+            Console.WriteLine($"[同期] バッファの長さが 3 未満です。現在の長さ: {_buffer.Length}");
         }
 
-        Console.WriteLine("[Async] I/O 待機中 (100ms)...");
+        Console.WriteLine("[非同期] I/O 待機中 (100ms)...");
         await Task.Delay(100);
         
         // 2 回目処理: 再度 Span に変換
@@ -90,7 +90,7 @@ public class DataProcessor
         if (_buffer.Length >= 3)
         {
              _buffer.Span[0] = 255;
-             Console.WriteLine($"[Sync] 先頭バイトを変更: {_buffer.Span[0]}");
+             Console.WriteLine($"[同期] 先頭バイトを変更: {_buffer.Span[0]}");
         }
     }
 }

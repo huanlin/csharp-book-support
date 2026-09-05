@@ -42,10 +42,10 @@ Console.WriteLine("\n3. Any / All");
 Console.WriteLine(new string('-', 40));
 
 var hasHighSalary = employees.Any(e => e.Salary > 70000);
-Console.WriteLine($"給与 70k 超はいるか? {(hasHighSalary ? "Yes" : "No")}");
+Console.WriteLine($"給与 70k 超はいるか? {(hasHighSalary ? "はい" : "いいえ")}");
 
 var allAdults = employees.All(e => e.Age >= 18);
-Console.WriteLine($"全員成人か? {(allAdults ? "Yes" : "No")}");
+Console.WriteLine($"全員成人か? {(allAdults ? "はい" : "いいえ")}");
 
 // --------------------------------------------------------------
 // 4. 集計 & MaxBy / MinBy (.NET 6)
@@ -99,7 +99,7 @@ foreach (var emp in distinctByDept)
 // --------------------------------------------------------------
 // 7. GroupBy / CountBy / AggregateBy
 // --------------------------------------------------------------
-Console.WriteLine("\n7. Grouping: GroupBy / CountBy / AggregateBy");
+Console.WriteLine("\n7. グループ化: GroupBy / CountBy / AggregateBy");
 Console.WriteLine(new string('-', 40));
 
 Console.WriteLine("[GroupBy]");

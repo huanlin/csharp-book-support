@@ -36,7 +36,7 @@ ProcessName("   ");
 Console.WriteLine("\n3. is not パターン");
 Console.WriteLine(new string('-', 40));
 
-object value = "Hello";
+object value = "こんにちは";
 
 if (value is not null)
 {

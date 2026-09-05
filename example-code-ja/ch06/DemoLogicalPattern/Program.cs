@@ -52,7 +52,7 @@ foreach (char c in testChars)
 Console.WriteLine("\n3. not 結合子");
 Console.WriteLine(new string('-', 40));
 
-object?[] testObjects = ["Hello", null, 42, "World"];
+object?[] testObjects = ["こんにちは", null, 42, "世界"];
 
 foreach (object? obj in testObjects)
 {

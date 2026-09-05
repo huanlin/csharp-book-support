@@ -1,6 +1,6 @@
-// ケース 3: Event Aggregator
+// ケース 3: イベントアグリゲーター
 
-Console.WriteLine("ケース 3: Event Aggregator");
+Console.WriteLine("ケース 3: イベントアグリゲーター");
 Console.WriteLine(new string('-', 40));
 
 var aggregator = new EventAggregator();
@@ -19,10 +19,10 @@ aggregator.Subscribe<PaymentReceived>(evt =>
 aggregator.Subscribe<OrderPlaced>(evt =>
     Console.WriteLine("  [通知モジュール] 注文確認メールを送信"));
 
-Console.WriteLine("OrderPlaced イベント発行:");
+Console.WriteLine("OrderPlaced イベントを発行:");
 aggregator.Publish(new OrderPlaced("ORD-001", 1500));
 
-Console.WriteLine("\nPaymentReceived イベント発行:");
+Console.WriteLine("\nPaymentReceived イベントを発行:");
 aggregator.Publish(new PaymentReceived("ORD-001"));
 
 aggregator.Unsubscribe(orderPlacedHandler);

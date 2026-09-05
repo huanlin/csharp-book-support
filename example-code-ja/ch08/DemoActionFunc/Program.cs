@@ -9,11 +9,11 @@ Console.WriteLine("1. Action: 戻り値なしデリゲート");
 Console.WriteLine(new string('-', 40));
 
 // 引数なし
-Action greet = () => Console.WriteLine("Hello!");
+Action greet = () => Console.WriteLine("こんにちは!");
 greet();
 
 // 引数1つ
-Action<string> sayHello = name => Console.WriteLine($"Hello, {name}!");
+Action<string> sayHello = name => Console.WriteLine($"こんにちは、{name}!");
 sayHello("Alice");
 
 // 引数2つ
@@ -22,7 +22,7 @@ Action<string, int> repeat = (text, count) =>
     for (int i = 0; i < count; i++)
         Console.WriteLine($"  {text}");
 };
-repeat("Hi", 3);
+repeat("やあ", 3);
 
 // --------------------------------------------------------------
 // 2. Func: 戻り値ありデリゲート
@@ -41,7 +41,7 @@ Console.WriteLine($"add(10, 20) = {add(10, 20)}");
 
 Func<string, string, string, string> joinWithSeparator =
     (s1, s2, separator) => $"{s1}{separator}{s2}";
-Console.WriteLine($"joinWithSeparator: {joinWithSeparator("Hello", "World", " - ")}");
+Console.WriteLine($"joinWithSeparator: {joinWithSeparator("こんにちは", "世界", " - ")}");
 
 // --------------------------------------------------------------
 // 3. 設定駆動の振る舞い

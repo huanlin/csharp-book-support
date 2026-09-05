@@ -29,7 +29,7 @@ catch (ArrayTypeMismatchException ex)
 Console.WriteLine("\n2. ジェネリックの不変性");
 Console.WriteLine(new string('-', 40));
 
-List<string> stringList = new List<string> { "Hello", "World" };
+List<string> stringList = new List<string> { "こんにちは", "世界" };
 // List<object> objectList = stringList;  // コンパイルエラー
 
 Console.WriteLine("List<string> は List<object> へ代入できない");
@@ -82,13 +82,13 @@ Console.WriteLine($"  {string.Join(", ", list)}");
 Console.WriteLine("\n6. デリゲートの共変/反変");
 Console.WriteLine(new string('-', 40));
 
-Func<string> stringFactory = () => "Hello";
+Func<string> stringFactory = () => "こんにちは";
 Func<object> objectFactory = stringFactory;
 Console.WriteLine($"objectFactory() = {objectFactory()}");
 
 Action<object> objectAction = obj => Console.WriteLine($"  処理対象: {obj}");
 Action<string> stringAction = objectAction;
-stringAction("Hello, World!");
+stringAction("こんにちは、世界!");
 
 // --------------------------------------------------------------
 // 7. 覚え方
@@ -117,7 +117,7 @@ public interface IProducer<out T>
 
 public class StringProducer : IProducer<string>
 {
-    public string GetValue() => "This is a string";
+    public string GetValue() => "これは文字列です";
 }
 
 public interface IConsumer<in T>

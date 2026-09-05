@@ -4,7 +4,7 @@ Console.WriteLine("=== int で foreach を使う（duck typing）===\n");
 
 foreach (var i in 3)
 {
-    Console.WriteLine($"Hello {i}");
+    Console.WriteLine($"こんにちは {i}");
 }
 
 Console.WriteLine("\n説明:");

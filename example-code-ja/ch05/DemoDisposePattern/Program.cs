@@ -8,7 +8,7 @@ Console.WriteLine("=== 標準 Dispose パターン例 ===\n");
 Console.WriteLine("1. 基本的な IDisposable の利用");
 Console.WriteLine(new string('-', 40));
 
-using (var resource = new SimpleResource("Simple Resource"))
+using (var resource = new SimpleResource("シンプルリソース"))
 {
     resource.DoWork();
 } // ここで Dispose
@@ -21,7 +21,7 @@ Console.WriteLine();
 Console.WriteLine("2. 完全版 Dispose パターン");
 Console.WriteLine(new string('-', 40));
 
-using (var holder = new ResourceHolder("Full Resource"))
+using (var holder = new ResourceHolder("完全版リソース"))
 {
     holder.DoWork();
 } // ここで Dispose
@@ -34,7 +34,7 @@ Console.WriteLine();
 Console.WriteLine("3. 継承時の Dispose パターン");
 Console.WriteLine(new string('-', 40));
 
-using (var derived = new DerivedResourceHolder("Derived Resource"))
+using (var derived = new DerivedResourceHolder("派生リソース"))
 {
     derived.DoWork();
     derived.DoDerivedWork();
@@ -48,7 +48,7 @@ Console.WriteLine();
 Console.WriteLine("4. Dispose 多重呼び出し防止");
 Console.WriteLine(new string('-', 40));
 
-var resource2 = new SimpleResource("Disposable Resource");
+var resource2 = new SimpleResource("破棄対象リソース");
 resource2.Dispose();
 resource2.Dispose(); // 2回目は無効
 Console.WriteLine("Dispose の重複呼び出しでもエラーにならない\n");
@@ -59,7 +59,7 @@ Console.WriteLine("Dispose の重複呼び出しでもエラーにならない\n
 Console.WriteLine("5. sealed クラス向け簡易 Dispose");
 Console.WriteLine(new string('-', 40));
 
-using (var sealedResource = new SimpleSealedResource("Sealed Resource"))
+using (var sealedResource = new SimpleSealedResource("sealed リソース"))
 {
     sealedResource.DoWork();
 }
@@ -118,7 +118,7 @@ public class ResourceHolder : IDisposable
     {
         _name = name;
         _managedResource = new SimpleResource($"{name} の内部リソース");
-        Console.WriteLine($"  ResourceHolder 生成: {_name}");
+        Console.WriteLine($"  ResourceHolder を生成: {_name}");
     }
 
     public void DoWork()

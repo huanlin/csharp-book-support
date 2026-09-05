@@ -29,8 +29,8 @@ Func<string, bool> predicate2 = (s) => { return s.Length > 5; };
 Func<string, bool> predicate3 = s => { return s.Length > 5; };
 Func<string, bool> predicate4 = s => s.Length > 5;
 
-Console.WriteLine($"predicate4(\"Hello\") = {predicate4("Hello")}");
-Console.WriteLine($"predicate4(\"Hi\") = {predicate4("Hi")}");
+Console.WriteLine($"predicate4(\"こんにちは\") = {predicate4("こんにちは")}");
+Console.WriteLine($"predicate4(\"やあ\") = {predicate4("やあ")}");
 
 Func<int> getRandom = () => Random.Shared.Next();
 Console.WriteLine($"getRandom() = {getRandom()}");
@@ -41,7 +41,7 @@ Console.WriteLine($"getRandom() = {getRandom()}");
 Console.WriteLine("\n3. ラムダ既定引数（C# 12）");
 Console.WriteLine(new string('-', 40));
 
-var greeting = (string name = "World") => $"Hello, {name}!";
+var greeting = (string name = "世界") => $"こんにちは、{name}!";
 
 Console.WriteLine(greeting("Alice"));
 Console.WriteLine(greeting());
@@ -78,7 +78,7 @@ Console.WriteLine("\n5. static ラムダ（C# 9）");
 Console.WriteLine(new string('-', 40));
 
 Func<int, int> doubler = static n => n * 2;
-Console.WriteLine($"static lambda: doubler(5) = {doubler(5)}");
+Console.WriteLine($"static ラムダ: doubler(5) = {doubler(5)}");
 
 Console.WriteLine("static ラムダは意図しないクロージャーを防げる。");
 

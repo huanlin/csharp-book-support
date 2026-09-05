@@ -1,6 +1,6 @@
-// デモ: Anonymous Disposal パターン
+// デモ: 匿名破棄パターン
 
-Console.WriteLine("=== Anonymous Disposal パターン例 ===\n");
+Console.WriteLine("=== 匿名破棄パターン例 ===\n");
 
 // --------------------------------------------------------------
 // 1. 基本的な匿名破棄
@@ -18,24 +18,24 @@ Console.WriteLine();
 // --------------------------------------------------------------
 // 2. イベント処理の一時停止と再開
 // --------------------------------------------------------------
-Console.WriteLine("2. EventManager の例");
+Console.WriteLine("2. イベントマネージャーの例");
 Console.WriteLine(new string('-', 40));
 
 var eventManager = new EventManager();
 
 Console.WriteLine("通常のイベント発火:");
-eventManager.RaiseEvent("Event 1");
-eventManager.RaiseEvent("Event 2");
+eventManager.RaiseEvent("イベント 1");
+eventManager.RaiseEvent("イベント 2");
 
 Console.WriteLine("\nSuspendEvents でイベント停止:");
 using (eventManager.SuspendEvents())
 {
-    eventManager.RaiseEvent("Event 3（発火しない）");
-    eventManager.RaiseEvent("Event 4（発火しない）");
+eventManager.RaiseEvent("イベント 3（発火しない）");
+eventManager.RaiseEvent("イベント 4（発火しない）");
 }
 
 Console.WriteLine("\n復帰後のイベント発火:");
-eventManager.RaiseEvent("Event 5");
+eventManager.RaiseEvent("イベント 5");
 
 // --------------------------------------------------------------
 // 3. ネストした停止
@@ -82,7 +82,7 @@ Console.WriteLine(new string('-', 40));
 var worker = new StateWorker();
 Console.WriteLine($"初期状態: {worker.State}");
 
-using (worker.TemporarilySetState("Processing"))
+using (worker.TemporarilySetState("処理中"))
 {
     Console.WriteLine($"一時状態: {worker.State}");
     worker.DoWork();
@@ -196,7 +196,7 @@ public class Timer
 /// </summary>
 public class StateWorker
 {
-    public string State { get; private set; } = "Idle";
+    public string State { get; private set; } = "待機中";
 
     public IDisposable TemporarilySetState(string temporaryState)
     {

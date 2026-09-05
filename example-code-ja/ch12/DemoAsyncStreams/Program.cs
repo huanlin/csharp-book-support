@@ -1,6 +1,6 @@
 using System;
 
-Console.WriteLine("=== DemoAsyncStreams ===");
+Console.WriteLine("=== 非同期ストリームのデモ ===");
 
 await foreach (var number in GenerateSequenceAsync())
 {

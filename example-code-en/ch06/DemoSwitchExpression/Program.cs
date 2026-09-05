@@ -14,6 +14,16 @@ foreach (DayOfWeek day in Enum.GetValues<DayOfWeek>())
     Console.WriteLine($"{day}: {dayType}");
 }
 
+// Undefined enum values should also preserve the original exception behavior.
+try
+{
+    GetDayType((DayOfWeek)99);
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"Undefined value 99: {ex.Message}");
+}
+
 // --------------------------------------------------------------
 // 2. Type Pattern in Switch Expression
 // --------------------------------------------------------------
@@ -75,7 +85,9 @@ Console.WriteLine("\n=== Example End ===");
 static string GetDayType(DayOfWeek day) => day switch
 {
     DayOfWeek.Saturday or DayOfWeek.Sunday => "Weekend",
-    _ => "Weekday"
+    DayOfWeek.Monday or DayOfWeek.Tuesday or DayOfWeek.Wednesday
+        or DayOfWeek.Thursday or DayOfWeek.Friday => "Weekday",
+    _ => throw new ArgumentException("Undefined weekday value", nameof(day))
 };
 
 static string DescribeShape(object? shape) => shape switch

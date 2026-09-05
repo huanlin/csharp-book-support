@@ -5,13 +5,13 @@ Console.WriteLine("=== 並列実行と Task 合成 ===\n");
 // --------------------------------------------------------------
 // 1. 逐次実行（効率が低い）
 // --------------------------------------------------------------
-Console.WriteLine("1. 逐次実行（Sequential）");
+Console.WriteLine("1. 逐次実行");
 Console.WriteLine(new string('-', 40));
 
 var swatch = System.Diagnostics.Stopwatch.StartNew();
 
-await DoTaskAsync("Task A", 1000);
-await DoTaskAsync("Task B", 1000);
+await DoTaskAsync("タスク A", 1000);
+await DoTaskAsync("タスク B", 1000);
 
 swatch.Stop();
 Console.WriteLine($"逐次実行の合計時間: {swatch.ElapsedMilliseconds} ms");
@@ -25,8 +25,8 @@ Console.WriteLine(new string('-', 40));
 
 swatch.Restart();
 
-var t1 = DoTaskAsync("Task C", 1000);
-var t2 = DoTaskAsync("Task D", 1000);
+var t1 = DoTaskAsync("タスク C", 1000);
+var t2 = DoTaskAsync("タスク D", 1000);
 
 await Task.WhenAll(t1, t2);
 
@@ -68,7 +68,7 @@ await foreach (var task in Task.WhenEach(tasks))
     try 
     {
         var result = await task;
-        Console.WriteLine($"処理完了: Result={result}");
+        Console.WriteLine($"処理完了: 結果={result}");
     }
     catch (Exception ex)
     {

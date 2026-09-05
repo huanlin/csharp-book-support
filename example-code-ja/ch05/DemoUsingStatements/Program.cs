@@ -1,10 +1,10 @@
 // デモ: using 文と using 宣言
 
-Console.WriteLine("=== Using Statement の例 ===\n");
+Console.WriteLine("=== using 文の例 ===\n");
 
 // テストファイル作成
 string testFilePath = "test_using.txt";
-File.WriteAllText(testFilePath, "This is test content\nSecond line\nThird line");
+File.WriteAllText(testFilePath, "これはテスト内容です\n2 行目\n3 行目");
 
 try
 {
@@ -70,7 +70,7 @@ try
 
     try
     {
-        using var resource = new TrackedResource("Test Resource");
+        using var resource = new TrackedResource("テストリソース");
         Console.WriteLine("例外を送出します...");
         throw new InvalidOperationException("意図的に送出した例外");
     }
@@ -136,12 +136,12 @@ static async Task WriteFileWithAsyncDispose(string path)
 
 static void DemoDisposeOrder()
 {
-    using var resource1 = new TrackedResource("Resource 1");
-    using var resource2 = new TrackedResource("Resource 2");
-    using var resource3 = new TrackedResource("Resource 3");
+    using var resource1 = new TrackedResource("リソース 1");
+    using var resource2 = new TrackedResource("リソース 2");
+    using var resource3 = new TrackedResource("リソース 3");
 
     Console.WriteLine("全リソースを確立");
-    Console.WriteLine("（スコープ離脱時の解放順: Resource 3 → Resource 2 → Resource 1）\n");
+    Console.WriteLine("（スコープ離脱時の解放順: リソース 3 → リソース 2 → リソース 1）\n");
 }
 
 // ============================================================

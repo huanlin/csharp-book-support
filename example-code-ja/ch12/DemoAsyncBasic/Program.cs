@@ -74,5 +74,5 @@ async Task DoLibraryWorkAsync()
 string DescribeExecutionEnvironment()
 {
     var syncContext = SynchronizationContext.Current?.GetType().Name ?? "<null>";
-    return $"Thread={Environment.CurrentManagedThreadId}, SyncContext={syncContext}";
+    return $"スレッド={Environment.CurrentManagedThreadId}, 同期コンテキスト={syncContext}";
 }

@@ -1,4 +1,4 @@
-// デモ: Raw String Literals（C# 11+）
+// デモ: 生文字列リテラル（C# 11+）
 
 var json = """
     {
@@ -7,10 +7,10 @@ var json = """
         "path": "C:\\Windows\\System32"
     }
     """;
-Console.WriteLine("Raw String Literal（JSON）:");
+Console.WriteLine("生文字列リテラル（JSON）:");
 Console.WriteLine(json);
 
-// Raw String + 補間
+// 生文字列 + 補間
 var userName = "Michael";
 var jsonWithInterpolation = $$"""
     {
@@ -18,7 +18,7 @@ var jsonWithInterpolation = $$"""
         "timestamp": "{{DateTime.Now:yyyy-MM-dd HH:mm:ss}}"
     }
     """;
-Console.WriteLine("\nRaw String + 補間:");
+Console.WriteLine("\n生文字列 + 補間:");
 Console.WriteLine(jsonWithInterpolation);
 
 // CSS 例

@@ -15,7 +15,7 @@ list.Add(30);
 
 Console.WriteLine($"list[0] = {list[0]}");
 Console.WriteLine($"list[1] = {list[1]}");
-Console.WriteLine($"Count = {list.Count}");
+Console.WriteLine($"件数 = {list.Count}");
 
 // --------------------------------------------------------------
 // 2. Open/Closed 型パラメーター
@@ -24,7 +24,7 @@ Console.WriteLine("\n2. 実装の2方式");
 Console.WriteLine(new string('-', 40));
 
 var hello1 = new Hello1<string>();
-Console.WriteLine(hello1.GetWords("World"));
+Console.WriteLine(hello1.GetWords("世界"));
 
 var hello1Int = new Hello1<int>();
 Console.WriteLine(hello1Int.GetWords(42));
@@ -71,7 +71,7 @@ public class Hello1<T> : ISayHello<T>
 {
     public string GetWords(T obj)
     {
-        return $"Hello, {obj}!";
+        return $"こんにちは、{obj}!";
     }
 }
 
@@ -79,6 +79,6 @@ public class Hello2 : ISayHello<int>
 {
     public string GetWords(int i)
     {
-        return $"Hello, {i}!";
+        return $"こんにちは、{i}!";
     }
 }

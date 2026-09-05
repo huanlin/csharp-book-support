@@ -77,8 +77,8 @@ Console.WriteLine(new string('-', 40));
 object[] items =
 [
     "",
-    "Hello, World!",
-    "This is a very long string that exceeds one hundred characters and should be classified as a long string in our pattern matching example.",
+    "こんにちは、世界!",
+    "これは 100 文字を超えるとても長い文字列で、パターンマッチングの例では長い文字列として分類されるはずです。",
     new int[] { },
     new int[] { 1, 2, 3 }
 ];

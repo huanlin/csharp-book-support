@@ -1,6 +1,6 @@
 // デモ: Multiple Enumeration の落とし穴
 
-Console.WriteLine("=== 5. Multiple Enumeration の落とし穴 ===");
+Console.WriteLine("=== 5. 複数回列挙の落とし穴 ===");
 Console.WriteLine(new string('-', 40));
 
 var items = new List<int> { 1, 2, 3 };
